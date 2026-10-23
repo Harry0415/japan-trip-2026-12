@@ -14,6 +14,7 @@
   --ticket:#E2F0E6; --ticket-line:#D3E7DA; --ticket-edge:#9CC3A8; --stamp:#C23B22;
   --ic:#2E8754; --buy:#B07A0C; --pass:#1E5DA6; --free:#8A949E; --focus:#1E5DA6; --on-stamp:#FFFFFF;
   --shadow:0 2px 10px rgba(28,42,57,.14);
+  --bar-h:46px;
 }
 @media (prefers-color-scheme: dark){
   :root{
@@ -25,7 +26,7 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans TC",system-ui,-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;font-size:16px;line-height:1.75}
+body{margin:0;overflow-x:clip;background:var(--paper);color:var(--ink);font-family:"Noto Sans TC",system-ui,-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;font-size:16px;line-height:1.75}
 a{color:var(--pass);text-underline-offset:3px}
 :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px}
 button,input,select,textarea{font:inherit;color:inherit}
@@ -36,40 +37,43 @@ h1,h2,h3,h4{line-height:1.3}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .muted{color:var(--mist)}
 .warn{color:var(--stamp)}
+.nw{white-space:nowrap}
 
-/* 封面與索引 */
-.top{padding:48px 0 0}
-.top h1{margin:0;font-size:clamp(30px,8.4vw,56px);line-height:1.12;font-weight:900;letter-spacing:.05em}
-.top h1 span,.top .dates span{white-space:nowrap}
-.dates{margin:14px 0 0;font-size:20px;font-weight:500}
-.base{margin:2px 0 0;color:var(--mist)}
-.countdown{margin:8px 0 0;font-size:15px;color:var(--mist)}
-.index{margin-top:28px;padding-top:18px;border-top:1px solid var(--rule)}
-.index h2{margin:0 0 12px;font-size:16px;font-weight:700;color:var(--mist)}
-.idx{list-style:none;margin:0;padding:0}
-.idx>li{position:relative;padding:0 0 14px 30px}
-.idx>li::before{content:"";position:absolute;left:7px;top:0;bottom:0;width:3px;background:var(--ink)}
-.idx>li:first-child::before{top:12px}
-.idx>li:last-child::before{bottom:auto;height:12px}
-.idx>li::after{content:"";position:absolute;left:1px;top:5px;width:15px;height:15px;border-radius:50%;background:var(--surface);border:3px solid var(--ink)}
-.idx>li.cost::after{border-color:var(--buy)}
-.idx>li.glabel{padding-bottom:10px;font-size:14px;font-weight:700;color:var(--mist)}
-.idx>li.glabel::before{background:repeating-linear-gradient(var(--ink) 0 4px,transparent 4px 8px)}
-.idx>li.glabel::after{display:none}
-.idx a{font-size:17px;font-weight:700}
-.idx-desc{margin-left:10px;font-size:14px;color:var(--mist)}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
-.chips a{display:inline-block;padding:2px 11px;border:1px solid var(--rule);border-radius:999px;background:var(--surface);color:var(--ink);font-size:14px;font-weight:400;text-decoration:none}
-.chips a b{margin-right:4px}
-.chips a.out{border-color:var(--buy)}
-.chips a.is-today{border-color:var(--stamp);box-shadow:0 0 0 1px var(--stamp)}
-.chips a:hover{background:var(--paper)}
+/* 頁首與索引列 */
+.top{padding:24px 0 12px}
+.top h1{margin:0;font-size:clamp(26px,6.4vw,40px);line-height:1.15;font-weight:900;letter-spacing:.05em}
+.top h1 span,.meta span{white-space:nowrap}
+.meta{margin:6px 0 0;color:var(--mist);font-size:15px}
+.tabs{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--rule)}
+.tabs-inner{position:relative;display:flex;align-items:stretch;max-width:760px;height:var(--bar-h);margin:0 auto;padding:0 10px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+.tabs-inner::-webkit-scrollbar{display:none}
+.tab{flex:none;display:flex;align-items:center;padding:0 12px;color:var(--mist);font-size:15px;font-weight:700;text-decoration:none;white-space:nowrap}
+.tab:hover,.tab[aria-current="page"]{color:var(--ink)}
+.tab:focus-visible{outline-offset:-3px}
+.tab .sm{display:none}
+.tab-sep{flex:none;align-self:center;width:1px;height:18px;margin:0 4px;background:var(--rule)}
+.tab-ink{position:absolute;left:0;bottom:0;width:0;height:3px;border-radius:2px 2px 0 0;background:var(--stamp);pointer-events:none}
+@media (max-width:560px){
+  .tabs-inner{padding:0 6px}
+  .tab{padding:0 9px}
+  .tab .lg{display:none}
+  .tab .sm{display:inline}
+}
+
+/* 區塊 */
+.pane{padding-bottom:96px;scroll-margin-top:var(--bar-h)}
+.block{margin-top:64px;scroll-margin-top:calc(var(--bar-h) + 12px)}
+.pane>.wrap>.block:first-child{margin-top:28px}
+.block>h2{margin:0;font-size:clamp(22px,4.6vw,28px);font-weight:900;letter-spacing:.06em}
+.block>.lead{margin-top:10px}
+.block>.vh:first-child+.lead{margin-top:0}
+.block h3{margin:36px 0 8px;font-size:18px}
+.block>.vh:first-child+h3{margin-top:0}
 
 /* 每日行程：路線選站 */
-.days{margin-top:64px}
-.days-head h2{margin:0;font-size:clamp(24px,5vw,30px);font-weight:900;letter-spacing:.06em}
-.hint{margin:6px 0 0;color:var(--mist);font-size:15px}
-.legend{margin:6px 0 0;font-size:14px}
+.days-head{padding-top:16px}
+.hint{margin:0;color:var(--mist);font-size:15px}
+.legend{margin:4px 0 0;font-size:14px}
 .legend summary{cursor:pointer;color:var(--pass);width:max-content}
 .legend-body{display:flex;flex-wrap:wrap;gap:6px 20px;padding:8px 0 0;color:var(--mist)}
 .legend-body span{display:inline-flex;align-items:center;gap:7px}
@@ -77,7 +81,7 @@ h1,h2,h3,h4{line-height:1.3}
 .sw.ring{background:var(--surface);border:3px solid var(--buy)}
 .sw.tk{width:22px;height:14px;border-radius:3px;background:var(--ticket);border:1px solid var(--ticket-edge)}
 .sw.dash{width:22px;height:14px;border-radius:3px;border:1.5px dashed var(--mist)}
-.picker{position:sticky;top:0;z-index:20;margin-top:14px;background:var(--paper);border-bottom:1px solid var(--rule)}
+.picker{position:sticky;top:var(--bar-h);z-index:20;margin-top:10px;background:var(--paper);border-bottom:1px solid var(--rule)}
 .picker-inner{display:grid;grid-template-columns:38px 1fr 38px;align-items:start;gap:6px;max-width:800px;margin:0 auto;padding:10px 20px 6px}
 .pbtn{width:38px;height:38px;margin-top:-6px;border-radius:50%;border:1px solid var(--rule);background:var(--surface);cursor:pointer;font-size:13px;line-height:1}
 .pbtn:disabled{opacity:.35;cursor:default}
@@ -99,11 +103,13 @@ h1,h2,h3,h4{line-height:1.3}
   .pbtn{width:34px;height:34px;margin-top:-5px}
 }
 
-/* 每日行程：橫向卷軸 */
-.scroller{--pw:min(720px,calc(100vw - 56px));--gap:20px;display:flex;align-items:flex-start;gap:var(--gap);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding-top:18px;padding-bottom:22px;padding-left:max(20px,(100% - 720px) / 2);padding-right:calc(100% - var(--pw) - max(20px,(100% - 720px) / 2));scroll-padding-left:max(20px,(100% - 720px) / 2);scrollbar-width:thin;scrollbar-color:var(--mist) transparent}
+/* 每日行程：橫向卷軸，目前那天的卡片固定在正中間 */
+.scroller-wrap{container-type:inline-size}
+.scroller{--pw:min(720px,calc(100vw - 48px));--gap:20px;display:flex;align-items:flex-start;gap:var(--gap);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding:18px calc((100% - var(--pw)) / 2) 22px;scrollbar-width:thin;scrollbar-color:var(--mist) transparent}
+@supports (width:1cqw){.scroller{--pw:min(720px,calc(100cqw - 48px))}}
 @media (max-width:640px){.scroller{--gap:12px}}
 .scroller:focus-visible{outline-offset:-3px}
-.panel{position:relative;flex:0 0 var(--pw);scroll-snap-align:start;scroll-snap-stop:always;scroll-margin-top:100px;background:var(--surface);border:1px solid var(--rule);border-radius:6px;overflow:hidden;--notch:var(--surface)}
+.panel{position:relative;flex:0 0 var(--pw);scroll-snap-align:center;scroll-snap-stop:always;scroll-margin-top:calc(var(--bar-h) + 100px);background:var(--surface);border:1px solid var(--rule);border-radius:6px;overflow:hidden;--notch:var(--surface)}
 .js .panel:not(.is-active){opacity:.5;cursor:pointer}
 .panel.is-today{border-color:var(--stamp);box-shadow:0 0 0 2px var(--stamp)}
 .panel-body{padding:2px 20px 22px}
@@ -135,7 +141,6 @@ h1,h2,h3,h4{line-height:1.3}
 .pt-mark{flex:none;width:54px;align-self:stretch;position:relative}
 .pt-mark::before{content:"";position:absolute;left:4px;top:.7em;width:7px;height:7px;border-radius:50%;background:var(--mist)}
 .points.plain .pt-mark{width:12px}
-.nw{white-space:nowrap}
 .need{display:inline-block;margin-left:8px;padding:0 7px;border:1px solid currentColor;border-radius:999px;font-size:12px;line-height:1.6;white-space:nowrap;vertical-align:1px}
 .n-book{color:var(--stamp)}
 .n-pass{color:var(--pass)}
@@ -212,15 +217,6 @@ h1,h2,h3,h4{line-height:1.3}
 .kind.food{color:var(--buy)}
 .etime{color:var(--mist);font-variant-numeric:tabular-nums}
 
-/* 區塊 */
-.block{margin-top:88px;scroll-margin-top:12px}
-.block>h2{margin:0;font-size:clamp(24px,5vw,30px);font-weight:900;letter-spacing:.06em}
-.block>.lead{margin-top:10px}
-.block h3{margin:36px 0 8px;font-size:18px}
-.group-start{display:flex;align-items:center;gap:14px;margin-top:104px;color:var(--mist);font-size:15px;font-weight:700}
-.group-start::after{content:"";flex:1;height:1px;background:var(--rule)}
-.group-start+.block{margin-top:28px}
-
 /* 大家加的行程與餐廳 */
 .auth{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:18px;padding:14px 16px;background:var(--surface);border:1px solid var(--rule);border-radius:6px}
 .auth p{margin:0}
@@ -231,10 +227,7 @@ h1,h2,h3,h4{line-height:1.3}
 .btn.small{padding:3px 12px;font-size:14px;font-weight:500}
 .btn.danger{border-color:var(--stamp);background:transparent;color:var(--stamp)}
 .btn.danger.armed{background:var(--stamp);color:var(--on-stamp)}
-.uid{flex-basis:100%;font-size:14px}
-.uid summary{cursor:pointer;color:var(--mist);width:max-content}
-.uid code{display:inline-block;margin:6px 8px 0 0;padding:2px 6px;border:1px solid var(--rule);border-radius:3px;background:var(--paper);font-size:13px;word-break:break-all}
-.form{display:grid;gap:14px;margin-top:14px;padding:18px;background:var(--surface);border:1px solid var(--rule);border-radius:6px;scroll-margin-top:16px}
+.form{display:grid;gap:14px;margin-top:14px;padding:18px;background:var(--surface);border:1px solid var(--rule);border-radius:6px;scroll-margin-top:calc(var(--bar-h) + 12px)}
 .form.editing{border-color:var(--pass);box-shadow:0 0 0 1px var(--pass)}
 .form-title{margin:0;font-size:16px;font-weight:700}
 .field{margin:0;padding:0;border:0;min-width:0}
@@ -301,28 +294,27 @@ h1,h2,h3,h4{line-height:1.3}
 .budget thead th{font-size:14px;color:var(--mist)}
 .budget tfoot td{border-top:2px solid var(--ink);border-bottom:0;font-weight:700}
 .list{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--rule)}
+.block>.vh:first-child+.list{margin-top:0}
 .list li{padding:14px 0;border-bottom:1px solid var(--rule)}
 .list .a{margin:0;font-weight:700}
 .list p{margin:2px 0 0;font-size:15px}
 .list .m{font-size:14px;color:var(--mist)}
 .notes{margin:12px 0 0;padding-left:1.2em}
 .notes li{margin:6px 0}
+.src-box{margin-top:12px}
+.src-box summary{cursor:pointer;color:var(--pass);width:max-content}
 .src{margin:12px 0 0;padding-left:1.4em;font-size:14px}
 .src li{margin:4px 0}
-footer{margin-top:80px;padding-top:24px;padding-bottom:96px;border-top:1px solid var(--rule);font-size:15px;color:var(--mist)}
-footer h2{margin:0 0 8px;font-size:18px;color:var(--ink)}
-footer code{padding:0 5px;border:1px solid var(--rule);border-radius:3px;background:var(--surface);font-size:14px}
 
 /* 浮動按鈕與提示 */
 .fabs{position:fixed;right:16px;bottom:16px;z-index:40;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.fab{display:inline-block;padding:9px 16px;border:1px solid var(--rule);border-radius:999px;background:var(--surface);color:var(--ink);box-shadow:var(--shadow);font-size:15px;font-weight:700;text-decoration:none}
-.fab.today{border-color:var(--stamp);background:var(--stamp);color:var(--on-stamp)}
-.fab.hide{opacity:0;transform:translateY(8px);pointer-events:none}
+.fab{display:inline-block;padding:9px 16px;border:1px solid var(--stamp);border-radius:999px;background:var(--stamp);color:var(--on-stamp);box-shadow:var(--shadow);font-size:15px;font-weight:700;text-decoration:none}
 .toast{position:fixed;left:50%;bottom:24px;z-index:50;max-width:calc(100vw - 32px);padding:10px 18px;border-radius:999px;background:var(--ink);color:var(--paper);font-size:15px;opacity:0;transform:translate(-50%,24px);pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
 /* 動畫：只在使用者沒有要求減少動態時播放 */
 @keyframes stamp{0%{opacity:0;transform:scale(1.8) rotate(-24deg)}60%{opacity:1;transform:scale(.94) rotate(-8deg)}100%{opacity:1;transform:scale(1) rotate(-10deg)}}
+@keyframes pane-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion: no-preference){
   .js .track:not(.drawn)::before{transform:scaleX(0)}
   .track.drawn::before{transition:transform .8s cubic-bezier(.6,0,.2,1)}
@@ -335,14 +327,16 @@ footer code{padding:0 5px;border:1px solid var(--rule);border-radius:3px;backgro
   .panel.stamped .stamp{animation:stamp .45s cubic-bezier(.3,.7,.4,1) both}
   .panel{transition:opacity .3s ease}
   .scroller{transition:height .35s ease}
-  .fab{transition:opacity .2s ease,transform .2s ease}
+  .pane.enter{animation:pane-in .26s ease-out both}
+  .tab-ink{transition:transform .3s cubic-bezier(.5,0,.2,1),width .3s cubic-bezier(.5,0,.2,1)}
   .toast{transition:opacity .25s ease,transform .25s ease}
 }
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 
 @media print{
   body{background:#fff}
-  .picker,.fabs,.toast,.auth,.form,.filters,.legend{display:none !important}
+  .tabs,.picker,.fabs,.toast,.auth,.form,.filters,.legend{display:none !important}
+  .pane[hidden]{display:block !important}
   .scroller{display:block;height:auto !important;overflow:visible;padding:0 20px}
   .panel{margin:0 0 24px;opacity:1 !important}
 }
@@ -376,9 +370,9 @@ const TRIP = {
   base: "以淺草為據點，12/22–12/24 走富士・箱根一圈。",
   repo: "https://github.com/Harry0415/japan-trip-2026-12",
 
-  /* 旅伴新增功能：照 README「開啟旅伴新增功能」建立 Firebase 專案後，把設定值貼在這裡 */
+  /* 旅伴新增功能的 Firebase 設定 */
   firebase: { apiKey: "AIzaSyCWY-QJ5rPGMK2eX8lqwLOtOLZANPK0QEQ", authDomain: "japan-trip-2026-7d2e6.firebaseapp.com", projectId: "japan-trip-2026-7d2e6", appId: "1:407394879531:web:8189bac7693c1c9859c26e" },
-  /* 可以刪除任何一筆的管理員：登入後在「大家加的行程與餐廳」展開「我的使用者 ID」，複製貼進來 */
+  /* 可以刪除任何一筆的管理員（Firebase 使用者 ID） */
   admins: ["UAkQj9vBxUOw1GgYFwWRscNCxip1", ""],
 
   pay: {
@@ -736,6 +730,16 @@ const CHECK_KEY = "trip2026-checklist";
 const UA = navigator.userAgent || "";
 const IN_LINE = /\bLine\//i.test(UA);
 const IN_APP = IN_LINE || /FBAN|FBAV|FB_IAB|Instagram/i.test(UA);
+/* 頂端索引列的順序；花費與評估放最後 */
+const PANES = [
+  { id: "days", lg: "每日行程", sm: "行程" },
+  { id: "food", lg: "想吃的餐廳", sm: "餐廳" },
+  { id: "together", lg: "大家加的", sm: "大家加的" },
+  { id: "hotels", lg: "住宿", sm: "住宿" },
+  { id: "prep", lg: "出發前準備", sm: "準備" },
+  { id: "cost", lg: "花費與評估", sm: "花費評估", sep: true }
+];
+const SUBS = { budget: "cost", excursion: "cost", sources: "cost" };
 
 function h(tag, props, ...kids) {
   const el = document.createElement(tag);
@@ -773,6 +777,7 @@ function md(iso) {
 const shortDate = iso => { const x = md(iso); return `${x.m}/${x.d}（${x.w}）`; };
 const longDate = iso => { const x = md(iso); return `${x.m} 月 ${x.d} 日（${x.w}）`; };
 const dayLabel = id => { const i = dayNo(id) - 1; const d = TRIP.days[i]; return `D${i + 1} ${shortDate(d.date)} ${d.sign}`; };
+const barHeight = () => { const t = $(".tabs"); return t ? t.offsetHeight : 0; };
 function todayInJapan() {
   try {
     return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
@@ -787,43 +792,36 @@ function toast(msg) {
   toastTimer = setTimeout(() => t.classList.remove("show"), 2800);
 }
 
-/* ---------- 封面與索引 ---------- */
+/* ---------- 頁首與索引列 ---------- */
 function renderTop(today) {
   const n = TRIP.days.length;
   const diff = Math.round((Date.parse(TRIP.start) - Date.parse(today)) / 864e5);
   const ti = TRIP.days.findIndex(d => d.date === today);
-  const count = diff > 0 ? `距離出發還有 ${diff} 天。` : ti >= 0 ? `旅行第 ${ti + 1} 天。` : null;
-  return h("header", { class: "top", id: "index" },
+  const count = diff > 0 ? `距離出發還有 ${diff} 天` : ti >= 0 ? `旅行第 ${ti + 1} 天` : "";
+  return h("header", { class: "top" },
     h("div", { class: "wrap" },
       h("h1", null, TRIP.title.split(" ").flatMap((p, k) => k ? [" ", h("span", null, p)] : [h("span", null, p)])),
-      h("p", { class: "dates num" }, `${shortDate(TRIP.start)}至 ${shortDate(TRIP.end)}，`, h("span", null, `${n} 天 ${n - 1} 夜`)),
-      h("p", { class: "base" }, TRIP.base),
-      count && h("p", { class: "countdown" }, count),
-      renderIndex(today)));
+      h("p", { class: "meta num" },
+        h("span", null, `${shortDate(TRIP.start)}至 ${shortDate(TRIP.end)}`), `，${n} 天 ${n - 1} 夜。`,
+        count && h("span", null, count + "。"))));
 }
 
-function renderIndex(today) {
-  const total = TRIP.days.reduce((s, d) => s + sumCost(d), 0);
-  const item = (href, label, desc, cls) => h("li", { class: cls || null },
-    h("a", { href }, label), desc && h("span", { class: "idx-desc" }, desc));
-  return h("nav", { class: "index", "aria-labelledby": "index-h" },
-    h("h2", { id: "index-h" }, "索引"),
-    h("ol", { class: "idx" },
-      h("li", null,
-        h("a", { href: "#days" }, "每日行程"), h("span", { class: "idx-desc" }, "左右滑動，一天一張"),
-        h("div", { class: "chips" },
-          TRIP.days.map((d, i) => h("a", {
-            href: "#" + d.id,
-            class: [d.out ? "out" : "", d.date === today ? "is-today" : ""].join(" ").trim() || null
-          }, h("b", null, "D" + (i + 1)), d.short)))),
-      item("#food", "想吃的餐廳"),
-      item("#together", "大家加的行程與餐廳", "旅伴登入後可以新增"),
-      item("#hotels", "住宿"),
-      item("#prep", "出發前準備", "訂票日期與注意事項"),
-      h("li", { class: "glabel" }, "花費與評估"),
-      item("#excursion", "離開東京市區的交通與票券", `富士・箱根三天每人 ${yen(exTotal())}`, "cost"),
-      item("#budget", "九天交通費", `每人約 ${yen(total)}`, "cost"),
-      item("#sources", "資料來源", null, "cost")));
+function renderTabs() {
+  return h("nav", { class: "tabs", "aria-label": "索引" },
+    h("div", { class: "tabs-inner" },
+      PANES.map(p => [
+        p.sep && h("span", { class: "tab-sep", "aria-hidden": "true" }),
+        h("a", { class: "tab", href: "#" + p.id, "data-pane": p.id, "aria-label": p.lg },
+          h("span", { class: "lg", "aria-hidden": "true" }, p.lg), h("span", { class: "sm", "aria-hidden": "true" }, p.sm))
+      ]),
+      h("span", { class: "tab-ink", "aria-hidden": "true" })));
+}
+
+/* 一個區塊一頁 */
+function pane(id, title, ...kids) {
+  return h("section", { class: "pane", id, "aria-labelledby": id + "-h", hidden: true },
+    h("div", { class: "wrap" },
+      h("div", { class: "block" }, h("h2", { class: "vh", id: id + "-h" }, title), kids)));
 }
 
 /* ---------- 每日行程 ---------- */
@@ -841,9 +839,9 @@ function renderLegend() {
 }
 
 function renderDays(today) {
-  return h("section", { class: "days", id: "days", "aria-labelledby": "days-h" },
+  return h("section", { class: "pane days", id: "days", "aria-labelledby": "days-h", hidden: true },
+    h("h2", { class: "vh", id: "days-h" }, "每日行程"),
     h("div", { class: "wrap days-head" },
-      h("h2", { id: "days-h" }, "每日行程"),
       h("p", { class: "hint" }, "左右滑動切換日期，或點路線上的站。"),
       renderLegend()),
     h("nav", { class: "picker", "aria-label": "選擇日期" },
@@ -858,8 +856,9 @@ function renderDays(today) {
               }, h("span", { class: "dot" }), h("span", { class: "d" }, "D" + (i + 1)), h("span", { class: "pl" }, wbr(d.short)))))),
           h("span", { class: "train", "aria-hidden": "true" })),
         h("button", { type: "button", class: "pbtn next", "aria-label": "後一天" }, "▶"))),
-    h("div", { class: "scroller", tabindex: "0", role: "region", "aria-label": "每日行程，可以左右捲動" },
-      TRIP.days.map((d, i) => renderPanel(d, i, today))),
+    h("div", { class: "scroller-wrap" },
+      h("div", { class: "scroller", tabindex: "0", role: "region", "aria-label": "每日行程，可以左右捲動" },
+        TRIP.days.map((d, i) => renderPanel(d, i, today)))),
     h("p", { class: "vh", id: "day-status", "aria-live": "polite" }));
 }
 
@@ -948,25 +947,36 @@ function renderCosts(d, level) {
     d.note && h("p", { class: "cost-note" }, d.note));
 }
 
-/* 橫向卷軸：路線上的列車跟著目前的日期移動 */
-function initDays(today) {
+/* 橫向卷軸：目前那天的卡片固定在正中間，路線上的列車跟著移動 */
+function initDays(start) {
   const scroller = $(".scroller");
   const panels = $$(".panel", scroller);
   const stops = $$(".stop");
   const track = $(".track"), train = $(".train"), picker = $(".picker");
   const prevBtn = $(".pbtn.prev"), nextBtn = $(".pbtn.next"), status = $("#day-status");
-  let active = -1, step = 1, settleTimer = 0, raf = 0, interacted = false, lastSettled = -1, inView = false;
+  const hasScrollEnd = "onscrollend" in window;
+  let active = -1, raf = 0, settleTimer = 0, touching = false, interacted = false, lastSettled = -1, inView = false, fixes = 0, lastScroll = 0;
   const ro = "ResizeObserver" in window ? new ResizeObserver(() => fit()) : null;
 
-  function measure() {
-    step = panels.length > 1 ? panels[1].offsetLeft - panels[0].offsetLeft : scroller.clientWidth || 1;
+  const visible = () => scroller.getClientRects().length > 0;
+  /* 卡片中心和卷軸中心的距離（用實際位置算，避免小數點誤差累積） */
+  function delta(i) {
+    const s = scroller.getBoundingClientRect(), r = panels[i].getBoundingClientRect();
+    return (r.left + r.width / 2) - (s.left + s.width / 2);
   }
   function nearest() {
-    return Math.max(0, Math.min(panels.length - 1, Math.round(scroller.scrollLeft / step)));
+    let best = 0, bd = Infinity;
+    panels.forEach((p, k) => { const d = Math.abs(delta(k)); if (d < bd) { bd = d; best = k; } });
+    return best;
+  }
+  function align(i, smooth) {
+    if (!visible()) return;
+    const left = scroller.scrollLeft + delta(i);
+    scroller.scrollTo({ left, behavior: smooth && !REDUCE ? "smooth" : "auto" });
   }
   function fit() {
     const p = panels[active];
-    if (!p) return;
+    if (!p || !visible()) return;
     const cs = getComputedStyle(scroller);
     const extra = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom) + (scroller.offsetHeight - scroller.clientHeight);
     scroller.style.height = Math.ceil(p.offsetHeight + extra) + "px";
@@ -991,41 +1001,60 @@ function initDays(today) {
     const d = TRIP.days[i];
     status.textContent = `D${i + 1} ${shortDate(d.date)} ${d.sign}`;
   }
-  function pageToPanel() {
-    const top = scroller.getBoundingClientRect().top + window.scrollY - picker.offsetHeight;
-    window.scrollTo({ top, behavior: REDUCE ? "auto" : "smooth" });
+  const stickyOffset = () => barHeight() + picker.offsetHeight;
+  function pageToPanel(smooth) {
+    const top = scroller.getBoundingClientRect().top + window.scrollY - stickyOffset();
+    window.scrollTo({ top: Math.max(0, top), behavior: smooth && !REDUCE ? "smooth" : "auto" });
   }
   function go(i, opts) {
     opts = opts || {};
     i = Math.max(0, Math.min(panels.length - 1, i));
-    measure();
     interacted = true;
-    scroller.scrollTo({ left: i * step, behavior: REDUCE || opts.instant ? "auto" : "smooth" });
+    fixes = 0;
     setActive(i);
+    align(i, !opts.instant && !opts.page);
     announce(i);
-    if (opts.page) pageToPanel();
+    if (opts.page) pageToPanel(!opts.instantPage);
   }
+  /* 捲動停下來之後：確認卡片真的在正中間，偏了就再校正一次 */
   function settle() {
+    if (touching || performance.now() - lastScroll < 100) { clearTimeout(settleTimer); settleTimer = setTimeout(settle, 140); return; }
+    if (!visible()) return;
     const i = nearest();
     setActive(i);
+    if (Math.abs(delta(i)) > 1.5 && fixes < 3) {
+      fixes++;
+      align(i, true);
+      if (!hasScrollEnd) { clearTimeout(settleTimer); settleTimer = setTimeout(settle, 450); }
+      return;
+    }
+    fixes = 0;
     if (i !== lastSettled) {
       announce(i);
       if (interacted) {
-        try { history.replaceState(null, "", "#" + TRIP.days[i].id); } catch (e) {}
-        if (scroller.getBoundingClientRect().top < picker.offsetHeight - 40) pageToPanel();
+        if (window.__onDay) window.__onDay(i);
+        if (scroller.getBoundingClientRect().top < stickyOffset() - 40) pageToPanel(true);
       }
       lastSettled = i;
     }
   }
 
   scroller.addEventListener("scroll", () => {
+    lastScroll = performance.now();
     if (!raf) raf = requestAnimationFrame(() => { raf = 0; setActive(nearest()); });
-    clearTimeout(settleTimer);
-    settleTimer = setTimeout(settle, 150);
+    if (!hasScrollEnd) { clearTimeout(settleTimer); settleTimer = setTimeout(settle, 160); }
   }, { passive: true });
-  scroller.addEventListener("pointerdown", () => { interacted = true; }, { passive: true });
-  scroller.addEventListener("touchstart", () => { interacted = true; }, { passive: true });
-  scroller.addEventListener("wheel", () => { interacted = true; }, { passive: true });
+  if (hasScrollEnd) scroller.addEventListener("scrollend", settle);
+  scroller.addEventListener("touchstart", () => { touching = true; interacted = true; fixes = 0; }, { passive: true });
+  const untouch = () => {
+    touching = false;
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(settle, hasScrollEnd ? 700 : 160);
+  };
+  scroller.addEventListener("touchend", untouch, { passive: true });
+  scroller.addEventListener("touchcancel", untouch, { passive: true });
+  scroller.addEventListener("pointerdown", () => { interacted = true; fixes = 0; }, { passive: true });
+  scroller.addEventListener("wheel", () => { interacted = true; fixes = 0; }, { passive: true });
   scroller.addEventListener("keydown", e => {
     if (e.target !== scroller) return;
     if (e.key === "ArrowRight") { e.preventDefault(); go(active + 1); }
@@ -1041,34 +1070,17 @@ function initDays(today) {
   nextBtn.addEventListener("click", () => go(active + 1));
   stops.forEach((b, k) => b.addEventListener("click", () => go(k)));
 
-  /* 頁面上所有 #d1–#d9 的連結都改成切換卡片 */
-  document.addEventListener("click", e => {
-    const a = e.target.closest("a[href^='#d']");
-    if (!a) return;
-    const i = TRIP.days.findIndex(d => "#" + d.id === a.getAttribute("href"));
-    if (i < 0) return;
-    e.preventDefault();
-    go(i, { page: true });
-    try { history.replaceState(null, "", "#" + TRIP.days[i].id); } catch (err) {}
-  });
-
   let resizeTimer = 0;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => { measure(); scroller.scrollLeft = active * step; fit(); }, 120);
+    resizeTimer = setTimeout(() => { align(active, false); fit(); }, 120);
   });
 
-  /* 初始位置：網址指定的那天，旅行期間是今天，其他時候是 D1 */
-  measure();
-  const fromHash = TRIP.days.findIndex(d => "#" + d.id === location.hash);
-  const ti = TRIP.days.findIndex(d => d.date === today);
-  const start = fromHash >= 0 ? fromHash : ti >= 0 ? ti : 0;
-  scroller.scrollLeft = start * step;
   setActive(start);
   announce(start);
   lastSettled = start;
-  if (fromHash >= 0) setTimeout(pageToPanel, 60);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measure(); scroller.scrollLeft = active * step; fit(); });
+  requestAnimationFrame(() => { align(start, false); fit(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { align(active, false); fit(); });
 
   /* 第一次看到路線時：畫線、站點出現、列車開到目前的日期 */
   const draw = () => {
@@ -1083,14 +1095,17 @@ function initDays(today) {
     io2.observe(scroller);
   }
 
-  return { go, fit, get active() { return active; } };
+  return {
+    go, fit,
+    refresh() { requestAnimationFrame(() => { align(active, false); fit(); }); },
+    get active() { return active; }
+  };
 }
 
 /* ---------- 想吃的餐廳、住宿、出發前準備 ---------- */
 function renderFood() {
-  return h("section", { class: "block", id: "food", "aria-labelledby": "food-h" },
-    h("h2", { id: "food-h" }, "想吃的餐廳"),
-    h("p", { class: "lead" }, "填好店名和想吃的那一餐，再依位置排進最順路的一天。旅伴推薦的店放在下一段。"),
+  return pane("food", "想吃的餐廳",
+    h("p", { class: "lead" }, "填好店名和想吃的那一餐，再依位置排進最順路的一天。旅伴推薦的店在「大家加的」。"),
     h("ul", { class: "list" },
       TRIP.restaurants.map(r => r.blank
         ? h("li", null, h("span", { class: "slot" }, "自己填：店名、地點、想吃的那一餐"))
@@ -1102,8 +1117,7 @@ function renderFood() {
 }
 
 function renderHotels() {
-  return h("section", { class: "block", id: "hotels", "aria-labelledby": "hotels-h" },
-    h("h2", { id: "hotels-h" }, "住宿"),
+  return pane("hotels", "住宿",
     h("ul", { class: "list" },
       TRIP.hotels.map(x => h("li", null,
         h("p", { class: "a" }, x.name, h("a", { class: "maplink", href: mapUrl(x.map), target: "_blank", rel: "noopener" }, "地圖")),
@@ -1115,8 +1129,7 @@ function renderPrep() {
   let stored = {};
   try { stored = JSON.parse(store.get(CHECK_KEY, "{}")) || {}; } catch (e) { stored = {}; }
   const save = () => store.set(CHECK_KEY, JSON.stringify(stored));
-  return h("section", { class: "block", id: "prep", "aria-labelledby": "prep-h" },
-    h("h2", { id: "prep-h" }, "出發前準備"),
+  return pane("prep", "出發前準備",
     h("h3", null, "訂票清單"),
     h("ul", { class: "check" },
       TRIP.checklist.map(c => h("li", null,
@@ -1129,6 +1142,28 @@ function renderPrep() {
 }
 
 /* ---------- 花費與評估 ---------- */
+function renderCost() {
+  return h("section", { class: "pane", id: "cost", "aria-labelledby": "cost-h", hidden: true },
+    h("h2", { class: "vh", id: "cost-h" }, "花費與評估"),
+    h("div", { class: "wrap" }, renderBudget(), renderExcursion(), renderSources()));
+}
+
+function renderBudget() {
+  const total = TRIP.days.reduce((s, d) => s + sumCost(d), 0);
+  const extras = TRIP.days.flatMap(d => (d.extra || []).map(x => `${shortDate(d.date)}${x.what} ${yen(x.yen)}／${x.per || "次"}`));
+  return h("section", { class: "block", id: "budget", "aria-labelledby": "budget-h" },
+    h("h2", { id: "budget-h" }, "九天交通費"),
+    h("p", { class: "lead" }, `每人約 ${yen(total)}，不含行李配送。`),
+    h("table", { class: "budget" },
+      h("thead", null, h("tr", null, h("th", null, "日期"), h("th", null, "行程"), h("th", null, "交通費"))),
+      h("tbody", null, TRIP.days.map((d, i) => h("tr", null,
+        h("td", null, `D${i + 1} ${shortDate(d.date)}`),
+        h("td", null, h("a", { href: "#" + d.id }, d.short)),
+        h("td", null, yen(sumCost(d)))))),
+      h("tfoot", null, h("tr", null, h("td", { colspan: "2" }, "合計（每人）"), h("td", null, yen(total))))),
+    extras.length > 0 && h("p", { class: "extra" }, "需要才用的費用：" + extras.join("；") + "。"));
+}
+
 function renderExcursion() {
   const ex = TRIP.excursion;
   const ds = ex.days.map(id => TRIP.days.find(d => d.id === id));
@@ -1164,34 +1199,13 @@ function renderExcursion() {
           `（${[...new Set(d.cost.map(c => payLabel(c.pay)))].join("、")}）`)))));
 }
 
-function renderBudget() {
-  const total = TRIP.days.reduce((s, d) => s + sumCost(d), 0);
-  const extras = TRIP.days.flatMap(d => (d.extra || []).map(x => `${shortDate(d.date)}${x.what} ${yen(x.yen)}／${x.per || "次"}`));
-  return h("section", { class: "block", id: "budget", "aria-labelledby": "budget-h" },
-    h("h2", { id: "budget-h" }, "九天交通費"),
-    h("p", { class: "lead" }, `每人約 ${yen(total)}，不含行李配送。`),
-    h("table", { class: "budget" },
-      h("thead", null, h("tr", null, h("th", null, "日期"), h("th", null, "行程"), h("th", null, "交通費"))),
-      h("tbody", null, TRIP.days.map((d, i) => h("tr", null,
-        h("td", null, `D${i + 1} ${shortDate(d.date)}`),
-        h("td", null, h("a", { href: "#" + d.id }, d.short)),
-        h("td", null, yen(sumCost(d)))))),
-      h("tfoot", null, h("tr", null, h("td", { colspan: "2" }, "合計（每人）"), h("td", null, yen(total))))),
-    extras.length > 0 && h("p", { class: "extra" }, "需要才用的費用：" + extras.join("；") + "。"));
-}
-
 function renderSources() {
   return h("section", { class: "block", id: "sources", "aria-labelledby": "sources-h" },
     h("h2", { id: "sources-h" }, "資料來源"),
     h("p", { class: "lead" }, "票價、時刻與營業時間是 2026 年 10 月查的，出發前請再確認。"),
-    h("ol", { class: "src" }, TRIP.sources.map(([t, u]) => h("li", null, h("a", { href: u, target: "_blank", rel: "noopener" }, t)))));
-}
-
-function renderFooter() {
-  return h("footer", { class: "wrap" },
-    h("h2", null, "怎麼修改這一頁"),
-    h("p", null, "所有行程都在 ", h("code", null, "index.html"), " 上方的 ", h("code", null, "TRIP"), " 資料裡；虛線的「自己填」格子補上 ", h("code", null, "what"), "，再把 ", h("code", null, "tag"), " 改成「指定」。"),
-    h("p", null, "完整說明和旅伴新增功能的設定步驟在 ", h("a", { href: TRIP.repo + "#readme", target: "_blank", rel: "noopener" }, "README"), "。"));
+    h("details", { class: "src-box" },
+      h("summary", null, `展開 ${TRIP.sources.length} 個來源`),
+      h("ol", { class: "src" }, TRIP.sources.map(([t, u]) => h("li", null, h("a", { href: u, target: "_blank", rel: "noopener" }, t))))));
 }
 
 /* ---------- 大家加的行程與餐廳（Firebase） ---------- */
@@ -1252,8 +1266,7 @@ function errText(e) {
   if (c.includes("permission-denied")) return "沒有權限：只能修改或刪除自己新增的項目。";
   if (c === "auth/popup-blocked") return "登入視窗被瀏覽器擋住了，請允許彈出視窗後再按一次。";
   if (c === "auth/popup-closed-by-user" || c === "auth/cancelled-popup-request") return "登入視窗已關閉，還沒有登入。";
-  if (c === "auth/unauthorized-domain") return "這個網址還沒加進 Firebase 的授權網域，請照 README 設定。";
-  if (c === "auth/operation-not-allowed") return "Firebase 還沒開啟 Google 登入，請照 README 設定。";
+  if (c === "auth/unauthorized-domain" || c === "auth/operation-not-allowed") return "現在無法用 Google 登入，請通知網站主人。";
   if (c === "auth/network-request-failed" || c === "unavailable") return "連不上伺服器，請檢查網路後再試一次。";
   if (c === "not-found") return "這一筆已經被刪除了。";
   return "發生錯誤" + (c ? `（${c}）` : "") + "，請稍後再試。";
@@ -1262,8 +1275,7 @@ function errText(e) {
 function renderTogether() {
   const radio = (v, label, on) => h("label", null, h("input", { type: "radio", name: "t-kind", value: v, checked: on ? true : null }), h("span", null, label));
   const field = (id, label, control) => h("div", { class: "field" }, h("label", { for: id }, label), control);
-  return h("section", { class: "block", id: "together", "aria-labelledby": "together-h" },
-    h("h2", { id: "together-h" }, "大家加的行程與餐廳"),
+  return pane("together", "大家加的行程與餐廳",
     h("p", { class: "lead" }, "旅伴用 Google 帳號登入後，可以把想去的地方和想吃的店加進來。每一筆只有新增的人能修改或刪除，網站主人可以刪除不當內容。"),
     h("div", { class: "auth", id: "t-auth" }),
     h("form", { class: "form", id: "t-form", hidden: true, novalidate: true },
@@ -1291,10 +1303,7 @@ function renderTogether() {
 function renderAuth() {
   const box = $("#t-auth");
   box.replaceChildren();
-  if (!T.configured) {
-    box.append(h("p", { class: "grow muted" }, "這個功能還沒啟用。網站主人照 README 的「開啟旅伴新增功能」設定好 Firebase 後，這裡會出現登入按鈕。"));
-    return;
-  }
+  if (!T.configured) { box.append(h("p", { class: "grow muted" }, "旅伴新增功能目前無法使用。")); return; }
   if (T.loadError) { box.append(h("p", { class: "grow warn" }, T.loadError)); return; }
   if (!T.authReady) { box.append(h("p", { class: "grow muted" }, "載入中…")); return; }
   if (!T.user) {
@@ -1309,12 +1318,7 @@ function renderAuth() {
   } else {
     box.append(
       h("p", { class: "grow" }, `已用 ${T.user.name || T.user.email || "Google 帳號"} 登入`),
-      h("button", { type: "button", class: "btn ghost small", onclick: () => T.backend.signOut().catch(err => toast(errText(err))) }, "登出"),
-      h("details", { class: "uid" },
-        h("summary", null, "我的使用者 ID"),
-        h("code", null, T.user.uid),
-        h("button", { type: "button", class: "btn ghost small", onclick: copyUid }, "複製"),
-        h("p", { class: "muted", style: "margin:6px 0 0" }, "網站主人把這串 ID 填進 index.html 的 admins 和 firestore.rules，就能刪除任何一筆。")));
+      h("button", { type: "button", class: "btn ghost small", onclick: () => T.backend.signOut().catch(err => toast(errText(err))) }, "登出"));
   }
   if (T.authError) box.append(h("p", { class: "warn", style: "flex-basis:100%" }, T.authError));
 }
@@ -1322,11 +1326,6 @@ function renderAuth() {
 function externalUrl() {
   try { const u = new URL(location.href); u.searchParams.set("openExternalBrowser", "1"); return u.toString(); }
   catch (e) { return location.href; }
-}
-function copyUid() {
-  const uid = T.user ? T.user.uid : "";
-  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(uid).then(() => toast("已複製使用者 ID"), () => toast("請手動選取後複製"));
-  else toast("請手動選取後複製");
 }
 function signIn() {
   T.authError = "";
@@ -1368,8 +1367,7 @@ function startEdit(e) {
 
 function cancelEdit() {
   T.editing = null;
-  const form = $("#t-form");
-  form.classList.remove("editing");
+  $("#t-form").classList.remove("editing");
   $("#t-form-title").textContent = "新增一筆";
   $("#t-submit").textContent = "新增";
   $("#t-cancel").hidden = true;
@@ -1443,8 +1441,7 @@ function renderList() {
   const box = $("#t-list");
   box.replaceChildren();
   $$(".fbtn").forEach(b => b.setAttribute("aria-pressed", b.dataset.f === T.filter ? "true" : "false"));
-  if (!T.configured) { box.append(h("p", { class: "muted" }, "啟用後，大家新增的行程和餐廳會依日期列在這裡，也會出現在每天的卡片裡。")); return; }
-  if (T.loadError) return;
+  if (!T.configured || T.loadError) return;
   if (T.listError) { box.append(h("p", { class: "warn" }, T.listError)); return; }
   if (!T.listReady) { box.append(h("p", { class: "muted" }, "載入中…")); return; }
   const items = T.entries.filter(e => T.filter === "all" || e.kind === T.filter);
@@ -1463,11 +1460,12 @@ function renderList() {
 
 function renderMine() {
   $$(".mine").forEach(box => {
+    box.hidden = !T.configured;
+    if (!T.configured) return;
     const day = box.dataset.day;
     const list = T.entries.filter(e => e.day === day).sort(byTime);
     box.replaceChildren(h("h4", null, "大家加的" + (list.length ? `（${list.length}）` : "")));
-    if (!T.configured) box.append(h("p", { class: "muted" }, "旅伴新增功能還沒啟用。"));
-    else if (T.loadError || T.listError) box.append(h("p", { class: "muted" }, "目前讀不到旅伴新增的內容。"));
+    if (T.loadError || T.listError) box.append(h("p", { class: "muted" }, "目前讀不到旅伴新增的內容。"));
     else if (!T.listReady) box.append(h("p", { class: "muted" }, "載入中…"));
     else if (!list.length) box.append(h("p", { class: "muted" }, "還沒有人加這一天的行程或餐廳。"));
     else box.append(h("ul", { class: "mine-list" }, list.map(e => h("li", null,
@@ -1481,14 +1479,14 @@ function renderMine() {
 }
 
 function openFormFor(day) {
-  if (T.user) {
-    $("#t-day").value = day;
-    $("#t-form").scrollIntoView({ behavior: REDUCE ? "auto" : "smooth", block: "start" });
-    setTimeout(() => $("#t-title").focus({ preventScroll: true }), REDUCE ? 0 : 400);
-  } else {
-    T.pendingDay = day;
-    $("#together").scrollIntoView({ behavior: REDUCE ? "auto" : "smooth", block: "start" });
-  }
+  try { history.pushState(null, "", "#together"); } catch (e) {}
+  window.__router.show("together", { scroll: false });
+  if (T.user) $("#t-day").value = day; else T.pendingDay = day;
+  const target = T.user ? $("#t-form") : $("#together");
+  requestAnimationFrame(() => {
+    target.scrollIntoView({ behavior: REDUCE ? "auto" : "smooth", block: "start" });
+    if (T.user) setTimeout(() => $("#t-title").focus({ preventScroll: true }), REDUCE ? 0 : 400);
+  });
 }
 
 async function initTogether() {
@@ -1527,36 +1525,98 @@ async function initTogether() {
   });
 }
 
-/* ---------- 浮動按鈕 ---------- */
+/* ---------- 索引列：一次顯示一個區塊，網址與返回鍵都能用 ---------- */
+function initRouter(days) {
+  const tabs = $$(".tab"), ink = $(".tab-ink"), bar = $(".tabs-inner");
+  let current = null;
+  function moveInk() {
+    const t = tabs.find(x => x.dataset.pane === current);
+    if (!t) return;
+    ink.style.width = t.offsetWidth + "px";
+    ink.style.transform = `translateX(${t.offsetLeft}px)`;
+  }
+  function toTop() {
+    const top = $(".top").getBoundingClientRect().bottom + window.scrollY;
+    if (window.scrollY > top) window.scrollTo({ top, behavior: "auto" });
+  }
+  function show(id, opts) {
+    opts = opts || {};
+    if (!PANES.some(p => p.id === id)) id = "days";
+    const changed = id !== current;
+    current = id;
+    PANES.forEach(p => { $("#" + p.id).hidden = p.id !== id; });
+    tabs.forEach(t => { if (t.dataset.pane === id) t.setAttribute("aria-current", "page"); else t.removeAttribute("aria-current"); });
+    moveInk();
+    const t = tabs.find(x => x.dataset.pane === id);
+    if (t && bar.scrollWidth > bar.clientWidth) {
+      bar.scrollTo({ left: t.offsetLeft - (bar.clientWidth - t.offsetWidth) / 2, behavior: REDUCE ? "auto" : "smooth" });
+    }
+    if (changed) {
+      const el = $("#" + id);
+      el.classList.remove("enter");
+      void el.offsetWidth;
+      el.classList.add("enter");
+      if (id === "days") days.refresh();
+      if (opts.scroll !== false) toTop();
+    }
+  }
+  function route(hash, opts) {
+    opts = opts || {};
+    const id = decodeURIComponent(String(hash || "").replace(/^#/, ""));
+    const di = TRIP.days.findIndex(d => d.id === id);
+    if (di >= 0) {
+      show("days", { scroll: false });
+      days.go(di, { page: true, instant: true });
+      return;
+    }
+    if (SUBS[id]) {
+      show(SUBS[id], { scroll: false });
+      requestAnimationFrame(() => { const el = document.getElementById(id); if (el) el.scrollIntoView({ block: "start" }); });
+      return;
+    }
+    show(id || "days", opts);
+  }
+  document.addEventListener("click", e => {
+    if (e.defaultPrevented || e.button > 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest("a[href^='#']");
+    if (!a) return;
+    const id = a.getAttribute("href").slice(1);
+    if (!(PANES.some(p => p.id === id) || SUBS[id] || TRIP.days.some(d => d.id === id))) return;
+    e.preventDefault();
+    if (location.hash !== "#" + id) { try { history.pushState(null, "", "#" + id); } catch (err) {} }
+    route("#" + id);
+  });
+  window.addEventListener("popstate", () => route(location.hash));
+  window.addEventListener("resize", moveInk);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveInk);
+  window.__onDay = i => {
+    if (current !== "days") return;
+    try { history.replaceState(null, "", "#" + TRIP.days[i].id); } catch (e) {}
+  };
+  return { route, show, get current() { return current; } };
+}
+
 function initFabs(today) {
-  const idx = h("a", { class: "fab hide", href: "#index" }, "索引");
-  const fabs = h("div", { class: "fabs" }, idx);
   const ti = TRIP.days.findIndex(d => d.date === today);
-  if (ti >= 0) fabs.append(h("a", { class: "fab today", href: "#" + TRIP.days[ti].id }, `今天：D${ti + 1} ${TRIP.days[ti].short}`));
-  document.body.append(fabs);
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(es => es.forEach(x => idx.classList.toggle("hide", x.isIntersecting)), { threshold: 0 }).observe($("#index"));
-  } else idx.classList.remove("hide");
+  if (ti < 0) return;
+  document.body.append(h("div", { class: "fabs" },
+    h("a", { class: "fab", href: "#" + TRIP.days[ti].id }, `今天：D${ti + 1} ${TRIP.days[ti].short}`)));
 }
 
 (function start() {
   const today = todayInJapan();
   $("#app").replaceChildren(
     renderTop(today),
-    h("main", null,
-      renderDays(today),
-      h("div", { class: "wrap" },
-        renderFood(),
-        renderTogether(),
-        renderHotels(),
-        renderPrep(),
-        h("div", { class: "group-start" }, "花費與評估"),
-        renderExcursion(),
-        renderBudget(),
-        renderSources())),
-    renderFooter());
+    renderTabs(),
+    h("main", null, renderDays(today), renderFood(), renderTogether(), renderHotels(), renderPrep(), renderCost()));
   document.body.append(h("div", { class: "toast", role: "status", "aria-live": "polite" }));
-  window.__days = initDays(today);
+  const hashId = String(location.hash || "").slice(1);
+  const hd = TRIP.days.findIndex(d => d.id === hashId);
+  const ti = TRIP.days.findIndex(d => d.date === today);
+  $("#days").hidden = false;
+  const days = window.__days = initDays(hd >= 0 ? hd : ti >= 0 ? ti : 0);
+  const router = window.__router = initRouter(days);
+  router.route(location.hash);
   initFabs(today);
   initTogether();
 })();
