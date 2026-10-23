@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>東京・富士・箱根 九日｜2026/12/21–12/29</title>
+<meta name="description" content="2026 年 12 月日本九日行程：成田、淺草、河口湖、御殿場、箱根、川越的每日時間表與交通花費。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F7F5; --surface:#FFFFFF; --ink:#1C2A39; --mist:#5B6875; --rule:#D3DAD7;
+  --ticket:#E2F0E6; --ticket-line:#D3E7DA; --ticket-edge:#9CC3A8; --stamp:#C23B22;
+  --ic:#2E8754; --buy:#B07A0C; --pass:#1E5DA6; --free:#8A949E; --focus:#1E5DA6; --on-stamp:#FFFFFF;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#10161C; --surface:#161E26; --ink:#E3EAEE; --mist:#9AA7B2; --rule:#2B353F;
+    --ticket:#1A2A21; --ticket-line:#203328; --ticket-edge:#3F6A4F; --stamp:#E7735C;
+    --ic:#52B57D; --buy:#D9A440; --pass:#6EA2E2; --free:#7F8A94; --focus:#6EA2E2; --on-stamp:#10161C;
+  }
+}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans TC",system-ui,-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;font-size:16px;line-height:1.75}
+a{color:var(--pass);text-underline-offset:3px}
+a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px}
+h2,h3{line-height:1.3}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px 96px}
+.num{font-variant-numeric:tabular-nums}
+
+/* 封面 */
+.hero{padding:56px 0 8px}
+.hero h1{margin:0;font-size:clamp(30px,8.4vw,56px);line-height:1.12;font-weight:900;letter-spacing:.05em}
+.hero h1 span,.hero .dates span{white-space:nowrap}
+.hero .dates{margin:14px 0 0;font-size:20px;font-weight:500}
+.hero .base{margin:2px 0 0;color:var(--mist)}
+.countdown{margin:10px 0 0;font-size:15px;color:var(--mist)}
+
+/* 九天路線 */
+.line{list-style:none;margin:28px 0 0;padding:0}
+.line li{position:relative;padding-left:30px}
+.line li::before{content:"";position:absolute;left:7px;top:0;bottom:0;width:3px;background:var(--ink)}
+.line li:first-child::before{top:50%}
+.line li:last-child::before{bottom:50%}
+.line li::after{content:"";position:absolute;left:1px;top:50%;width:15px;height:15px;margin-top:-7.5px;border-radius:50%;background:var(--surface);border:3px solid var(--ink)}
+.line li.out::after{border-color:var(--buy)}
+.line li.is-today::after{background:var(--stamp);border-color:var(--stamp)}
+.line a{display:flex;gap:14px;align-items:baseline;padding:6px 0;color:inherit;text-decoration:none}
+.line a:hover .pl{text-decoration:underline;text-underline-offset:3px}
+.line .d{font-weight:700;min-width:2.1em}
+.line .dt{color:var(--mist);min-width:6.4em;font-feature-settings:"halt"}
+.line .pl{font-weight:500;word-break:keep-all}
+@media (min-width:720px){
+  .line{display:grid;grid-template-columns:repeat(9,1fr)}
+  .line li{padding:30px 0 0;text-align:center}
+  .line li::before{left:0;right:0;top:10px;bottom:auto;width:auto;height:3px}
+  .line li:first-child::before{left:50%;top:10px}
+  .line li:last-child::before{right:50%;bottom:auto}
+  .line li::after{left:50%;top:11px;margin-left:-7.5px}
+  .line a{flex-direction:column;align-items:center;gap:0;padding:0 2px}
+  .line .d,.line .dt{min-width:0}
+  .line .dt{font-size:14px}
+  .line .pl{font-size:14px;line-height:1.4}
+}
+
+/* 圖例 */
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;margin:28px 0 0;padding:12px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);font-size:14px;color:var(--mist)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--c)}
+.sw.ring{background:var(--surface);border:3px solid var(--buy)}
+.sw.tk{width:22px;height:14px;border-radius:3px;background:var(--ticket);border:1px solid var(--ticket-edge)}
+.sw.dash{width:22px;height:14px;border-radius:3px;border:1.5px dashed var(--mist)}
+
+/* 每一天 */
+.day{margin-top:72px;scroll-margin-top:16px}
+.sign{background:var(--surface);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.sign-main{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:4px 16px;padding:18px 20px 16px}
+.badge{display:grid;place-items:center;align-content:center;width:54px;height:54px;border:3px solid var(--ink);border-radius:12px;line-height:1}
+.badge small{font-size:13px;font-weight:700}
+.badge b{font-size:24px;font-weight:900;margin-top:1px}
+.day.out .badge{border-color:var(--buy)}
+.sign h2{margin:0;font-size:clamp(26px,6vw,38px);font-weight:900;letter-spacing:.08em;line-height:1.15}
+.sign-date{grid-column:2;color:var(--mist);font-size:15px}
+.sign-band{display:flex;justify-content:space-between;gap:16px;background:var(--ink);color:var(--paper);font-size:14px;font-weight:500;padding:6px 16px}
+.sign-band .prev::before{content:"◀\00a0"}
+.sign-band .next::after{content:"\00a0▶"}
+.sign-band a{color:inherit;text-decoration:none}
+.sign-band a:hover{text-decoration:underline;text-underline-offset:3px}
+.sign-band a:focus-visible{outline-color:var(--paper)}
+.lead{margin:18px 0 6px;font-size:17px}
+.jump{font-size:15px;margin:0 0 6px}
+
+.plan{list-style:none;margin:14px 0 0;padding:0;border-top:1px solid var(--rule)}
+.plan>li{display:grid;grid-template-columns:100px 1fr;gap:2px 16px;padding:12px 0;border-bottom:1px solid var(--rule)}
+.time{color:var(--mist);font-size:15px;font-variant-numeric:tabular-nums;padding-top:1px}
+.what{margin:0}
+.chip{display:inline-block;margin-left:8px;padding:0 8px;border:1px solid var(--rule);border-radius:999px;font-size:12px;line-height:1.75;color:var(--mist);vertical-align:2px;white-space:nowrap}
+.note{margin:2px 0 0;font-size:14px;color:var(--mist)}
+.maplink{font-size:14px;margin-left:8px;white-space:nowrap}
+.slot{display:block;border:1.5px dashed var(--rule);border-radius:4px;padding:5px 12px;color:var(--mist);font-size:15px}
+.ride .what::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--c,var(--ink));margin-right:9px;vertical-align:1px}
+.ride .route-txt{font-weight:500}
+.plan>li.ticket-row{display:block;padding:14px 0}
+
+/* 車票 */
+.ticket{display:grid;grid-template-columns:1fr 116px;border-radius:6px;background-color:var(--ticket);background-image:repeating-linear-gradient(-45deg,transparent 0 9px,var(--ticket-line) 9px 10px);border:1px solid var(--ticket-edge)}
+.t-main{padding:14px 18px 15px;min-width:0}
+.t-route{font-weight:700;font-size:17px;letter-spacing:.04em}
+.t-route .to{color:var(--mist);font-weight:400;margin:0 8px}
+.t-times{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;margin:4px 0 2px;font-family:"DotGothic16","Noto Sans TC",monospace;font-size:40px;line-height:1.15;letter-spacing:.02em}
+.t-times small{font-family:"Noto Sans TC",sans-serif;font-size:14px;color:var(--mist);letter-spacing:0;margin-right:6px}
+.t-times small.after{margin:0 0 0 6px}
+.t-name{font-size:15px;font-weight:500}
+.t-check{margin-top:4px;font-size:13px;color:var(--mist)}
+.t-stub{position:relative;border-left:2px dashed var(--ticket-edge);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:12px 6px}
+.t-stub::before,.t-stub::after{content:"";position:absolute;left:-9px;width:16px;height:16px;border-radius:50%;background:var(--paper)}
+.t-stub::before{top:-9px}
+.t-stub::after{bottom:-9px}
+.t-price{font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}
+.t-price small{display:block;text-align:center;font-size:12px;font-weight:400;color:var(--mist)}
+.stamp{display:grid;place-items:center;width:62px;height:62px;border-radius:50%;border:2px solid var(--sc);color:var(--sc);font-weight:900;font-size:13px;letter-spacing:.05em;transform:rotate(-10deg)}
+@media (max-width:480px){
+  .plan>li{grid-template-columns:78px 1fr;gap:2px 12px}
+  .ticket{grid-template-columns:1fr 94px}
+  .t-main{padding:12px 14px}
+  .t-times{font-size:32px}
+  .stamp{width:54px;height:54px;font-size:12px}
+}
+
+/* 當天交通 */
+.costs{margin-top:22px;padding:16px 18px 14px;background:var(--surface);border:1px solid var(--rule);border-radius:3px}
+.costs h3{margin:0 0 4px;font-size:16px}
+.cost{list-style:none;margin:0;padding:0}
+.cost li{display:grid;grid-template-columns:1fr auto;gap:0 16px;padding:9px 0;border-bottom:1px dashed var(--rule)}
+.cost .leg{font-weight:500}
+.cost .leg::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--c);margin-right:8px;vertical-align:1px}
+.cost .how{grid-column:1;font-size:14px;color:var(--mist)}
+.cost .amt{grid-column:2;grid-row:1 / span 2;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.cost .amt small{display:block;font-size:12px;font-weight:400;color:var(--mist)}
+.sum{display:flex;justify-content:space-between;gap:16px;padding-top:10px;font-weight:700;font-variant-numeric:tabular-nums}
+.extra,.cost-note{margin:8px 0 0;font-size:14px;color:var(--mist)}
+
+/* 區塊標題 */
+.block{margin-top:80px;scroll-margin-top:16px}
+.block>h2{margin:0;font-size:clamp(24px,5vw,30px);font-weight:900;letter-spacing:.06em}
+.block>.lead{margin-top:10px}
+.block h3{font-size:18px;margin:36px 0 8px}
+
+/* 富士・箱根路線圖 */
+.route{list-style:none;margin:20px 0 0;padding:0}
+.route li{display:grid;grid-template-columns:96px 28px 1fr;column-gap:12px}
+.route .rt{text-align:right;color:var(--mist);font-size:15px;font-variant-numeric:tabular-nums;padding-top:1px}
+.route .rl{position:relative}
+.route .rl::before{content:"";position:absolute;left:12px;top:16px;bottom:-4px;width:5px;background:var(--seg,transparent)}
+.route .rl::after{content:"";position:absolute;left:6px;top:6px;width:17px;height:17px;border-radius:50%;background:var(--surface);border:3px solid var(--ink);box-sizing:border-box}
+.route li.stay .rl::after{border-radius:3px;background:var(--ink)}
+.route li.key .rl::after{border-color:var(--stamp)}
+.route .rn{padding:0 0 16px}
+.route .rn strong{font-weight:700}
+.route .rv{display:block;font-size:14px;color:var(--mist)}
+.route li.dayhead{display:block;margin:6px 0 10px;padding-left:148px;font-weight:700;color:var(--mist);font-size:14px}
+@media (max-width:480px){
+  .route li{grid-template-columns:62px 26px 1fr;column-gap:10px}
+  .route li.dayhead{padding-left:108px}
+}
+
+.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.rows li{display:grid;grid-template-columns:1fr auto;gap:0 16px;padding:11px 0;border-bottom:1px solid var(--rule)}
+.rows .a{font-weight:700}
+.rows .b{grid-column:1;font-size:14px;color:var(--mist)}
+.rows .c{grid-column:2;grid-row:1 / span 2;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.rows .c small{display:block;font-size:12px;font-weight:400;color:var(--mist)}
+.why{margin:14px 0 0}
+
+.check{list-style:none;margin:0;padding:0}
+.check li{border-bottom:1px solid var(--rule)}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;cursor:pointer}
+.check input{width:20px;height:20px;margin:3px 0 0;accent-color:var(--ic);flex:none}
+.check input:checked+span{color:var(--mist);text-decoration:line-through}
+.tz{font-size:14px;color:var(--mist);margin:8px 0 0}
+
+
+/* 預算表 */
+.budget{width:100%;border-collapse:collapse;margin-top:16px;font-variant-numeric:tabular-nums}
+.budget th,.budget td{padding:9px 6px;border-bottom:1px solid var(--rule);text-align:left;font-weight:400}
+.budget td:last-child,.budget th:last-child{text-align:right}
+.budget thead th{font-size:14px;color:var(--mist)}
+.budget tfoot td{font-weight:700;border-bottom:none;border-top:2px solid var(--ink)}
+
+/* 餐廳、住宿 */
+.list{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--rule)}
+.list li{padding:14px 0;border-bottom:1px solid var(--rule)}
+.list .a{font-weight:700;margin:0}
+.list p{margin:2px 0 0;font-size:15px}
+.list .m{color:var(--mist);font-size:14px}
+.list li.blank{color:var(--mist)}
+
+.notes{margin:12px 0 0;padding-left:1.2em}
+.notes li{margin:6px 0}
+.src{margin:12px 0 0;padding-left:1.4em;font-size:14px}
+.src li{margin:4px 0}
+footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--rule);font-size:15px;color:var(--mist)}
+footer h2{font-size:18px;color:var(--ink);margin:0 0 8px}
+footer code{font-size:14px;background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:0 5px}
+
+.quick{display:flex;flex-wrap:wrap;gap:4px 20px;margin:14px 0 0;font-size:15px}
+.today-jump{position:fixed;right:16px;bottom:16px;background:var(--stamp);color:var(--on-stamp);padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:700;font-size:15px}
+.day.is-today .sign{border-color:var(--stamp);box-shadow:0 0 0 2px var(--stamp)}
+
+@media print{
+  body{background:#fff}
+  .today-jump{display:none}
+  .day,.block{break-inside:avoid-page}
+}
+</style>
+</head>
+<body>
+<main class="wrap" id="app">
+  <noscript><p>這一頁需要開啟 JavaScript 才能顯示行程。</p></noscript>
+</main>
+
+<script>
+/* =====================================================================
+   在這裡修改行程
+   ---------------------------------------------------------------------
+   每天的 plan 是時間表，每一列可以是：
+     一般行程 { t: "時間", what: "做什麼", tag: "指定" | "建議", note: "補充", map: "地圖搜尋字" }
+     待填格子 { t: "時間", tag: "待填", hint: "要填什麼" }      ← 填好後把 tag 改成「指定」並加上 what
+     一般乘車 { ride: { dep: "出發時間", from: "起點", to: "終點", name: "車種與轉乘", pay: "ic" } }
+     重要班次 { ride: { key: true, dep: "08:30", arr: "10:26", from, to, name, price: 4200, stamp: "book" } }
+              key: true 會用車票樣式凸顯；stamp 可填 book（要預約）／pass（周遊券）／ic（西瓜卡）
+   每天的 cost 是當天交通花費，yen 改了之後，每日小計、三天合計和總預算都會自動重算。
+   pay 的種類：ic 西瓜卡、buy 單買或預約的車票、pass 箱根周遊券、free 免費或已包含
+   ===================================================================== */
+const TRIP = {
+  title: "東京・富士・箱根 九日",
+  home: "台灣",
+  start: "2026-12-21",
+  end: "2026-12-29",
+  base: "以淺草為據點，12/22–12/24 走富士・箱根一圈。",
+
+  pay: {
+    ic:   { label: "西瓜卡",        color: "var(--ic)" },
+    buy:  { label: "單買／預約車票", color: "var(--buy)" },
+    pass: { label: "箱根周遊券",    color: "var(--pass)" },
+    free: { label: "免費／已包含",   color: "var(--free)" }
+  },
+
+  days: [
+    {
+      id: "d1", date: "2026-12-21", short: "成田・淺草", out: true,
+      sign: "成田", stay: "淺草",
+      lead: "中午落地，把大行李交給機場的當日配送，空手去成田山，晚上到淺草入住。",
+      plan: [
+        { t: "12:00", what: "抵達成田機場（航班：＿＿＿＿，第＿航廈）", tag: "指定" },
+        { t: "12:00–13:15", what: "入境、領行李；設定好西瓜卡", tag: "建議" },
+        { t: "13:15–13:45", what: "到達大廳的 SAGAWA 櫃台，把大行李寄到淺草飯店", tag: "建議",
+          note: "當日配送 14:00 截止收件；三邊合計 140 cm 內一件 ¥2,840，飯店要能代收。" },
+        { ride: { dep: "約 13:50", from: "成田機場", to: "京成成田", name: "京成本線快速，10 分", pay: "ic" } },
+        { t: "14:10–16:00", what: "成田山新勝寺：大本堂、三重塔、成田山公園", tag: "指定",
+          note: "參拜時間 8:00–16:00；從京成成田站走路約 10 分。", map: "成田山新勝寺" },
+        { t: "16:00–17:00", what: "成田山表參道：吃鰻魚、逛老街", tag: "建議",
+          note: "參道約 800 公尺、150 多家店；16:30 左右天黑。", map: "成田山表参道" },
+        { ride: { dep: "約 17:10", from: "京成成田", to: "淺草", name: "京成本線快速到青砥轉車，經押上進都營淺草線，約 1 小時 12 分", pay: "ic" } },
+        { t: "18:30", what: "入住 HOTEL AMANEK 淺草站前（行李已送到）", tag: "指定", map: "HOTEL AMANEK 浅草駅前" },
+        { t: "19:00–", tag: "待填", hint: "晚餐" }
+      ],
+      cost: [
+        { leg: "成田機場 → 京成成田", how: "京成本線快速，10 分", yen: 272, pay: "ic" },
+        { leg: "京成成田 → 淺草", how: "京成本線快速，青砥轉車，經押上到淺草，約 1 小時 12 分", yen: 974, pay: "ic" }
+      ],
+      extra: [ { what: "行李當日配送（SAGAWA，140 cm 內）", yen: 2840, per: "件" } ]
+    },
+    {
+      id: "d2", date: "2026-12-22", short: "河口湖", out: true,
+      sign: "河口湖", stay: "河口湖 富士吟景",
+      lead: "早上從新宿搭富士回遊，中午前到河口湖，下午逛湖畔，傍晚請飯店來接。",
+      plan: [
+        { t: "07:00", what: "早餐；大行李寄放在 Amanek，12/24 晚上回來再拿", tag: "建議", note: "出發前先寫信跟飯店確認。" },
+        { ride: { dep: "07:40", from: "淺草", to: "新宿", name: "銀座線到神田，轉 JR 中央線快速，28 分；到新宿留 20 分鐘找月台", pay: "ic" } },
+        { ride: { key: true, dep: "08:30", arr: "10:26", from: "新宿", to: "河口湖", name: "富士回遊 7 號（全車指定）",
+                  price: 4200, stamp: "book", check: "11/22（日）09:00 開賣（台灣時間）" } },
+        { t: "10:30–11:30", what: "河口湖站買周遊巴士 2 日券；午餐吃餺飥（ほうとう）", tag: "建議" },
+        { t: "11:30–15:30", what: "湖畔觀光：河口湖全景纜車、大石公園看富士山、久保田一竹美術館", tag: "建議",
+          note: "全景纜車往返 ¥1,200；12/7–12/18 檢修停駛，12/22 已恢復。", map: "富士山パノラマロープウェイ" },
+        { t: "", tag: "待填", hint: "其他想去的地方" },
+        { t: "15:30–16:30", what: "回河口湖站，打電話請飯店來接", tag: "指定", note: "接送時間 15:00–20:00，只接不送。" },
+        { t: "17:00", what: "入住 湖樂御宿 富士吟景：溫泉、晚餐", tag: "指定", map: "湖楽おんやど 富士吟景" }
+      ],
+      cost: [
+        { leg: "淺草 → 新宿", how: "銀座線＋JR 中央線快速（神田轉車），28 分", yen: 387, pay: "ic" },
+        { leg: "新宿 → 河口湖", how: "富士回遊 7 號 08:30–10:26", yen: 4200, pay: "buy" },
+        { leg: "河口湖周邊", how: "周遊巴士 2 日券（12/22–12/23 用）", yen: 2000, pay: "buy" },
+        { leg: "河口湖站 → 飯店", how: "飯店接送", yen: 0, pay: "free" }
+      ],
+      note: "富士回遊用無票 e-ticket 是 ¥4,100：車資在河口湖出站時從西瓜卡扣，卡內要留 ¥3,000 以上。"
+    },
+    {
+      id: "d3", date: "2026-12-23", short: "御殿場・箱根", out: true,
+      sign: "御殿場・箱根", stay: "箱根湯本 岡田酒店",
+      lead: "搭 9:10 的 G-Liner 直達 Outlet，逛到下午三點半，再搭巴士進箱根。",
+      plan: [
+        { t: "07:30", what: "早餐，08:30 退房", tag: "建議" },
+        { ride: { dep: "約 08:40", from: "飯店", to: "河口湖站", name: "路線巴士約 10 分（周遊巴士 2 日券可搭），或請櫃台叫計程車", pay: "buy" } },
+        { ride: { key: true, dep: "09:10", arr: "10:10", from: "河口湖站", to: "御殿場 Outlet", name: "G-Liner 特急巴士（6 號月台）",
+                  price: 2200, stamp: "book", check: "SEKITORI 網路預約；9:10 班只在平日，12/23 是平日" } },
+        { t: "10:10–15:30", what: "御殿場 Premium Outlets 購物，午餐在園區", tag: "指定",
+          note: "12 月營業 10:00–19:00。", map: "御殿場プレミアム・アウトレット" },
+        { t: "", tag: "待填", hint: "想逛的店" },
+        { ride: { key: true, dep: "15:30", arr: "16:24", from: "御殿場 Outlet", to: "箱根湯本", name: "M 線（觀光施設巡迴巴士）到宮城野橋，轉 T 線",
+                  priceText: "已含", stamp: "pass", check: "查到的班次；出發前用箱根ナビ再確認末班" } },
+        { ride: { dep: "約 16:45", from: "箱根湯本", to: "岡田酒店", name: "K 線到奧湯本入口再走 6 分；或湯本溫泉鄉共同巴士（每小時 15、45 分發車，末班 18:45，¥100）", pay: "pass" } },
+        { t: "17:15", what: "入住 箱根湯本溫泉 HOTEL OKADA：溫泉、晚餐", tag: "指定", map: "ホテルおかだ 箱根湯本" }
+      ],
+      cost: [
+        { leg: "飯店 → 河口湖站", how: "路線巴士，含在周遊巴士 2 日券", yen: 0, pay: "free" },
+        { leg: "河口湖站 → 御殿場 Outlet", how: "G-Liner 09:10–10:10（網路價）", yen: 2200, pay: "buy" },
+        { leg: "箱根周遊券（新宿出發 2 日）", how: "12/23–12/24 箱根交通與回新宿的車資都含", yen: 7100, pay: "pass" },
+        { leg: "Outlet → 箱根湯本", how: "M 線＋T 線，約 54 分", yen: 0, pay: "pass" },
+        { leg: "箱根湯本 → 岡田酒店", how: "K 線", yen: 0, pay: "pass" }
+      ]
+    },
+    {
+      id: "d4", date: "2026-12-24", short: "箱根", out: true,
+      sign: "箱根", stay: "淺草",
+      lead: "從飯店旁的 K 線直接上蘆之湖，逆時針繞一圈，16:51 搭浪漫特快回新宿，晚餐吃 AFURI。",
+      plan: [
+        { t: "08:00", what: "早餐，08:45 退房", tag: "建議" },
+        { t: "08:45", what: "大行李交櫃台寄「箱根行李配送」，下午在箱根湯本站領", tag: "建議",
+          note: "10:00 前在櫃台申請；一件 ¥1,500，大件 ¥2,500。先確認岡田是合作旅館。" },
+        { ride: { dep: "約 09:00", from: "奧湯本入口", to: "元箱根", name: "K 線（舊街道），約 25 分；可在甘酒茶屋下車", pay: "pass" } },
+        { t: "09:30–10:30", what: "箱根神社、湖畔平和鳥居", tag: "建議", map: "箱根神社" },
+        { ride: { dep: "約 10:40", from: "元箱根港", to: "桃源台", name: "海賊船，約 40 分", pay: "pass" } },
+        { t: "11:30–13:00", what: "空中纜車到大涌谷：午餐、黑玉子", tag: "建議", note: "12 月營運 9:00–16:15。", map: "大涌谷" },
+        { t: "13:00–14:00", what: "早雲山轉登山纜車到強羅；逛強羅公園（周遊券免費入園）", tag: "建議", map: "箱根強羅公園" },
+        { t: "14:15–16:00", what: "搭登山電車下山，中途在雕之森下車看箱根雕刻之森美術館", tag: "建議", map: "彫刻の森美術館" },
+        { t: "16:00–16:45", what: "箱根湯本：領行李、逛湯本商店街", tag: "建議" },
+        { ride: { key: true, dep: "16:51", arr: "18:28", from: "箱根湯本", to: "新宿", name: "小田急浪漫特快（全車指定）",
+                  price: 1150, priceNote: "特急券", stamp: "book", check: "11/24（二）09:00 開賣（台灣時間）；車資含在周遊券" } },
+        { t: "18:40–19:30", what: "晚餐：AFURI 新宿ルミネ（LUMINE 1 B2F）柚子鹽拉麵", tag: "指定",
+          note: "10:00–22:00，無休。", map: "AFURI 新宿ルミネ" },
+        { ride: { dep: "約 19:40", from: "新宿", to: "淺草", name: "丸之內線到赤坂見附轉銀座線，39 分", pay: "ic" } },
+        { t: "20:20", what: "回到 HOTEL AMANEK，領回寄放的行李", tag: "指定" }
+      ],
+      cost: [
+        { leg: "岡田酒店 → 元箱根", how: "K 線", yen: 0, pay: "pass" },
+        { leg: "元箱根 → 桃源台", how: "海賊船", yen: 0, pay: "pass" },
+        { leg: "桃源台 → 早雲山", how: "空中纜車", yen: 0, pay: "pass" },
+        { leg: "早雲山 → 箱根湯本", how: "登山纜車＋登山電車", yen: 0, pay: "pass" },
+        { leg: "箱根湯本 → 新宿", how: "浪漫特快 16:51–18:28 特急券（網路價）", yen: 1150, pay: "buy" },
+        { leg: "新宿 → 淺草", how: "丸之內線＋銀座線，39 分", yen: 252, pay: "ic" }
+      ],
+      extra: [ { what: "箱根行李配送", yen: 1500, per: "件" } ]
+    },
+    {
+      id: "d5", date: "2026-12-25", short: "銀座",
+      sign: "銀座・東京站", stay: "淺草",
+      lead: "平價旗艦店最集中的一天：上午銀座買衣服，下午走到有樂町和東京站。",
+      plan: [
+        { ride: { dep: "10:00", from: "淺草", to: "銀座", name: "銀座線，約 17 分", pay: "ic" } },
+        { t: "10:30–13:00", what: "UNIQLO 銀座店、無印良品 銀座、銀座 LOFT", tag: "建議", map: "ユニクロ 銀座店" },
+        { t: "13:00–14:00", tag: "待填", hint: "午餐" },
+        { t: "14:00–16:30", what: "伊東屋文具、GINZA SIX 的中價位品牌；再走到東京站的 KITTE 和東京車站一番街", tag: "建議", map: "KITTE 丸の内" },
+        { t: "", tag: "待填", hint: "想逛的店" },
+        { t: "17:00–", tag: "待填", hint: "晚餐" },
+        { ride: { dep: "約 19:30", from: "東京站一帶", to: "淺草", name: "銀座線，約 15 分", pay: "ic" } }
+      ],
+      cost: [
+        { leg: "淺草 → 銀座", how: "銀座線", yen: 209, pay: "ic" },
+        { leg: "東京站一帶 → 淺草", how: "銀座線", yen: 209, pay: "ic", approx: true }
+      ]
+    },
+    {
+      id: "d6", date: "2026-12-26", short: "澀谷・原宿",
+      sign: "澀谷・原宿", stay: "淺草",
+      lead: "選物店和運動、戶外品牌集中的一天，沿貓街從澀谷走到表參道。週六人多，早點出門。",
+      plan: [
+        { ride: { dep: "10:00", from: "淺草", to: "澀谷", name: "銀座線，約 32 分", pay: "ic" } },
+        { t: "10:30–12:30", what: "澀谷 PARCO、MIYASHITA PARK", tag: "建議", map: "渋谷PARCO" },
+        { t: "12:30–13:30", tag: "待填", hint: "午餐" },
+        { t: "13:30–17:00", what: "沿貓街走到原宿、表參道：選物店、運動與戶外品牌、球鞋店", tag: "建議", map: "キャットストリート 渋谷" },
+        { t: "", tag: "待填", hint: "想逛的店" },
+        { ride: { dep: "約 17:30", from: "表參道", to: "淺草", name: "銀座線，約 30 分", pay: "ic" } },
+        { t: "18:30–", tag: "待填", hint: "晚餐" }
+      ],
+      cost: [
+        { leg: "淺草 → 澀谷", how: "銀座線", yen: 252, pay: "ic" },
+        { leg: "表參道 → 淺草", how: "銀座線", yen: 252, pay: "ic" }
+      ]
+    },
+    {
+      id: "d7", date: "2026-12-27", short: "川越", out: true,
+      sign: "川越", stay: "淺草",
+      lead: "週日的川越人多，08:30 出發、十點前到藏造老街最舒服。",
+      plan: [
+        { ride: { dep: "08:30", from: "淺草", to: "川越", name: "銀座線到上野，JR 山手線到池袋，東武東上線急行，1 小時 8 分", pay: "ic" } },
+        { t: "09:40–10:00", what: "川越站搭巴士或走約 25 分到藏造老街", tag: "建議" },
+        { t: "10:00–12:00", what: "藏造老街（一番街）、時之鐘、菓子屋橫丁", tag: "指定", map: "川越 一番街商店街" },
+        { t: "12:00–13:00", what: "午餐：川越的鰻魚飯或番薯甜點", tag: "建議" },
+        { t: "13:00–15:00", what: "川越城本丸御殿、喜多院", tag: "建議",
+          note: "本丸御殿 9:00–17:00（16:30 停止入場），¥100；週一和年末休館，年末休館日以官網為準。", map: "川越城本丸御殿" },
+        { t: "", tag: "待填", hint: "其他想去的地方" },
+        { ride: { dep: "約 15:30", from: "川越", to: "淺草", name: "東武東上線到池袋，JR 到上野，轉銀座線", pay: "ic" } },
+        { t: "17:00–", tag: "待填", hint: "晚餐（淺草）" }
+      ],
+      cost: [
+        { leg: "淺草 → 川越", how: "銀座線＋JR 山手線＋東武東上線，1 小時 8 分", yen: 868, pay: "ic" },
+        { leg: "川越 → 淺草", how: "同一條路線回來", yen: 868, pay: "ic" }
+      ],
+      note: "東武有給外國旅客的 KAWAGOE DISCOUNT PASS（Premium ¥970，附川越店家優惠），要帶護照在池袋站東武窗口買。"
+    },
+    {
+      id: "d8", date: "2026-12-28", short: "淺草",
+      sign: "淺草", stay: "淺草",
+      lead: "飯店周邊走路就能逛完：清晨淺草寺、上午合羽橋、下午晴空塔，晚上打包。",
+      plan: [
+        { t: "07:30–09:00", what: "淺草寺、雷門（清晨人少）", tag: "指定", map: "浅草寺" },
+        { t: "09:30–10:30", what: "仲見世通、傳法院通", tag: "建議" },
+        { t: "10:30–12:00", what: "合羽橋道具街：廚具、刀具、食物模型", tag: "建議",
+          note: "週一有開；年底部分店家會提早休息。", map: "かっぱ橋道具街" },
+        { t: "12:00–13:00", tag: "待填", hint: "午餐" },
+        { t: "13:30–16:30", what: "東京晴空塔、晴空街道購物（走路約 20 分）", tag: "建議", map: "東京ソラマチ" },
+        { t: "", tag: "待填", hint: "其他想去的地方" },
+        { t: "19:00–", what: "晚餐後打包，去藥妝店補貨", tag: "建議" }
+      ],
+      cost: [
+        { leg: "淺草周邊", how: "步行為主", yen: 0, pay: "free" }
+      ]
+    },
+    {
+      id: "d9", date: "2026-12-29", short: "成田機場",
+      sign: "成田機場",
+      lead: "搭 07:52 的 Access 特急，九點左右到機場，留三小時報到和退稅。",
+      plan: [
+        { t: "06:45", what: "起床、退房", tag: "建議" },
+        { ride: { key: true, dep: "07:52", arr: "09:00", arrApprox: true, from: "淺草", to: "成田機場", name: "京成 Access 特急（直達，不用轉車）",
+                  price: 1276, stamp: "ic", check: "備案 08:31 發、約 09:40 到；上車前看終點站是成田空港" } },
+        { t: "09:00–11:00", what: "報到、托運、免稅店", tag: "建議" },
+        { t: "12:00", what: "起飛（航班：＿＿＿＿，第＿航廈）", tag: "指定" }
+      ],
+      cost: [
+        { leg: "淺草 → 成田機場", how: "Access 特急 07:52 發", yen: 1276, pay: "ic" }
+      ]
+    }
+  ],
+
+  /* 富士・箱根三天的交通專區 */
+  excursion: {
+    days: ["d2", "d3", "d4"],
+    route: [
+      { head: "12/22（二）" },
+      { time: "07:40", name: "淺草", via: "銀座線＋JR 中央線快速", pay: "ic" },
+      { time: "08:30", name: "新宿", via: "富士回遊 7 號", pay: "buy", payText: "預約指定席", key: true },
+      { time: "10:26", name: "河口湖", via: "湖畔觀光搭周遊巴士，傍晚飯店來接", pay: "buy", payText: "周遊巴士 2 日券" },
+      { name: "富士吟景（住）", stay: true },
+      { head: "12/23（三）" },
+      { time: "09:10", name: "河口湖站", via: "G-Liner", pay: "buy", payText: "網路預約", key: true },
+      { time: "10:10–15:30", name: "御殿場 Outlet", via: "M 線轉 T 線", pay: "pass", key: true },
+      { time: "16:24", name: "箱根湯本", via: "K 線", pay: "pass" },
+      { name: "岡田酒店（住）", stay: true },
+      { head: "12/24（四）" },
+      { time: "09:00", name: "奧湯本入口", via: "K 線", pay: "pass" },
+      { name: "元箱根", via: "海賊船", pay: "pass" },
+      { name: "桃源台", via: "空中纜車", pay: "pass" },
+      { name: "大涌谷・早雲山", via: "登山纜車＋登山電車", pay: "pass" },
+      { time: "16:51", name: "箱根湯本", via: "浪漫特快", pay: "pass", payText: "車資含在周遊券，另付特急券 ¥1,150", key: true },
+      { time: "18:28–19:40", name: "新宿（AFURI 晚餐）", via: "丸之內線＋銀座線", pay: "ic" },
+      { time: "20:20", name: "淺草" }
+    ],
+    tickets: [
+      { name: "富士回遊 指定席", when: "12/22 新宿 → 河口湖", where: "JR-EAST Train Reservation；選 e-ticket 綁西瓜卡是 ¥4,100", yen: 4200 },
+      { name: "河口湖周遊巴士 2 日券", when: "12/22–12/23", where: "河口湖站現場買", yen: 2000 },
+      { name: "G-Liner", when: "12/23 河口湖 → Outlet", where: "SEKITORI 網路預約", yen: 2200 },
+      { name: "箱根周遊券（新宿出發 2 日）", when: "12/23–12/24", where: "EMot app 數位版", yen: 7100 },
+      { name: "浪漫特快 特急券", when: "12/24 箱根湯本 → 新宿", where: "小田急官網", yen: 1150 }
+    ],
+    why: "箱根這兩天的交通單買要 ¥8,630，周遊券 ¥7,100，省 ¥1,530，強羅公園也免費。富士箱根周遊券只有在 12/23 改搭兩小時的路線巴士去 Outlet 時才比較便宜；搭 G-Liner 反而多 ¥830。",
+    checklist: [
+      "11/22（日）09:00 訂 12/22 富士回遊 7 號",
+      "11/23（一）起用 EMot 買箱根周遊券數位版，開始日選 12/23",
+      "11/24（二）09:00 訂 12/24 浪漫特快 16:51 箱根湯本發",
+      "出發前幾天在 SEKITORI 預約 12/23 G-Liner 09:10",
+      "寫信給 HOTEL AMANEK：12/22–12/24 寄放大行李",
+      "寫信給 HOTEL OKADA：是不是箱根行李配送的合作旅館",
+      "西瓜卡餘額留 ¥3,000 以上（富士回遊車資從卡扣）"
+    ]
+  },
+
+  restaurants: [
+    { name: "AFURI 新宿ルミネ", where: "新宿站西口 LUMINE 1 B2F", hours: "10:00–22:00，無休",
+      plan: "排在 12/24（四）18:40，浪漫特快 18:28 到新宿後直接去", note: "附近另有新宿住友大樓店（11:00–20:00）。", map: "AFURI 新宿ルミネ" },
+    { blank: true }, { blank: true }, { blank: true }
+  ],
+
+  hotels: [
+    { name: "HOTEL AMANEK 淺草站前", addr: "東京都台東區駒形 2-7-2", nights: "12/21、12/24–12/28，共 6 晚",
+      tip: "12/22–12/24 寄放大行李（先寫信確認）。", map: "HOTEL AMANEK 浅草駅前" },
+    { name: "湖樂御宿 富士吟景", addr: "山梨縣富士河口湖町淺川 132", nights: "12/22，1 晚",
+      tip: "河口湖站接送 15:00–20:00，只接不送。", map: "湖楽おんやど 富士吟景" },
+    { name: "箱根湯本溫泉 HOTEL OKADA", addr: "神奈川縣箱根町湯本茶屋 191", nights: "12/23，1 晚",
+      tip: "K 線「奧湯本入口」走 6 分，或搭溫泉鄉共同巴士。", map: "ホテルおかだ 箱根湯本" }
+  ],
+
+  notes: [
+    "12 月下旬東京白天約 10°C；河口湖和箱根早晚會到零下，帶手套和毛帽。",
+    "日落約 16:30，戶外行程排在四點前結束。",
+    "西瓜卡：iPhone 用 Welcome Suica Mobile（180 天有效、Apple Pay 加值）；實體 Welcome Suica 的餘額不能退，離境前花掉。",
+    "東京市區的購物日只用西瓜卡就好；地鐵 24 小時券 ¥1,000，一天要搭 6 次以上才划算。",
+    "年底部分店家與公家設施會休息，出發前查官網。",
+    "這個網頁是公開的，不要放護照號碼、訂位代號或電話。"
+  ],
+
+  sources: [
+    ["富士回遊 2026 年票價與時刻（交通&旅行情報局）", "https://tabiblo007.com/fuji-excursion-guide/"],
+    ["富士回遊訂位方式（GoWithGuide）", "https://gowithguide.com/blog/how-to-book-fuji-excursion-fuji-kaiyu-big-update-on-oct-2025-4138"],
+    ["G-Liner 時刻表（富士急モビリティ）", "https://www.fujikyumobility.com/highway/"],
+    ["G-Liner 2026/5/1 運賃改定（富士急モビリティ）", "https://www.fujikyumobility.com/news/k3asvs0000001c11.html"],
+    ["箱根周遊券與富士箱根周遊券 2025/10 改價（小田急 PDF）", "https://www.odakyu.jp/news/h3de760000005kuv-att/h3de760000005kv2.pdf"],
+    ["箱根周遊券可搭交通與御殿場 Outlet 路線（箱根ナビ）", "https://www.hakonenavi.jp/lp/hakone-freepass/"],
+    ["箱根湯本 → 新宿 浪漫特快時刻（駅探）", "https://ekitan.com/transit/express/section/exm-110138/exs-110138002/sf-2792/st-2334"],
+    ["浪漫特快票價（skyticket）", "https://skyticket.jp/guide/518898/"],
+    ["岡田酒店交通方式（箱根ナビ）", "https://www.hakonenavi.jp/spot/1063"],
+    ["箱根行李配送（箱根キャリーサービス）", "https://www.hakonenavi.jp/hakone-luggage-transport-service/jp/"],
+    ["淺草站 Access 特急時刻（東京都交通局）", "https://www.kotsu.metro.tokyo.jp/subway/timetable/asakusa/A18ND.html"],
+    ["Access 特急票價表（京成）", "https://www.keisei.co.jp/keisei/tetudou/skyliner/jp/traffic/express_fares.php"],
+    ["成田機場 → 京成成田（駅探）", "https://ekitan.com/transit/fare/sf-2692/st-2073"],
+    ["京成成田 → 淺草（駅探）", "https://ekitan.com/transit/fare/sf-2073/st-1491"],
+    ["SAGAWA 成田機場行李服務（LIVE JAPAN）", "https://livejapan.com/ja/in-tokyo/in-pref-chiba/in-narita/article-a0006056/"],
+    ["成田山新勝寺（GLTJP）", "https://www.gltjp.com/ja/directory/item/10070/"],
+    ["新宿 → 淺草（駅探）", "https://ekitan.com/transit/fare/sf-2334/st-1491"],
+    ["淺草 → 川越（駅探）", "https://ekitan.com/transit/fare/sf-1491/st-1909"],
+    ["川越城本丸御殿、川越市立博物館（川越市 PDF）", "https://www.city.kawagoe.saitama.jp/_res/projects/default_project/_page_/001/013/698/hakubutsukanoyobihonmarugotenweb.pdf"],
+    ["KAWAGOE DISCOUNT PASS（東武鐵道）", "https://www.tobu.co.jp/foreign/tcn/pass/kawagoe_pre.html"],
+    ["AFURI 店舖一覽", "https://afuri.com/findus/"]
+  ]
+};
+
+/* ===================== 以下是畫面程式，一般不用改 ===================== */
+const WEEK = ["日", "一", "二", "三", "四", "五", "六"];
+const STAMP = { book: ["要預約", "var(--stamp)"], pass: ["周遊券", "var(--pass)"], ic: ["西瓜卡", "var(--ic)"] };
+
+function h(tag, props, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(props || {})) {
+    if (v == null || v === false) continue;
+    if (k === "class") el.className = v;
+    else if (k === "style") el.setAttribute("style", v);
+    else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else el.setAttribute(k, v === true ? "" : v);
+  }
+  for (const kid of kids.flat(Infinity)) {
+    if (kid == null || kid === false || kid === "") continue;
+    el.append(kid.nodeType ? kid : document.createTextNode(String(kid)));
+  }
+  return el;
+}
+const yen = n => "¥" + Number(n).toLocaleString("en-US");
+const mapUrl = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+const payColor = p => (TRIP.pay[p] || TRIP.pay.free).color;
+const payLabel = p => (TRIP.pay[p] || TRIP.pay.free).label;
+const sumCost = d => (d.cost || []).reduce((s, c) => s + (Number(c.yen) || 0), 0);
+function md(iso) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return { y, m, d, w: WEEK[new Date(Date.UTC(y, m - 1, d)).getUTCDay()] };
+}
+const shortDate = iso => { const x = md(iso); return `${x.m}/${x.d}（${x.w}）`; };
+const longDate = iso => { const x = md(iso); return `${x.m} 月 ${x.d} 日（${x.w}）`; };
+function todayInJapan() {
+  try {
+    return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  } catch (e) { return new Date().toISOString().slice(0, 10); }
+}
+const dayNo = id => TRIP.days.findIndex(d => d.id === id) + 1;
+
+function renderHero(today) {
+  const days = TRIP.days.length;
+  let count = null;
+  const diff = Math.round((Date.parse(TRIP.start) - Date.parse(today)) / 864e5);
+  if (diff > 0) count = `距離出發還有 ${diff} 天。`;
+  const wbr = s => s.split("・").flatMap((p, k) => k ? ["・", h("wbr"), p] : [p]);
+  return h("header", { class: "hero" },
+    h("h1", null, TRIP.title.split(" ").flatMap((p, k) => k ? [" ", h("span", null, p)] : [h("span", null, p)])),
+    h("p", { class: "dates num" }, `${shortDate(TRIP.start)}至 ${shortDate(TRIP.end)}，`, h("span", null, `${days} 天 ${days - 1} 夜`)),
+    h("p", { class: "base" }, TRIP.base),
+    count && h("p", { class: "countdown" }, count),
+    h("nav", { "aria-label": "九天行程" },
+      h("ol", { class: "line" },
+        TRIP.days.map((d, i) => h("li", { class: [d.out ? "out" : "", d.date === today ? "is-today" : ""].join(" ").trim() || null },
+          h("a", { href: "#" + d.id },
+            h("span", { class: "d" }, "D" + (i + 1)),
+            h("span", { class: "dt num" }, shortDate(d.date)),
+            h("span", { class: "pl" }, wbr(d.short)))))))
+  );
+}
+
+function renderLegend() {
+  const sw = (c, extra) => h("span", { class: "sw" + (extra ? " " + extra : ""), style: c ? `--c:${c}` : null, "aria-hidden": "true" });
+  return h("div", { class: "legend" },
+    h("span", null, sw(null, "tk"), "要準時搭的班次"),
+    h("span", null, h("span", { class: "chip", style: "margin:0" }, "建議"), "建議安排，可以換掉"),
+    h("span", null, sw(null, "dash"), "自己填"),
+    h("span", null, "沒有標記的是已確定的行程"),
+    h("span", null, sw(null, "ring"), "離開東京市區的日子"),
+    Object.keys(TRIP.pay).map(k => h("span", null, sw(payColor(k)), payLabel(k)))
+  );
+}
+
+function renderQuick() {
+  return h("nav", { class: "quick", "aria-label": "頁面捷徑" },
+    h("a", { href: "#excursion" }, "離開市區的交通"),
+    h("a", { href: "#budget" }, "九天交通費"),
+    h("a", { href: "#food" }, "想吃的餐廳"),
+    h("a", { href: "#hotels" }, "住宿"),
+    h("a", { href: "#notes" }, "出發前要知道"));
+}
+
+function renderTicket(r) {
+  const st = STAMP[r.stamp] || null;
+  return h("div", { class: "ticket" },
+    h("div", { class: "t-main" },
+      h("div", { class: "t-route" }, r.from, h("span", { class: "to", "aria-hidden": "true" }, "→"), h("span", { class: "vh" }, "到"), r.to),
+      h("div", { class: "t-times num" },
+        h("span", null, h("small", null, "發"), r.dep),
+        r.arr && h("span", null, h("small", null, "到"), r.arr, r.arrApprox && h("small", { class: "after" }, "左右"))),
+      h("div", { class: "t-name" }, r.name),
+      r.check && h("div", { class: "t-check" }, r.check)),
+    h("div", { class: "t-stub" },
+      r.price != null
+        ? h("div", { class: "t-price" }, yen(r.price), r.priceNote && h("small", null, r.priceNote))
+        : r.priceText && h("div", { class: "t-price" }, r.priceText),
+      st && h("div", { class: "stamp", style: `--sc:${st[1]}` }, st[0]))
+  );
+}
+
+function renderRow(it) {
+  if (it.ride && it.ride.key) return h("li", { class: "ticket-row" }, renderTicket(it.ride));
+  if (it.ride) {
+    const r = it.ride;
+    return h("li", { class: "ride", style: `--c:${payColor(r.pay)}` },
+      h("div", { class: "time" }, r.dep || ""),
+      h("div", null,
+        h("p", { class: "what" }, h("span", { class: "route-txt" }, `${r.from} → ${r.to}`), "　", r.name)));
+  }
+  if (it.tag === "待填" && !it.what) {
+    return h("li", { class: "todo" },
+      h("div", { class: "time" }, it.t || ""),
+      h("div", null, h("span", { class: "slot" }, "自己填：" + (it.hint || ""))));
+  }
+  return h("li", null,
+    h("div", { class: "time" }, it.t || ""),
+    h("div", null,
+      h("p", { class: "what" }, it.what || "",
+        it.tag === "建議" && h("span", { class: "chip" }, "建議"),
+        it.map && h("a", { class: "maplink", href: mapUrl(it.map), target: "_blank", rel: "noopener" }, "地圖")),
+      it.note && h("p", { class: "note" }, it.note)));
+}
+
+function renderCosts(d, title) {
+  return h("div", { class: "costs" },
+    h("h3", null, title || "當天交通"),
+    h("ul", { class: "cost" },
+      d.cost.map(c => h("li", { style: `--c:${payColor(c.pay)}` },
+        h("span", { class: "leg" }, c.leg),
+        h("span", { class: "amt" }, (c.approx ? "約 " : "") + yen(c.yen), h("small", null, payLabel(c.pay))),
+        h("span", { class: "how" }, c.how)))),
+    h("div", { class: "sum" }, h("span", null, "當天合計（每人）"), h("span", null, yen(sumCost(d)))),
+    (d.extra || []).map(x => h("p", { class: "extra" }, `另計（需要才用）：${x.what} ${yen(x.yen)}／${x.per || "次"}`)),
+    d.note && h("p", { class: "cost-note" }, d.note));
+}
+
+function renderDay(d, i, today) {
+  const ex = TRIP.excursion.days.includes(d.id);
+  const prev = TRIP.days[i - 1], next = TRIP.days[i + 1];
+  return h("section", { class: ["day", d.out ? "out" : "", d.date === today ? "is-today" : ""].join(" ").trim(), id: d.id, "aria-labelledby": d.id + "-h" },
+    h("header", { class: "sign" },
+      h("div", { class: "sign-main" },
+        h("div", { class: "badge", "aria-hidden": "true" }, h("small", null, "D"), h("b", null, String(i + 1))),
+        h("h2", { id: d.id + "-h" }, h("span", { class: "vh" }, `D${i + 1} `), d.sign),
+        h("div", { class: "sign-date num" }, longDate(d.date) + (d.stay ? `，住${d.stay}` : ""))),
+      h("nav", { class: "sign-band", "aria-label": "前一天與後一天" },
+        prev ? h("a", { class: "prev", href: "#" + prev.id }, prev.sign) : h("span", { class: "prev" }, TRIP.home),
+        next ? h("a", { class: "next", href: "#" + next.id }, next.sign) : h("span", { class: "next" }, TRIP.home))),
+    h("p", { class: "lead" }, d.lead),
+    ex && h("p", { class: "jump" }, h("a", { href: "#excursion" }, "富士・箱根三天的路線與票券總覽")),
+    h("ol", { class: "plan" }, d.plan.map(renderRow)),
+    renderCosts(d));
+}
+
+function renderExcursion() {
+  const ex = TRIP.excursion;
+  const ds = ex.days.map(id => TRIP.days.find(d => d.id === id));
+  const total = ds.reduce((s, d) => s + sumCost(d), 0);
+  const first = ds[0], last = ds[ds.length - 1];
+  let stored = {};
+  try { stored = JSON.parse(localStorage.getItem("trip2026-checklist") || "{}"); } catch (e) { stored = {}; }
+  const save = () => { try { localStorage.setItem("trip2026-checklist", JSON.stringify(stored)); } catch (e) {} };
+
+  const others = TRIP.days.filter(d => d.out && !ex.days.includes(d.id));
+  return h("section", { class: "block", id: "excursion", "aria-labelledby": "excursion-h" },
+    h("h2", { id: "excursion-h" }, "離開東京市區的交通"),
+    h("p", { class: "lead" }, `重點是 ${shortDate(first.date)}到 ${shortDate(last.date)}的富士・箱根三天，交通費每人 ${yen(total)}，含淺草和新宿之間的兩段地鐵。` +
+      (others.length > 0 ? `${others.map(d => d.sign).join("和")}的交通放在這一段最後。` : "")),
+    h("h3", null, "富士・箱根三天的路線"),
+    h("ol", { class: "route" },
+      ex.route.map(s => s.head
+        ? h("li", { class: "dayhead" }, s.head)
+        : h("li", { class: [s.stay ? "stay" : "", s.key ? "key" : ""].join(" ").trim() || null },
+            h("div", { class: "rt" }, s.time || ""),
+            h("div", { class: "rl", style: s.pay ? `--seg:${payColor(s.pay)}` : null, "aria-hidden": "true" }),
+            h("div", { class: "rn" }, h("strong", null, s.name), s.via && h("span", { class: "rv" }, `${s.via}（${s.payText || payLabel(s.pay)}）`))))),
+    h("h3", null, "要買的票"),
+    h("ul", { class: "rows" },
+      ex.tickets.map(t => h("li", null,
+        h("span", { class: "a" }, t.name),
+        h("span", { class: "c" }, yen(t.yen)),
+        h("span", { class: "b" }, `${t.when}；${t.where}`)))),
+    h("p", { class: "why" }, ex.why),
+    h("h3", null, "預訂清單"),
+    h("ul", { class: "check" },
+      ex.checklist.map(c => h("li", null,
+        h("label", null,
+          h("input", { type: "checkbox", checked: stored[c] ? true : null, onchange: e => { stored[c] = e.target.checked; save(); } }),
+          h("span", null, c))))),
+    h("p", { class: "tz" }, "時間都是台灣時間（日本快一小時）。勾選只存在這台裝置的瀏覽器裡。"),
+    others.length > 0 && h("h3", null, others.map(d => d.sign).join("和")),
+    others.length > 0 && h("ul", { class: "rows" },
+      others.map(d => h("li", null,
+        h("a", { class: "a", href: "#" + d.id }, `D${dayNo(d.id)} ${d.sign}，${shortDate(d.date)}`),
+        h("span", { class: "c" }, yen(sumCost(d))),
+        h("span", { class: "b" },
+          d.cost.map(c => `${c.leg} ${yen(c.yen)}`).join("；") +
+          `（${[...new Set(d.cost.map(c => payLabel(c.pay)))].join("、")}）`)))));
+}
+
+function renderBudget() {
+  const total = TRIP.days.reduce((s, d) => s + sumCost(d), 0);
+  const extras = TRIP.days.flatMap(d => (d.extra || []).map(x => `${shortDate(d.date)}${x.what} ${yen(x.yen)}／${x.per || "次"}`));
+  return h("section", { class: "block", id: "budget", "aria-labelledby": "budget-h" },
+    h("h2", { id: "budget-h" }, "九天交通費"),
+    h("p", { class: "lead" }, `每人約 ${yen(total)}，不含行李配送。`),
+    h("table", { class: "budget" },
+      h("thead", null, h("tr", null, h("th", null, "日期"), h("th", null, "行程"), h("th", null, "交通費"))),
+      h("tbody", null, TRIP.days.map((d, i) => h("tr", null,
+        h("td", null, `D${i + 1} ${shortDate(d.date)}`),
+        h("td", null, h("a", { href: "#" + d.id }, d.short)),
+        h("td", null, yen(sumCost(d)))))),
+      h("tfoot", null, h("tr", null, h("td", { colspan: "2" }, "合計（每人）"), h("td", null, yen(total))))),
+    extras.length > 0 && h("p", { class: "extra" }, "需要才用的費用：" + extras.join("；") + "。"));
+}
+
+function renderRestaurants() {
+  return h("section", { class: "block", id: "food", "aria-labelledby": "food-h" },
+    h("h2", { id: "food-h" }, "想吃的餐廳"),
+    h("p", { class: "lead" }, "填好店名和想吃的那一餐，再依位置排進最順路的一天。"),
+    h("ul", { class: "list" },
+      TRIP.restaurants.map(r => r.blank
+        ? h("li", { class: "blank" }, h("span", { class: "slot" }, "自己填：店名、地點、想吃的那一餐"))
+        : h("li", null,
+            h("p", { class: "a" }, r.name, r.map && h("a", { class: "maplink", href: mapUrl(r.map), target: "_blank", rel: "noopener" }, "地圖")),
+            h("p", null, `${r.where}；${r.hours}`),
+            h("p", null, r.plan),
+            r.note && h("p", { class: "m" }, r.note)))));
+}
+
+function renderHotels() {
+  return h("section", { class: "block", id: "hotels", "aria-labelledby": "hotels-h" },
+    h("h2", { id: "hotels-h" }, "住宿"),
+    h("ul", { class: "list" },
+      TRIP.hotels.map(x => h("li", null,
+        h("p", { class: "a" }, x.name, h("a", { class: "maplink", href: mapUrl(x.map), target: "_blank", rel: "noopener" }, "地圖")),
+        h("p", null, `${x.nights}；${x.addr}`),
+        h("p", { class: "m" }, x.tip)))));
+}
+
+function renderNotes() {
+  return h("section", { class: "block", id: "notes", "aria-labelledby": "notes-h" },
+    h("h2", { id: "notes-h" }, "出發前要知道"),
+    h("ul", { class: "notes" }, TRIP.notes.map(n => h("li", null, n))),
+    h("h3", null, "資料來源（2026 年 10 月查詢）"),
+    h("ol", { class: "src" }, TRIP.sources.map(([t, u]) => h("li", null, h("a", { href: u, target: "_blank", rel: "noopener" }, t)))));
+}
+
+function renderFooter() {
+  return h("footer", null,
+    h("h2", null, "怎麼修改這一頁"),
+    h("p", null, "用文字編輯器或 GitHub 網頁版打開 ", h("code", null, "index.html"), "，所有行程都在檔案上方的 ", h("code", null, "TRIP"), " 資料裡。"),
+    h("p", null, "虛線的「自己填」格子：補上 ", h("code", null, "what"), "，再把 ", h("code", null, "tag"), " 改成「指定」。交通費改 ", h("code", null, "cost"), " 裡的 ", h("code", null, "yen"), "，每日小計和總額會自動重算。"));
+}
+
+(function render() {
+  const today = todayInJapan();
+  const app = document.getElementById("app");
+  app.replaceChildren(
+    renderHero(today),
+    renderLegend(),
+    renderQuick(),
+    renderExcursion(),
+    ...TRIP.days.map((d, i) => renderDay(d, i, today)),
+    renderBudget(),
+    renderRestaurants(),
+    renderHotels(),
+    renderNotes(),
+    renderFooter()
+  );
+  const cur = TRIP.days.findIndex(d => d.date === today);
+  if (cur >= 0) {
+    document.body.append(h("a", { class: "today-jump", href: "#" + TRIP.days[cur].id }, `今天：D${cur + 1} ${TRIP.days[cur].short}`));
+  }
+})();
+</script>
+</body>
+</html>
