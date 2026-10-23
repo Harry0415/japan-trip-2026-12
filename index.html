@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>東京・富士・箱根 九日｜2026/12/21–12/29</title>
-<meta name="description" content="2026 年 12 月日本九日行程：成田、淺草、河口湖、御殿場、箱根、川越的每日時間表與交通花費。">
+<meta name="description" content="2026 年 12 月日本九日行程：成田、淺草、河口湖、御殿場、箱根、川越的每日時間表、交通花費，以及旅伴一起新增的行程與餐廳。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -13,215 +13,345 @@
   --paper:#F4F7F5; --surface:#FFFFFF; --ink:#1C2A39; --mist:#5B6875; --rule:#D3DAD7;
   --ticket:#E2F0E6; --ticket-line:#D3E7DA; --ticket-edge:#9CC3A8; --stamp:#C23B22;
   --ic:#2E8754; --buy:#B07A0C; --pass:#1E5DA6; --free:#8A949E; --focus:#1E5DA6; --on-stamp:#FFFFFF;
+  --shadow:0 2px 10px rgba(28,42,57,.14);
 }
 @media (prefers-color-scheme: dark){
   :root{
     --paper:#10161C; --surface:#161E26; --ink:#E3EAEE; --mist:#9AA7B2; --rule:#2B353F;
     --ticket:#1A2A21; --ticket-line:#203328; --ticket-edge:#3F6A4F; --stamp:#E7735C;
     --ic:#52B57D; --buy:#D9A440; --pass:#6EA2E2; --free:#7F8A94; --focus:#6EA2E2; --on-stamp:#10161C;
+    --shadow:0 2px 12px rgba(0,0,0,.5);
   }
 }
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans TC",system-ui,-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;font-size:16px;line-height:1.75}
 a{color:var(--pass);text-underline-offset:3px}
-a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px}
-h2,h3{line-height:1.3}
-.wrap{max-width:760px;margin:0 auto;padding:0 20px 96px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{line-height:1.3}
+[hidden]{display:none !important}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
 .num{font-variant-numeric:tabular-nums}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.muted{color:var(--mist)}
+.warn{color:var(--stamp)}
 
-/* 封面 */
-.hero{padding:56px 0 8px}
-.hero h1{margin:0;font-size:clamp(30px,8.4vw,56px);line-height:1.12;font-weight:900;letter-spacing:.05em}
-.hero h1 span,.hero .dates span{white-space:nowrap}
-.hero .dates{margin:14px 0 0;font-size:20px;font-weight:500}
-.hero .base{margin:2px 0 0;color:var(--mist)}
-.countdown{margin:10px 0 0;font-size:15px;color:var(--mist)}
+/* 封面與索引 */
+.top{padding:48px 0 0}
+.top h1{margin:0;font-size:clamp(30px,8.4vw,56px);line-height:1.12;font-weight:900;letter-spacing:.05em}
+.top h1 span,.top .dates span{white-space:nowrap}
+.dates{margin:14px 0 0;font-size:20px;font-weight:500}
+.base{margin:2px 0 0;color:var(--mist)}
+.countdown{margin:8px 0 0;font-size:15px;color:var(--mist)}
+.index{margin-top:28px;padding-top:18px;border-top:1px solid var(--rule)}
+.index h2{margin:0 0 12px;font-size:16px;font-weight:700;color:var(--mist)}
+.idx{list-style:none;margin:0;padding:0}
+.idx>li{position:relative;padding:0 0 14px 30px}
+.idx>li::before{content:"";position:absolute;left:7px;top:0;bottom:0;width:3px;background:var(--ink)}
+.idx>li:first-child::before{top:12px}
+.idx>li:last-child::before{bottom:auto;height:12px}
+.idx>li::after{content:"";position:absolute;left:1px;top:5px;width:15px;height:15px;border-radius:50%;background:var(--surface);border:3px solid var(--ink)}
+.idx>li.cost::after{border-color:var(--buy)}
+.idx>li.glabel{padding-bottom:10px;font-size:14px;font-weight:700;color:var(--mist)}
+.idx>li.glabel::before{background:repeating-linear-gradient(var(--ink) 0 4px,transparent 4px 8px)}
+.idx>li.glabel::after{display:none}
+.idx a{font-size:17px;font-weight:700}
+.idx-desc{margin-left:10px;font-size:14px;color:var(--mist)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
+.chips a{display:inline-block;padding:2px 11px;border:1px solid var(--rule);border-radius:999px;background:var(--surface);color:var(--ink);font-size:14px;font-weight:400;text-decoration:none}
+.chips a b{margin-right:4px}
+.chips a.out{border-color:var(--buy)}
+.chips a.is-today{border-color:var(--stamp);box-shadow:0 0 0 1px var(--stamp)}
+.chips a:hover{background:var(--paper)}
 
-/* 九天路線 */
-.line{list-style:none;margin:28px 0 0;padding:0}
-.line li{position:relative;padding-left:30px}
-.line li::before{content:"";position:absolute;left:7px;top:0;bottom:0;width:3px;background:var(--ink)}
-.line li:first-child::before{top:50%}
-.line li:last-child::before{bottom:50%}
-.line li::after{content:"";position:absolute;left:1px;top:50%;width:15px;height:15px;margin-top:-7.5px;border-radius:50%;background:var(--surface);border:3px solid var(--ink)}
-.line li.out::after{border-color:var(--buy)}
-.line li.is-today::after{background:var(--stamp);border-color:var(--stamp)}
-.line a{display:flex;gap:14px;align-items:baseline;padding:6px 0;color:inherit;text-decoration:none}
-.line a:hover .pl{text-decoration:underline;text-underline-offset:3px}
-.line .d{font-weight:700;min-width:2.1em}
-.line .dt{color:var(--mist);min-width:6.4em;font-feature-settings:"halt"}
-.line .pl{font-weight:500;word-break:keep-all}
-@media (min-width:720px){
-  .line{display:grid;grid-template-columns:repeat(9,1fr)}
-  .line li{padding:30px 0 0;text-align:center}
-  .line li::before{left:0;right:0;top:10px;bottom:auto;width:auto;height:3px}
-  .line li:first-child::before{left:50%;top:10px}
-  .line li:last-child::before{right:50%;bottom:auto}
-  .line li::after{left:50%;top:11px;margin-left:-7.5px}
-  .line a{flex-direction:column;align-items:center;gap:0;padding:0 2px}
-  .line .d,.line .dt{min-width:0}
-  .line .dt{font-size:14px}
-  .line .pl{font-size:14px;line-height:1.4}
-}
-
-/* 圖例 */
-.legend{display:flex;flex-wrap:wrap;gap:6px 22px;margin:28px 0 0;padding:12px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);font-size:14px;color:var(--mist)}
-.legend span{display:inline-flex;align-items:center;gap:7px}
+/* 每日行程：路線選站 */
+.days{margin-top:64px}
+.days-head h2{margin:0;font-size:clamp(24px,5vw,30px);font-weight:900;letter-spacing:.06em}
+.hint{margin:6px 0 0;color:var(--mist);font-size:15px}
+.legend{margin:6px 0 0;font-size:14px}
+.legend summary{cursor:pointer;color:var(--pass);width:max-content}
+.legend-body{display:flex;flex-wrap:wrap;gap:6px 20px;padding:8px 0 0;color:var(--mist)}
+.legend-body span{display:inline-flex;align-items:center;gap:7px}
 .sw{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--c)}
 .sw.ring{background:var(--surface);border:3px solid var(--buy)}
 .sw.tk{width:22px;height:14px;border-radius:3px;background:var(--ticket);border:1px solid var(--ticket-edge)}
 .sw.dash{width:22px;height:14px;border-radius:3px;border:1.5px dashed var(--mist)}
+.picker{position:sticky;top:0;z-index:20;margin-top:14px;background:var(--paper);border-bottom:1px solid var(--rule)}
+.picker-inner{display:grid;grid-template-columns:38px 1fr 38px;align-items:start;gap:6px;max-width:800px;margin:0 auto;padding:10px 20px 6px}
+.pbtn{width:38px;height:38px;margin-top:-6px;border-radius:50%;border:1px solid var(--rule);background:var(--surface);cursor:pointer;font-size:13px;line-height:1}
+.pbtn:disabled{opacity:.35;cursor:default}
+.track{position:relative}
+.track::before{content:"";position:absolute;left:calc(100% / 18);right:calc(100% / 18);top:10px;height:3px;background:var(--ink);transform-origin:left center}
+.stops{position:relative;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(9,1fr)}
+.stop{display:flex;flex-direction:column;align-items:center;width:100%;padding:4px 0 2px;border:0;border-radius:6px;background:none;cursor:pointer}
+.stop .dot{position:relative;width:15px;height:15px;border-radius:50%;background:var(--surface);border:3px solid var(--ink)}
+.stop.out .dot{border-color:var(--buy)}
+.stop.is-today .dot{background:var(--stamp);border-color:var(--stamp)}
+.stop .d{margin-top:3px;font-size:13px;font-weight:700;line-height:1.3}
+.stop .pl{padding:0 2px;font-size:13px;line-height:1.35;color:var(--mist);text-align:center;word-break:keep-all}
+.stop[aria-current="true"] .d,.stop[aria-current="true"] .pl{color:var(--stamp)}
+.train{position:absolute;top:2px;left:calc(100% / 18);width:30px;height:18px;margin-left:-15px;border-radius:9px 9px 5px 5px;background:var(--stamp);box-shadow:var(--shadow);pointer-events:none}
+.train::before{content:"";position:absolute;left:6px;right:6px;top:4px;height:5px;border-radius:2px;background:var(--on-stamp);opacity:.9}
+@media (max-width:640px){
+  .stop .pl{display:none}
+  .picker-inner{grid-template-columns:34px 1fr 34px;padding:8px 12px 4px}
+  .pbtn{width:34px;height:34px;margin-top:-5px}
+}
 
-/* 每一天 */
-.day{margin-top:72px;scroll-margin-top:16px}
-.sign{background:var(--surface);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
-.sign-main{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:4px 16px;padding:18px 20px 16px}
+/* 每日行程：橫向卷軸 */
+.scroller{--pw:min(720px,calc(100vw - 56px));--gap:20px;display:flex;align-items:flex-start;gap:var(--gap);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding-top:18px;padding-bottom:22px;padding-left:max(20px,(100% - 720px) / 2);padding-right:calc(100% - var(--pw) - max(20px,(100% - 720px) / 2));scroll-padding-left:max(20px,(100% - 720px) / 2);scrollbar-width:thin;scrollbar-color:var(--mist) transparent}
+@media (max-width:640px){.scroller{--gap:12px}}
+.scroller:focus-visible{outline-offset:-3px}
+.panel{position:relative;flex:0 0 var(--pw);scroll-snap-align:start;scroll-snap-stop:always;scroll-margin-top:100px;background:var(--surface);border:1px solid var(--rule);border-radius:6px;overflow:hidden;--notch:var(--surface)}
+.js .panel:not(.is-active){opacity:.5;cursor:pointer}
+.panel.is-today{border-color:var(--stamp);box-shadow:0 0 0 2px var(--stamp)}
+.panel-body{padding:2px 20px 22px}
+@media (max-width:520px){.panel-body{padding:2px 14px 18px}}
+
+/* 站名牌 */
+.sign-main{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:4px 16px;padding:18px 20px 14px}
 .badge{display:grid;place-items:center;align-content:center;width:54px;height:54px;border:3px solid var(--ink);border-radius:12px;line-height:1}
 .badge small{font-size:13px;font-weight:700}
-.badge b{font-size:24px;font-weight:900;margin-top:1px}
-.day.out .badge{border-color:var(--buy)}
-.sign h2{margin:0;font-size:clamp(26px,6vw,38px);font-weight:900;letter-spacing:.08em;line-height:1.15}
+.badge b{margin-top:1px;font-size:24px;font-weight:900}
+.panel.out .badge{border-color:var(--buy)}
+.sign h3{margin:0;font-size:clamp(26px,6vw,36px);font-weight:900;letter-spacing:.08em;line-height:1.15}
 .sign-date{grid-column:2;color:var(--mist);font-size:15px}
-.sign-band{display:flex;justify-content:space-between;gap:16px;background:var(--ink);color:var(--paper);font-size:14px;font-weight:500;padding:6px 16px}
+.today-tag{display:inline-block;margin-left:8px;padding:0 8px;border-radius:999px;background:var(--stamp);color:var(--on-stamp);font-size:12px;font-weight:700;vertical-align:1px}
+.sign-band{display:flex;justify-content:space-between;gap:16px;padding:6px 16px;background:var(--ink);color:var(--paper);font-size:14px;font-weight:500}
+.sign-band button{padding:0;border:0;background:none;color:inherit;font-weight:500;cursor:pointer}
+.sign-band button:hover{text-decoration:underline;text-underline-offset:3px}
+.sign-band button:focus-visible{outline-color:var(--paper)}
 .sign-band .prev::before{content:"◀\00a0"}
 .sign-band .next::after{content:"\00a0▶"}
-.sign-band a{color:inherit;text-decoration:none}
-.sign-band a:hover{text-decoration:underline;text-underline-offset:3px}
-.sign-band a:focus-visible{outline-color:var(--paper)}
-.lead{margin:18px 0 6px;font-size:17px}
-.jump{font-size:15px;margin:0 0 6px}
 
-.plan{list-style:none;margin:14px 0 0;padding:0;border-top:1px solid var(--rule)}
+/* 卡片內容 */
+.lead{margin:16px 0 0;font-size:17px}
+.panel h4{margin:0;font-size:15px;font-weight:700}
+.points{margin:16px 0 0;padding:12px 16px 10px;background:var(--paper);border-radius:6px}
+.points ul{list-style:none;margin:6px 0 0;padding:0}
+.points li{display:flex;gap:10px;align-items:baseline;padding:4px 0;font-size:15px;line-height:1.6}
+.pt-time{flex:none;width:54px;font-family:"DotGothic16","Noto Sans TC",monospace;font-size:18px;line-height:1.2;color:var(--stamp)}
+.pt-mark{flex:none;width:54px;align-self:stretch;position:relative}
+.pt-mark::before{content:"";position:absolute;left:4px;top:.7em;width:7px;height:7px;border-radius:50%;background:var(--mist)}
+.points.plain .pt-mark{width:12px}
+.nw{white-space:nowrap}
+.need{display:inline-block;margin-left:8px;padding:0 7px;border:1px solid currentColor;border-radius:999px;font-size:12px;line-height:1.6;white-space:nowrap;vertical-align:1px}
+.n-book{color:var(--stamp)}
+.n-pass{color:var(--pass)}
+.n-ic{color:var(--ic)}
+.sub{margin:22px 0 0 !important}
+.plan{list-style:none;margin:8px 0 0;padding:0;border-top:1px solid var(--rule)}
 .plan>li{display:grid;grid-template-columns:100px 1fr;gap:2px 16px;padding:12px 0;border-bottom:1px solid var(--rule)}
-.time{color:var(--mist);font-size:15px;font-variant-numeric:tabular-nums;padding-top:1px}
+.time{padding-top:1px;color:var(--mist);font-size:15px;font-variant-numeric:tabular-nums}
 .what{margin:0}
 .chip{display:inline-block;margin-left:8px;padding:0 8px;border:1px solid var(--rule);border-radius:999px;font-size:12px;line-height:1.75;color:var(--mist);vertical-align:2px;white-space:nowrap}
 .note{margin:2px 0 0;font-size:14px;color:var(--mist)}
-.maplink{font-size:14px;margin-left:8px;white-space:nowrap}
-.slot{display:block;border:1.5px dashed var(--rule);border-radius:4px;padding:5px 12px;color:var(--mist);font-size:15px}
-.ride .what::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--c,var(--ink));margin-right:9px;vertical-align:1px}
+.maplink{margin-left:8px;font-size:14px;white-space:nowrap}
+.slot{display:block;padding:5px 12px;border:1.5px dashed var(--rule);border-radius:4px;color:var(--mist);font-size:15px}
+.ride .what::before{content:"";display:inline-block;width:10px;height:10px;margin-right:9px;border-radius:2px;background:var(--c,var(--ink));vertical-align:1px}
 .ride .route-txt{font-weight:500}
 .plan>li.ticket-row{display:block;padding:14px 0}
+@media (max-width:520px){
+  .plan>li{grid-template-columns:66px 1fr;gap:2px 10px}
+  .time{font-size:14px}
+}
 
 /* 車票 */
-.ticket{display:grid;grid-template-columns:1fr 116px;border-radius:6px;background-color:var(--ticket);background-image:repeating-linear-gradient(-45deg,transparent 0 9px,var(--ticket-line) 9px 10px);border:1px solid var(--ticket-edge)}
-.t-main{padding:14px 18px 15px;min-width:0}
-.t-route{font-weight:700;font-size:17px;letter-spacing:.04em}
-.t-route .to{color:var(--mist);font-weight:400;margin:0 8px}
+.ticket{display:grid;grid-template-columns:1fr 116px;border:1px solid var(--ticket-edge);border-radius:6px;background-color:var(--ticket);background-image:repeating-linear-gradient(-45deg,transparent 0 9px,var(--ticket-line) 9px 10px)}
+.t-main{min-width:0;padding:14px 18px 15px}
+.t-route{font-size:17px;font-weight:700;letter-spacing:.04em}
+.t-route .to{margin:0 8px;color:var(--mist);font-weight:400}
 .t-times{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;margin:4px 0 2px;font-family:"DotGothic16","Noto Sans TC",monospace;font-size:40px;line-height:1.15;letter-spacing:.02em}
-.t-times small{font-family:"Noto Sans TC",sans-serif;font-size:14px;color:var(--mist);letter-spacing:0;margin-right:6px}
+.t-times small{margin-right:6px;font-family:"Noto Sans TC",sans-serif;font-size:14px;color:var(--mist);letter-spacing:0}
 .t-times small.after{margin:0 0 0 6px}
 .t-name{font-size:15px;font-weight:500}
 .t-check{margin-top:4px;font-size:13px;color:var(--mist)}
-.t-stub{position:relative;border-left:2px dashed var(--ticket-edge);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:12px 6px}
-.t-stub::before,.t-stub::after{content:"";position:absolute;left:-9px;width:16px;height:16px;border-radius:50%;background:var(--paper)}
+.t-stub{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:12px 6px;border-left:2px dashed var(--ticket-edge)}
+.t-stub::before,.t-stub::after{content:"";position:absolute;left:-9px;width:16px;height:16px;border-radius:50%;background:var(--notch,var(--paper))}
 .t-stub::before{top:-9px}
 .t-stub::after{bottom:-9px}
-.t-price{font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}
-.t-price small{display:block;text-align:center;font-size:12px;font-weight:400;color:var(--mist)}
-.stamp{display:grid;place-items:center;width:62px;height:62px;border-radius:50%;border:2px solid var(--sc);color:var(--sc);font-weight:900;font-size:13px;letter-spacing:.05em;transform:rotate(-10deg)}
-@media (max-width:480px){
-  .plan>li{grid-template-columns:78px 1fr;gap:2px 12px}
-  .ticket{grid-template-columns:1fr 94px}
-  .t-main{padding:12px 14px}
+.t-price{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums;text-align:center}
+.t-price small{display:block;font-size:12px;font-weight:400;color:var(--mist)}
+.stamp{display:grid;place-items:center;width:62px;height:62px;border:2px solid var(--sc);border-radius:50%;color:var(--sc);font-size:13px;font-weight:900;letter-spacing:.05em;transform:rotate(-10deg)}
+@media (max-width:560px){
+  .ticket{grid-template-columns:1fr}
+  .t-main{padding:12px 14px 12px}
   .t-times{font-size:32px}
-  .stamp{width:54px;height:54px;font-size:12px}
+  .t-stub{flex-direction:row;justify-content:space-between;padding:8px 14px;border-left:0;border-top:2px dashed var(--ticket-edge)}
+  .t-stub::before,.t-stub::after{top:-9px;bottom:auto}
+  .t-stub::before{left:-9px}
+  .t-stub::after{left:auto;right:-9px}
+  .t-price small{display:inline;margin-left:6px}
+  .stamp{width:50px;height:50px;font-size:12px}
 }
 
 /* 當天交通 */
-.costs{margin-top:22px;padding:16px 18px 14px;background:var(--surface);border:1px solid var(--rule);border-radius:3px}
-.costs h3{margin:0 0 4px;font-size:16px}
+.costs{margin-top:22px;padding:16px 18px 14px;background:var(--surface);border:1px solid var(--rule);border-radius:4px}
+.panel .costs{background:var(--paper);border:0;border-radius:6px}
+.costs h4,.costs h3{margin:0 0 4px;font-size:16px}
 .cost{list-style:none;margin:0;padding:0}
 .cost li{display:grid;grid-template-columns:1fr auto;gap:0 16px;padding:9px 0;border-bottom:1px dashed var(--rule)}
 .cost .leg{font-weight:500}
-.cost .leg::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--c);margin-right:8px;vertical-align:1px}
+.cost .leg::before{content:"";display:inline-block;width:10px;height:10px;margin-right:8px;border-radius:50%;background:var(--c);vertical-align:1px}
 .cost .how{grid-column:1;font-size:14px;color:var(--mist)}
 .cost .amt{grid-column:2;grid-row:1 / span 2;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
 .cost .amt small{display:block;font-size:12px;font-weight:400;color:var(--mist)}
 .sum{display:flex;justify-content:space-between;gap:16px;padding-top:10px;font-weight:700;font-variant-numeric:tabular-nums}
 .extra,.cost-note{margin:8px 0 0;font-size:14px;color:var(--mist)}
 
-/* 區塊標題 */
-.block{margin-top:80px;scroll-margin-top:16px}
+/* 每天的「大家加的」 */
+.mine{margin-top:22px}
+.mine p{margin:6px 0 0;font-size:15px}
+.mine-list{list-style:none;margin:8px 0 0;padding:0}
+.mine-list li{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;padding:7px 0;border-bottom:1px dashed var(--rule);font-size:15px}
+.mine-list .by{font-size:13px;color:var(--mist)}
+.linkbtn{margin-top:8px;padding:0;border:0;background:none;color:var(--pass);font-size:15px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.kind{display:inline-block;padding:0 8px;border:1px solid currentColor;border-radius:999px;font-size:12px;line-height:1.7;white-space:nowrap}
+.kind.plan{color:var(--pass)}
+.kind.food{color:var(--buy)}
+.etime{color:var(--mist);font-variant-numeric:tabular-nums}
+
+/* 區塊 */
+.block{margin-top:88px;scroll-margin-top:12px}
 .block>h2{margin:0;font-size:clamp(24px,5vw,30px);font-weight:900;letter-spacing:.06em}
 .block>.lead{margin-top:10px}
-.block h3{font-size:18px;margin:36px 0 8px}
+.block h3{margin:36px 0 8px;font-size:18px}
+.group-start{display:flex;align-items:center;gap:14px;margin-top:104px;color:var(--mist);font-size:15px;font-weight:700}
+.group-start::after{content:"";flex:1;height:1px;background:var(--rule)}
+.group-start+.block{margin-top:28px}
+
+/* 大家加的行程與餐廳 */
+.auth{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:18px;padding:14px 16px;background:var(--surface);border:1px solid var(--rule);border-radius:6px}
+.auth p{margin:0}
+.auth .grow{flex:1 1 220px}
+.btn{padding:8px 18px;border:1px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--paper);font-size:15px;font-weight:700;cursor:pointer;line-height:1.4}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.small{padding:3px 12px;font-size:14px;font-weight:500}
+.btn.danger{border-color:var(--stamp);background:transparent;color:var(--stamp)}
+.btn.danger.armed{background:var(--stamp);color:var(--on-stamp)}
+.uid{flex-basis:100%;font-size:14px}
+.uid summary{cursor:pointer;color:var(--mist);width:max-content}
+.uid code{display:inline-block;margin:6px 8px 0 0;padding:2px 6px;border:1px solid var(--rule);border-radius:3px;background:var(--paper);font-size:13px;word-break:break-all}
+.form{display:grid;gap:14px;margin-top:14px;padding:18px;background:var(--surface);border:1px solid var(--rule);border-radius:6px;scroll-margin-top:16px}
+.form.editing{border-color:var(--pass);box-shadow:0 0 0 1px var(--pass)}
+.form-title{margin:0;font-size:16px;font-weight:700}
+.field{margin:0;padding:0;border:0;min-width:0}
+.field>label,.field>legend{display:block;margin-bottom:4px;padding:0;font-size:14px;font-weight:700}
+.field input[type=text],.field select,.field textarea{width:100%;padding:8px 10px;border:1px solid var(--rule);border-radius:4px;background:var(--paper);font-size:16px}
+.field textarea{resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:520px){.row2{grid-template-columns:1fr}}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden}
+.seg label{position:relative;cursor:pointer}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg span{display:block;padding:5px 18px;font-size:15px}
+.seg input:checked+span{background:var(--ink);color:var(--paper)}
+.seg input:focus-visible+span{outline:3px solid var(--focus);outline-offset:-3px}
+.form-err{margin:0;color:var(--stamp);font-size:15px}
+.form-err:empty{display:none}
+.form-acts{display:flex;flex-wrap:wrap;gap:10px}
+.filters{display:flex;gap:8px;margin-top:24px}
+.fbtn{padding:4px 14px;border:1px solid var(--rule);border-radius:999px;background:var(--surface);font-size:14px;cursor:pointer}
+.fbtn[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.egroup h3{margin:24px 0 4px;font-size:15px;color:var(--mist)}
+.entries{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.entry{padding:12px 0;border-bottom:1px solid var(--rule)}
+.ehead{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.entry p{margin:2px 0 0}
+.eplace{font-size:14px;color:var(--mist)}
+.enote{font-size:15px;white-space:pre-wrap}
+.entry .by{font-size:13px;color:var(--mist)}
+.acts{display:flex;gap:8px;margin-top:8px}
 
 /* 富士・箱根路線圖 */
 .route{list-style:none;margin:20px 0 0;padding:0}
 .route li{display:grid;grid-template-columns:96px 28px 1fr;column-gap:12px}
-.route .rt{text-align:right;color:var(--mist);font-size:15px;font-variant-numeric:tabular-nums;padding-top:1px}
+.route .rt{padding-top:1px;text-align:right;color:var(--mist);font-size:15px;font-variant-numeric:tabular-nums}
 .route .rl{position:relative}
 .route .rl::before{content:"";position:absolute;left:12px;top:16px;bottom:-4px;width:5px;background:var(--seg,transparent)}
-.route .rl::after{content:"";position:absolute;left:6px;top:6px;width:17px;height:17px;border-radius:50%;background:var(--surface);border:3px solid var(--ink);box-sizing:border-box}
+.route .rl::after{content:"";position:absolute;left:6px;top:6px;width:17px;height:17px;border:3px solid var(--ink);border-radius:50%;background:var(--surface)}
 .route li.stay .rl::after{border-radius:3px;background:var(--ink)}
 .route li.key .rl::after{border-color:var(--stamp)}
 .route .rn{padding:0 0 16px}
-.route .rn strong{font-weight:700}
 .route .rv{display:block;font-size:14px;color:var(--mist)}
-.route li.dayhead{display:block;margin:6px 0 10px;padding-left:148px;font-weight:700;color:var(--mist);font-size:14px}
+.route li.dayhead{display:block;margin:6px 0 10px;padding-left:148px;font-size:14px;font-weight:700;color:var(--mist)}
 @media (max-width:480px){
   .route li{grid-template-columns:62px 26px 1fr;column-gap:10px}
   .route li.dayhead{padding-left:108px}
 }
-
 .rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
 .rows li{display:grid;grid-template-columns:1fr auto;gap:0 16px;padding:11px 0;border-bottom:1px solid var(--rule)}
 .rows .a{font-weight:700}
 .rows .b{grid-column:1;font-size:14px;color:var(--mist)}
 .rows .c{grid-column:2;grid-row:1 / span 2;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
-.rows .c small{display:block;font-size:12px;font-weight:400;color:var(--mist)}
 .why{margin:14px 0 0}
 
+/* 清單與表格 */
 .check{list-style:none;margin:0;padding:0}
 .check li{border-bottom:1px solid var(--rule)}
 .check label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;cursor:pointer}
-.check input{width:20px;height:20px;margin:3px 0 0;accent-color:var(--ic);flex:none}
+.check input{flex:none;width:20px;height:20px;margin:3px 0 0;accent-color:var(--ic)}
 .check input:checked+span{color:var(--mist);text-decoration:line-through}
-.tz{font-size:14px;color:var(--mist);margin:8px 0 0}
-
-
-/* 預算表 */
-.budget{width:100%;border-collapse:collapse;margin-top:16px;font-variant-numeric:tabular-nums}
-.budget th,.budget td{padding:9px 6px;border-bottom:1px solid var(--rule);text-align:left;font-weight:400}
+.tz{margin:8px 0 0;font-size:14px;color:var(--mist)}
+.budget{width:100%;margin-top:16px;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.budget th,.budget td{padding:9px 6px;border-bottom:1px solid var(--rule);font-weight:400;text-align:left}
 .budget td:last-child,.budget th:last-child{text-align:right}
 .budget thead th{font-size:14px;color:var(--mist)}
-.budget tfoot td{font-weight:700;border-bottom:none;border-top:2px solid var(--ink)}
-
-/* 餐廳、住宿 */
+.budget tfoot td{border-top:2px solid var(--ink);border-bottom:0;font-weight:700}
 .list{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--rule)}
 .list li{padding:14px 0;border-bottom:1px solid var(--rule)}
-.list .a{font-weight:700;margin:0}
+.list .a{margin:0;font-weight:700}
 .list p{margin:2px 0 0;font-size:15px}
-.list .m{color:var(--mist);font-size:14px}
-.list li.blank{color:var(--mist)}
-
+.list .m{font-size:14px;color:var(--mist)}
 .notes{margin:12px 0 0;padding-left:1.2em}
 .notes li{margin:6px 0}
 .src{margin:12px 0 0;padding-left:1.4em;font-size:14px}
 .src li{margin:4px 0}
-footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--rule);font-size:15px;color:var(--mist)}
-footer h2{font-size:18px;color:var(--ink);margin:0 0 8px}
-footer code{font-size:14px;background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:0 5px}
+footer{margin-top:80px;padding-top:24px;padding-bottom:96px;border-top:1px solid var(--rule);font-size:15px;color:var(--mist)}
+footer h2{margin:0 0 8px;font-size:18px;color:var(--ink)}
+footer code{padding:0 5px;border:1px solid var(--rule);border-radius:3px;background:var(--surface);font-size:14px}
 
-.quick{display:flex;flex-wrap:wrap;gap:4px 20px;margin:14px 0 0;font-size:15px}
-.today-jump{position:fixed;right:16px;bottom:16px;background:var(--stamp);color:var(--on-stamp);padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:700;font-size:15px}
-.day.is-today .sign{border-color:var(--stamp);box-shadow:0 0 0 2px var(--stamp)}
+/* 浮動按鈕與提示 */
+.fabs{position:fixed;right:16px;bottom:16px;z-index:40;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.fab{display:inline-block;padding:9px 16px;border:1px solid var(--rule);border-radius:999px;background:var(--surface);color:var(--ink);box-shadow:var(--shadow);font-size:15px;font-weight:700;text-decoration:none}
+.fab.today{border-color:var(--stamp);background:var(--stamp);color:var(--on-stamp)}
+.fab.hide{opacity:0;transform:translateY(8px);pointer-events:none}
+.toast{position:fixed;left:50%;bottom:24px;z-index:50;max-width:calc(100vw - 32px);padding:10px 18px;border-radius:999px;background:var(--ink);color:var(--paper);font-size:15px;opacity:0;transform:translate(-50%,24px);pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* 動畫：只在使用者沒有要求減少動態時播放 */
+@keyframes stamp{0%{opacity:0;transform:scale(1.8) rotate(-24deg)}60%{opacity:1;transform:scale(.94) rotate(-8deg)}100%{opacity:1;transform:scale(1) rotate(-10deg)}}
+@media (prefers-reduced-motion: no-preference){
+  .js .track:not(.drawn)::before{transform:scaleX(0)}
+  .track.drawn::before{transition:transform .8s cubic-bezier(.6,0,.2,1)}
+  .js .track:not(.drawn) .dot{transform:scale(0)}
+  .track.intro .dot{transition:transform .35s cubic-bezier(.3,1.6,.5,1) calc(var(--k) * 55ms + .1s)}
+  .js .track:not(.drawn) .train{opacity:0;left:calc(100% / 18) !important}
+  .train{transition:left .5s cubic-bezier(.5,0,.2,1)}
+  .track.intro .train{transition:left 1s cubic-bezier(.5,0,.2,1) .55s,opacity .2s .5s}
+  .js .panel:not(.stamped) .stamp{opacity:0}
+  .panel.stamped .stamp{animation:stamp .45s cubic-bezier(.3,.7,.4,1) both}
+  .panel{transition:opacity .3s ease}
+  .scroller{transition:height .35s ease}
+  .fab{transition:opacity .2s ease,transform .2s ease}
+  .toast{transition:opacity .25s ease,transform .25s ease}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 
 @media print{
   body{background:#fff}
-  .today-jump{display:none}
-  .day,.block{break-inside:avoid-page}
+  .picker,.fabs,.toast,.auth,.form,.filters,.legend{display:none !important}
+  .scroller{display:block;height:auto !important;overflow:visible;padding:0 20px}
+  .panel{margin:0 0 24px;opacity:1 !important}
 }
 </style>
 </head>
 <body>
-<main class="wrap" id="app">
-  <noscript><p>這一頁需要開啟 JavaScript 才能顯示行程。</p></noscript>
-</main>
+<div id="app">
+  <noscript><p style="padding:20px">這一頁需要開啟 JavaScript 才能顯示行程。</p></noscript>
+</div>
 
 <script>
 /* =====================================================================
@@ -232,7 +362,9 @@ footer code{font-size:14px;background:var(--surface);border:1px solid var(--rule
      待填格子 { t: "時間", tag: "待填", hint: "要填什麼" }      ← 填好後把 tag 改成「指定」並加上 what
      一般乘車 { ride: { dep: "出發時間", from: "起點", to: "終點", name: "車種與轉乘", pay: "ic" } }
      重要班次 { ride: { key: true, dep: "08:30", arr: "10:26", from, to, name, price: 4200, stamp: "book" } }
-              key: true 會用車票樣式凸顯；stamp 可填 book（要預約）／pass（周遊券）／ic（西瓜卡）
+              key: true 會用車票樣式凸顯，也會自動列進「今日重點」
+              stamp 可填 book（要預約）／pass（周遊券）／ic（西瓜卡）
+   每天的 points 是「今日重點」裡的提醒，一行一句。
    每天的 cost 是當天交通花費，yen 改了之後，每日小計、三天合計和總預算都會自動重算。
    pay 的種類：ic 西瓜卡、buy 單買或預約的車票、pass 箱根周遊券、free 免費或已包含
    ===================================================================== */
@@ -242,6 +374,12 @@ const TRIP = {
   start: "2026-12-21",
   end: "2026-12-29",
   base: "以淺草為據點，12/22–12/24 走富士・箱根一圈。",
+  repo: "https://github.com/Harry0415/japan-trip-2026-12",
+
+  /* 旅伴新增功能：照 README「開啟旅伴新增功能」建立 Firebase 專案後，把設定值貼在這裡 */
+  firebase: { apiKey: "", authDomain: "", projectId: "", appId: "" },
+  /* 可以刪除任何一筆的管理員：登入後在「大家加的行程與餐廳」展開「我的使用者 ID」，複製貼進來 */
+  admins: [],
 
   pay: {
     ic:   { label: "西瓜卡",        color: "var(--ic)" },
@@ -255,6 +393,11 @@ const TRIP = {
       id: "d1", date: "2026-12-21", short: "成田・淺草", out: true,
       sign: "成田", stay: "淺草",
       lead: "中午落地，把大行李交給機場的當日配送，空手去成田山，晚上到淺草入住。",
+      points: [
+        "大行李 14:00 前交給到達大廳的 SAGAWA 櫃台，當天送到淺草飯店。",
+        "成田山新勝寺參拜到 16:00，先去寺裡，再逛表參道。",
+        "落地先設定好西瓜卡，今天的京成線都直接刷卡。"
+      ],
       plan: [
         { t: "12:00", what: "抵達成田機場（航班：＿＿＿＿，第＿航廈）", tag: "指定" },
         { t: "12:00–13:15", what: "入境、領行李；設定好西瓜卡", tag: "建議" },
@@ -279,6 +422,11 @@ const TRIP = {
       id: "d2", date: "2026-12-22", short: "河口湖", out: true,
       sign: "河口湖", stay: "河口湖 富士吟景",
       lead: "早上從新宿搭富士回遊，中午前到河口湖，下午逛湖畔，傍晚請飯店來接。",
+      points: [
+        "西瓜卡餘額留 ¥3,000 以上：用 e-ticket 的話，車資在河口湖出站時從卡裡扣。",
+        "大行李寄放在 Amanek，只帶一晚的過夜包。",
+        "飯店接送 15:00–20:00，只接不送，到河口湖站先打電話。"
+      ],
       plan: [
         { t: "07:00", what: "早餐；大行李寄放在 Amanek，12/24 晚上回來再拿", tag: "建議", note: "出發前先寫信跟飯店確認。" },
         { ride: { dep: "07:40", from: "淺草", to: "新宿", name: "銀座線到神田，轉 JR 中央線快速，28 分；到新宿留 20 分鐘找月台", pay: "ic" } },
@@ -303,6 +451,11 @@ const TRIP = {
       id: "d3", date: "2026-12-23", short: "御殿場・箱根", out: true,
       sign: "御殿場・箱根", stay: "箱根湯本 岡田酒店",
       lead: "搭 9:10 的 G-Liner 直達 Outlet，逛到下午三點半，再搭巴士進箱根。",
+      points: [
+        "箱根周遊券從今天開始用，EMot 的開始日要選 12/23。",
+        "退房時請櫃台幫忙叫車，或搭 08:40 左右的巴士到河口湖站。",
+        "下午 16:30 左右天黑，15:30 那班巴士錯過的話，用箱根ナビ查下一班。"
+      ],
       plan: [
         { t: "07:30", what: "早餐，08:30 退房", tag: "建議" },
         { ride: { dep: "約 08:40", from: "飯店", to: "河口湖站", name: "路線巴士約 10 分（周遊巴士 2 日券可搭），或請櫃台叫計程車", pay: "buy" } },
@@ -312,7 +465,7 @@ const TRIP = {
           note: "12 月營業 10:00–19:00。", map: "御殿場プレミアム・アウトレット" },
         { t: "", tag: "待填", hint: "想逛的店" },
         { ride: { key: true, dep: "15:30", arr: "16:24", from: "御殿場 Outlet", to: "箱根湯本", name: "M 線（觀光施設巡迴巴士）到宮城野橋，轉 T 線",
-                  priceText: "已含", stamp: "pass", check: "查到的班次；出發前用箱根ナビ再確認末班" } },
+                  priceText: "已含", stamp: "pass", check: "查到的班次；出發前用箱根ナビ再確認" } },
         { ride: { dep: "約 16:45", from: "箱根湯本", to: "岡田酒店", name: "K 線到奧湯本入口再走 6 分；或湯本溫泉鄉共同巴士（每小時 15、45 分發車，末班 18:45，¥100）", pay: "pass" } },
         { t: "17:15", what: "入住 箱根湯本溫泉 HOTEL OKADA：溫泉、晚餐", tag: "指定", map: "ホテルおかだ 箱根湯本" }
       ],
@@ -328,6 +481,11 @@ const TRIP = {
       id: "d4", date: "2026-12-24", short: "箱根", out: true,
       sign: "箱根", stay: "淺草",
       lead: "從飯店旁的 K 線直接上蘆之湖，逆時針繞一圈，16:51 搭浪漫特快回新宿，晚餐吃 AFURI。",
+      points: [
+        "行李配送要在 10:00 前向櫃台申請，13:30–18:30 在箱根湯本站領。",
+        "空中纜車 12 月營運到 16:15，大涌谷排在中午。",
+        "浪漫特快的車資含在周遊券，只要付特急券。"
+      ],
       plan: [
         { t: "08:00", what: "早餐，08:45 退房", tag: "建議" },
         { t: "08:45", what: "大行李交櫃台寄「箱根行李配送」，下午在箱根湯本站領", tag: "建議",
@@ -360,6 +518,11 @@ const TRIP = {
       id: "d5", date: "2026-12-25", short: "銀座",
       sign: "銀座・東京站", stay: "淺草",
       lead: "平價旗艦店最集中的一天：上午銀座買衣服，下午走到有樂町和東京站。",
+      points: [
+        "11/1 起免稅改成出境時退稅：結帳先付含稅價，記得帶護照；同一家店同一天未稅滿 ¥5,000 才能退。",
+        "收據和免稅商品要留到出境，化妝品和食品在日本用掉就不能退。",
+        "聖誕節晚上餐廳較滿，晚餐建議先訂位。"
+      ],
       plan: [
         { ride: { dep: "10:00", from: "淺草", to: "銀座", name: "銀座線，約 17 分", pay: "ic" } },
         { t: "10:30–13:00", what: "UNIQLO 銀座店、無印良品 銀座、銀座 LOFT", tag: "建議", map: "ユニクロ 銀座店" },
@@ -378,6 +541,10 @@ const TRIP = {
       id: "d6", date: "2026-12-26", short: "澀谷・原宿",
       sign: "澀谷・原宿", stay: "淺草",
       lead: "選物店和運動、戶外品牌集中的一天，沿貓街從澀谷走到表參道。週六人多，早點出門。",
+      points: [
+        "週六人潮多，10:00 出門，先逛澀谷再往原宿走。",
+        "免稅要同一家店同一天未稅滿 ¥5,000，想退稅的東西盡量集中在同一家結帳。"
+      ],
       plan: [
         { ride: { dep: "10:00", from: "淺草", to: "澀谷", name: "銀座線，約 32 分", pay: "ic" } },
         { t: "10:30–12:30", what: "澀谷 PARCO、MIYASHITA PARK", tag: "建議", map: "渋谷PARCO" },
@@ -396,6 +563,10 @@ const TRIP = {
       id: "d7", date: "2026-12-27", short: "川越", out: true,
       sign: "川越", stay: "淺草",
       lead: "週日的川越人多，08:30 出發、十點前到藏造老街最舒服。",
+      points: [
+        "本丸御殿 16:30 停止入場；週一和年末休館，年末休館日出發前查官網。",
+        "KAWAGOE DISCOUNT PASS 要帶護照到池袋站的東武窗口買。"
+      ],
       plan: [
         { ride: { dep: "08:30", from: "淺草", to: "川越", name: "銀座線到上野，JR 山手線到池袋，東武東上線急行，1 小時 8 分", pay: "ic" } },
         { t: "09:40–10:00", what: "川越站搭巴士或走約 25 分到藏造老街", tag: "建議" },
@@ -417,6 +588,11 @@ const TRIP = {
       id: "d8", date: "2026-12-28", short: "淺草",
       sign: "淺草", stay: "淺草",
       lead: "飯店周邊走路就能逛完：清晨淺草寺、上午合羽橋、下午晴空塔，晚上打包。",
+      points: [
+        "淺草寺清晨人最少，07:30 先去。",
+        "合羽橋道具街週一有開，但年底部分店家會提早休息。",
+        "打包時把免稅商品和收據放隨身包，出境時要一起檢查。"
+      ],
       plan: [
         { t: "07:30–09:00", what: "淺草寺、雷門（清晨人少）", tag: "指定", map: "浅草寺" },
         { t: "09:30–10:30", what: "仲見世通、傳法院通", tag: "建議" },
@@ -425,7 +601,7 @@ const TRIP = {
         { t: "12:00–13:00", tag: "待填", hint: "午餐" },
         { t: "13:30–16:30", what: "東京晴空塔、晴空街道購物（走路約 20 分）", tag: "建議", map: "東京ソラマチ" },
         { t: "", tag: "待填", hint: "其他想去的地方" },
-        { t: "19:00–", what: "晚餐後打包，去藥妝店補貨", tag: "建議" }
+        { t: "19:00–", what: "晚餐後打包，去藥妝店補貨", tag: "建議", note: "免稅商品和收據放隨身包，不要先放進託運行李。" }
       ],
       cost: [
         { leg: "淺草周邊", how: "步行為主", yen: 0, pay: "free" }
@@ -434,12 +610,18 @@ const TRIP = {
     {
       id: "d9", date: "2026-12-29", short: "成田機場",
       sign: "成田機場",
-      lead: "搭 07:52 的 Access 特急，九點左右到機場，留三小時報到和退稅。",
+      lead: "搭 07:52 的 Access 特急，九點左右到機場，先辦退稅確認，再報到託運。",
+      points: [
+        "上車前看終點站是不是成田空港。",
+        "託運行李之前，先在機場的免稅手續機器出示護照（大機場也可以用 Visit Japan Web），買的東西要全部帶在身上；顯示紅色要給海關看商品。",
+        "起飛前 3 小時到機場。"
+      ],
       plan: [
         { t: "06:45", what: "起床、退房", tag: "建議" },
         { ride: { key: true, dep: "07:52", arr: "09:00", arrApprox: true, from: "淺草", to: "成田機場", name: "京成 Access 特急（直達，不用轉車）",
                   price: 1276, stamp: "ic", check: "備案 08:31 發、約 09:40 到；上車前看終點站是成田空港" } },
-        { t: "09:00–11:00", what: "報到、托運、免稅店", tag: "建議" },
+        { t: "09:00–09:30", what: "退稅確認：在免稅手續機器出示護照，買的東西帶在身上", tag: "建議", note: "要在託運行李之前做，託運後就不能辦。" },
+        { t: "09:30–11:00", what: "報到、託運、免稅店", tag: "建議" },
         { t: "12:00", what: "起飛（航班：＿＿＿＿，第＿航廈）", tag: "指定" }
       ],
       cost: [
@@ -448,7 +630,7 @@ const TRIP = {
     }
   ],
 
-  /* 富士・箱根三天的交通專區 */
+  /* 富士・箱根三天的交通（放在「花費與評估」） */
   excursion: {
     days: ["d2", "d3", "d4"],
     route: [
@@ -478,17 +660,18 @@ const TRIP = {
       { name: "箱根周遊券（新宿出發 2 日）", when: "12/23–12/24", where: "EMot app 數位版", yen: 7100 },
       { name: "浪漫特快 特急券", when: "12/24 箱根湯本 → 新宿", where: "小田急官網", yen: 1150 }
     ],
-    why: "箱根這兩天的交通單買要 ¥8,630，周遊券 ¥7,100，省 ¥1,530，強羅公園也免費。富士箱根周遊券只有在 12/23 改搭兩小時的路線巴士去 Outlet 時才比較便宜；搭 G-Liner 反而多 ¥830。",
-    checklist: [
-      "11/22（日）09:00 訂 12/22 富士回遊 7 號",
-      "11/23（一）起用 EMot 買箱根周遊券數位版，開始日選 12/23",
-      "11/24（二）09:00 訂 12/24 浪漫特快 16:51 箱根湯本發",
-      "出發前幾天在 SEKITORI 預約 12/23 G-Liner 09:10",
-      "寫信給 HOTEL AMANEK：12/22–12/24 寄放大行李",
-      "寫信給 HOTEL OKADA：是不是箱根行李配送的合作旅館",
-      "西瓜卡餘額留 ¥3,000 以上（富士回遊車資從卡扣）"
-    ]
+    why: "箱根這兩天的交通單買要 ¥8,630，周遊券 ¥7,100，省 ¥1,530，強羅公園也免費。富士箱根周遊券只有在 12/23 改搭兩小時的路線巴士去 Outlet 時才比較便宜；搭 G-Liner 反而多 ¥830。"
   },
+
+  checklist: [
+    "11/22（日）09:00 訂 12/22 富士回遊 7 號",
+    "11/23（一）起用 EMot 買箱根周遊券數位版，開始日選 12/23",
+    "11/24（二）09:00 訂 12/24 浪漫特快 16:51 箱根湯本發",
+    "出發前幾天在 SEKITORI 預約 12/23 G-Liner 09:10",
+    "寫信給 HOTEL AMANEK：12/22–12/24 寄放大行李",
+    "寫信給 HOTEL OKADA：是不是箱根行李配送的合作旅館",
+    "西瓜卡餘額留 ¥3,000 以上（富士回遊車資從卡扣）"
+  ],
 
   restaurants: [
     { name: "AFURI 新宿ルミネ", where: "新宿站西口 LUMINE 1 B2F", hours: "10:00–22:00，無休",
@@ -508,6 +691,7 @@ const TRIP = {
   notes: [
     "12 月下旬東京白天約 10°C；河口湖和箱根早晚會到零下，帶手套和毛帽。",
     "日落約 16:30，戶外行程排在四點前結束。",
+    "2026/11/1 起免稅改成出境退稅：結帳先付含稅價，出境時在機場確認商品帶出後才退；同一家店同一天未稅滿 ¥5,000 才適用，商品要帶在身上、不能先託運。",
     "西瓜卡：iPhone 用 Welcome Suica Mobile（180 天有效、Apple Pay 加值）；實體 Welcome Suica 的餘額不能退，離境前花掉。",
     "東京市區的購物日只用西瓜卡就好；地鐵 24 小時券 ¥1,000，一天要搭 6 次以上才划算。",
     "年底部分店家與公家設施會休息，出發前查官網。",
@@ -535,13 +719,23 @@ const TRIP = {
     ["淺草 → 川越（駅探）", "https://ekitan.com/transit/fare/sf-1491/st-1909"],
     ["川越城本丸御殿、川越市立博物館（川越市 PDF）", "https://www.city.kawagoe.saitama.jp/_res/projects/default_project/_page_/001/013/698/hakubutsukanoyobihonmarugotenweb.pdf"],
     ["KAWAGOE DISCOUNT PASS（東武鐵道）", "https://www.tobu.co.jp/foreign/tcn/pass/kawagoe_pre.html"],
-    ["AFURI 店舖一覽", "https://afuri.com/findus/"]
+    ["AFURI 店舖一覽", "https://afuri.com/findus/"],
+    ["2026/11 起免稅改為出境退稅（觀光廳）", "https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00021.html"]
   ]
 };
 
 /* ===================== 以下是畫面程式，一般不用改 ===================== */
+document.documentElement.classList.add("js");
 const WEEK = ["日", "一", "二", "三", "四", "五", "六"];
 const STAMP = { book: ["要預約", "var(--stamp)"], pass: ["周遊券", "var(--pass)"], ic: ["西瓜卡", "var(--ic)"] };
+const NEED = { book: "要預約", pass: "周遊券", ic: "刷西瓜卡" };
+const REDUCE = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+const FIREBASE_SDK = "https://www.gstatic.com/firebasejs/12.19.0/";
+const NICK_KEY = "trip2026-nick";
+const CHECK_KEY = "trip2026-checklist";
+const UA = navigator.userAgent || "";
+const IN_LINE = /\bLine\//i.test(UA);
+const IN_APP = IN_LINE || /FBAN|FBAV|FB_IAB|Instagram/i.test(UA);
 
 function h(tag, props, ...kids) {
   const el = document.createElement(tag);
@@ -558,64 +752,148 @@ function h(tag, props, ...kids) {
   }
   return el;
 }
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : v; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
 const yen = n => "¥" + Number(n).toLocaleString("en-US");
 const mapUrl = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
 const payColor = p => (TRIP.pay[p] || TRIP.pay.free).color;
 const payLabel = p => (TRIP.pay[p] || TRIP.pay.free).label;
 const sumCost = d => (d.cost || []).reduce((s, c) => s + (Number(c.yen) || 0), 0);
+const exTotal = () => TRIP.excursion.days.reduce((s, id) => s + sumCost(TRIP.days.find(d => d.id === id)), 0);
+const dayNo = id => TRIP.days.findIndex(d => d.id === id) + 1;
+const wbr = s => s.split("・").flatMap((p, k) => k ? ["・", h("wbr"), p] : [p]);
 function md(iso) {
   const [y, m, d] = iso.split("-").map(Number);
   return { y, m, d, w: WEEK[new Date(Date.UTC(y, m - 1, d)).getUTCDay()] };
 }
 const shortDate = iso => { const x = md(iso); return `${x.m}/${x.d}（${x.w}）`; };
 const longDate = iso => { const x = md(iso); return `${x.m} 月 ${x.d} 日（${x.w}）`; };
+const dayLabel = id => { const i = dayNo(id) - 1; const d = TRIP.days[i]; return `D${i + 1} ${shortDate(d.date)} ${d.sign}`; };
 function todayInJapan() {
   try {
     return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
   } catch (e) { return new Date().toISOString().slice(0, 10); }
 }
-const dayNo = id => TRIP.days.findIndex(d => d.id === id) + 1;
-
-function renderHero(today) {
-  const days = TRIP.days.length;
-  let count = null;
-  const diff = Math.round((Date.parse(TRIP.start) - Date.parse(today)) / 864e5);
-  if (diff > 0) count = `距離出發還有 ${diff} 天。`;
-  const wbr = s => s.split("・").flatMap((p, k) => k ? ["・", h("wbr"), p] : [p]);
-  return h("header", { class: "hero" },
-    h("h1", null, TRIP.title.split(" ").flatMap((p, k) => k ? [" ", h("span", null, p)] : [h("span", null, p)])),
-    h("p", { class: "dates num" }, `${shortDate(TRIP.start)}至 ${shortDate(TRIP.end)}，`, h("span", null, `${days} 天 ${days - 1} 夜`)),
-    h("p", { class: "base" }, TRIP.base),
-    count && h("p", { class: "countdown" }, count),
-    h("nav", { "aria-label": "九天行程" },
-      h("ol", { class: "line" },
-        TRIP.days.map((d, i) => h("li", { class: [d.out ? "out" : "", d.date === today ? "is-today" : ""].join(" ").trim() || null },
-          h("a", { href: "#" + d.id },
-            h("span", { class: "d" }, "D" + (i + 1)),
-            h("span", { class: "dt num" }, shortDate(d.date)),
-            h("span", { class: "pl" }, wbr(d.short)))))))
-  );
+let toastTimer = 0;
+function toast(msg) {
+  const t = $(".toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 2800);
 }
 
+/* ---------- 封面與索引 ---------- */
+function renderTop(today) {
+  const n = TRIP.days.length;
+  const diff = Math.round((Date.parse(TRIP.start) - Date.parse(today)) / 864e5);
+  const ti = TRIP.days.findIndex(d => d.date === today);
+  const count = diff > 0 ? `距離出發還有 ${diff} 天。` : ti >= 0 ? `旅行第 ${ti + 1} 天。` : null;
+  return h("header", { class: "top", id: "index" },
+    h("div", { class: "wrap" },
+      h("h1", null, TRIP.title.split(" ").flatMap((p, k) => k ? [" ", h("span", null, p)] : [h("span", null, p)])),
+      h("p", { class: "dates num" }, `${shortDate(TRIP.start)}至 ${shortDate(TRIP.end)}，`, h("span", null, `${n} 天 ${n - 1} 夜`)),
+      h("p", { class: "base" }, TRIP.base),
+      count && h("p", { class: "countdown" }, count),
+      renderIndex(today)));
+}
+
+function renderIndex(today) {
+  const total = TRIP.days.reduce((s, d) => s + sumCost(d), 0);
+  const item = (href, label, desc, cls) => h("li", { class: cls || null },
+    h("a", { href }, label), desc && h("span", { class: "idx-desc" }, desc));
+  return h("nav", { class: "index", "aria-labelledby": "index-h" },
+    h("h2", { id: "index-h" }, "索引"),
+    h("ol", { class: "idx" },
+      h("li", null,
+        h("a", { href: "#days" }, "每日行程"), h("span", { class: "idx-desc" }, "左右滑動，一天一張"),
+        h("div", { class: "chips" },
+          TRIP.days.map((d, i) => h("a", {
+            href: "#" + d.id,
+            class: [d.out ? "out" : "", d.date === today ? "is-today" : ""].join(" ").trim() || null
+          }, h("b", null, "D" + (i + 1)), d.short)))),
+      item("#food", "想吃的餐廳"),
+      item("#together", "大家加的行程與餐廳", "旅伴登入後可以新增"),
+      item("#hotels", "住宿"),
+      item("#prep", "出發前準備", "訂票日期與注意事項"),
+      h("li", { class: "glabel" }, "花費與評估"),
+      item("#excursion", "離開東京市區的交通與票券", `富士・箱根三天每人 ${yen(exTotal())}`, "cost"),
+      item("#budget", "九天交通費", `每人約 ${yen(total)}`, "cost"),
+      item("#sources", "資料來源", null, "cost")));
+}
+
+/* ---------- 每日行程 ---------- */
 function renderLegend() {
   const sw = (c, extra) => h("span", { class: "sw" + (extra ? " " + extra : ""), style: c ? `--c:${c}` : null, "aria-hidden": "true" });
-  return h("div", { class: "legend" },
-    h("span", null, sw(null, "tk"), "要準時搭的班次"),
-    h("span", null, h("span", { class: "chip", style: "margin:0" }, "建議"), "建議安排，可以換掉"),
-    h("span", null, sw(null, "dash"), "自己填"),
-    h("span", null, "沒有標記的是已確定的行程"),
-    h("span", null, sw(null, "ring"), "離開東京市區的日子"),
-    Object.keys(TRIP.pay).map(k => h("span", null, sw(payColor(k)), payLabel(k)))
-  );
+  return h("details", { class: "legend" },
+    h("summary", null, "圖例"),
+    h("div", { class: "legend-body" },
+      h("span", null, sw(null, "tk"), "要準時搭的班次"),
+      h("span", null, h("span", { class: "chip", style: "margin:0" }, "建議"), "建議安排，可以換掉"),
+      h("span", null, sw(null, "dash"), "自己填"),
+      h("span", null, "沒有標記的是已確定的行程"),
+      h("span", null, sw(null, "ring"), "離開東京市區的日子"),
+      Object.keys(TRIP.pay).map(k => h("span", null, sw(payColor(k)), payLabel(k)))));
 }
 
-function renderQuick() {
-  return h("nav", { class: "quick", "aria-label": "頁面捷徑" },
-    h("a", { href: "#excursion" }, "離開市區的交通"),
-    h("a", { href: "#budget" }, "九天交通費"),
-    h("a", { href: "#food" }, "想吃的餐廳"),
-    h("a", { href: "#hotels" }, "住宿"),
-    h("a", { href: "#notes" }, "出發前要知道"));
+function renderDays(today) {
+  return h("section", { class: "days", id: "days", "aria-labelledby": "days-h" },
+    h("div", { class: "wrap days-head" },
+      h("h2", { id: "days-h" }, "每日行程"),
+      h("p", { class: "hint" }, "左右滑動切換日期，或點路線上的站。"),
+      renderLegend()),
+    h("nav", { class: "picker", "aria-label": "選擇日期" },
+      h("div", { class: "picker-inner" },
+        h("button", { type: "button", class: "pbtn prev", "aria-label": "前一天" }, "◀"),
+        h("div", { class: "track" },
+          h("ol", { class: "stops" },
+            TRIP.days.map((d, i) => h("li", null,
+              h("button", {
+                type: "button", class: "stop" + (d.out ? " out" : "") + (d.date === today ? " is-today" : ""),
+                "data-i": i, style: `--k:${i}`, "aria-label": `D${i + 1} ${shortDate(d.date)} ${d.sign}`
+              }, h("span", { class: "dot" }), h("span", { class: "d" }, "D" + (i + 1)), h("span", { class: "pl" }, wbr(d.short)))))),
+          h("span", { class: "train", "aria-hidden": "true" })),
+        h("button", { type: "button", class: "pbtn next", "aria-label": "後一天" }, "▶"))),
+    h("div", { class: "scroller", tabindex: "0", role: "region", "aria-label": "每日行程，可以左右捲動" },
+      TRIP.days.map((d, i) => renderPanel(d, i, today))),
+    h("p", { class: "vh", id: "day-status", "aria-live": "polite" }));
+}
+
+function renderPanel(d, i, today) {
+  const prev = TRIP.days[i - 1], next = TRIP.days[i + 1];
+  return h("article", { class: "panel" + (d.out ? " out" : "") + (d.date === today ? " is-today" : ""), id: d.id, "data-i": i, "aria-labelledby": d.id + "-h" },
+    h("header", { class: "sign" },
+      h("div", { class: "sign-main" },
+        h("div", { class: "badge", "aria-hidden": "true" }, h("small", null, "D"), h("b", null, String(i + 1))),
+        h("h3", { id: d.id + "-h" }, h("span", { class: "vh" }, `D${i + 1} `), d.sign),
+        h("div", { class: "sign-date num" }, longDate(d.date), d.stay && ["，", h("span", { class: "nw" }, "住" + d.stay)],
+          d.date === today && h("span", { class: "today-tag" }, "今天"))),
+      h("div", { class: "sign-band" },
+        prev ? h("button", { type: "button", class: "prev", "data-go": i - 1, "aria-label": `前一天：${prev.sign}` }, prev.sign) : h("span", { class: "prev" }, TRIP.home),
+        next ? h("button", { type: "button", class: "next", "data-go": i + 1, "aria-label": `後一天：${next.sign}` }, next.sign) : h("span", { class: "next" }, TRIP.home))),
+    h("div", { class: "panel-body" },
+      h("p", { class: "lead" }, d.lead),
+      renderPoints(d),
+      h("h4", { class: "sub" }, "時間表"),
+      h("ol", { class: "plan" }, d.plan.map(renderRow)),
+      renderCosts(d, "h4"),
+      h("div", { class: "mine", "data-day": d.id })));
+}
+
+function renderPoints(d) {
+  const rides = d.plan.filter(p => p.ride && p.ride.key).map(p => p.ride);
+  if (!rides.length && !(d.points || []).length) return null;
+  return h("div", { class: "points" + (rides.length ? "" : " plain") },
+    h("h4", null, "今日重點"),
+    h("ul", null,
+      rides.map(r => h("li", null,
+        h("span", { class: "pt-time" }, r.dep),
+        h("span", null, `${r.name}，${r.from} → ${r.to}`, r.stamp && h("span", { class: "need n-" + r.stamp }, NEED[r.stamp])))),
+      (d.points || []).map(t => h("li", null, h("span", { class: "pt-mark", "aria-hidden": "true" }), h("span", null, t)))));
 }
 
 function renderTicket(r) {
@@ -632,8 +910,7 @@ function renderTicket(r) {
       r.price != null
         ? h("div", { class: "t-price" }, yen(r.price), r.priceNote && h("small", null, r.priceNote))
         : r.priceText && h("div", { class: "t-price" }, r.priceText),
-      st && h("div", { class: "stamp", style: `--sc:${st[1]}` }, st[0]))
-  );
+      st && h("div", { class: "stamp", style: `--sc:${st[1]}` }, st[0])));
 }
 
 function renderRow(it) {
@@ -642,8 +919,7 @@ function renderRow(it) {
     const r = it.ride;
     return h("li", { class: "ride", style: `--c:${payColor(r.pay)}` },
       h("div", { class: "time" }, r.dep || ""),
-      h("div", null,
-        h("p", { class: "what" }, h("span", { class: "route-txt" }, `${r.from} → ${r.to}`), "　", r.name)));
+      h("div", null, h("p", { class: "what" }, h("span", { class: "route-txt" }, `${r.from} → ${r.to}`), "　", r.name)));
   }
   if (it.tag === "待填" && !it.what) {
     return h("li", { class: "todo" },
@@ -659,9 +935,9 @@ function renderRow(it) {
       it.note && h("p", { class: "note" }, it.note)));
 }
 
-function renderCosts(d, title) {
+function renderCosts(d, level) {
   return h("div", { class: "costs" },
-    h("h3", null, title || "當天交通"),
+    h(level || "h3", null, "當天交通"),
     h("ul", { class: "cost" },
       d.cost.map(c => h("li", { style: `--c:${payColor(c.pay)}` },
         h("span", { class: "leg" }, c.leg),
@@ -672,37 +948,195 @@ function renderCosts(d, title) {
     d.note && h("p", { class: "cost-note" }, d.note));
 }
 
-function renderDay(d, i, today) {
-  const ex = TRIP.excursion.days.includes(d.id);
-  const prev = TRIP.days[i - 1], next = TRIP.days[i + 1];
-  return h("section", { class: ["day", d.out ? "out" : "", d.date === today ? "is-today" : ""].join(" ").trim(), id: d.id, "aria-labelledby": d.id + "-h" },
-    h("header", { class: "sign" },
-      h("div", { class: "sign-main" },
-        h("div", { class: "badge", "aria-hidden": "true" }, h("small", null, "D"), h("b", null, String(i + 1))),
-        h("h2", { id: d.id + "-h" }, h("span", { class: "vh" }, `D${i + 1} `), d.sign),
-        h("div", { class: "sign-date num" }, longDate(d.date) + (d.stay ? `，住${d.stay}` : ""))),
-      h("nav", { class: "sign-band", "aria-label": "前一天與後一天" },
-        prev ? h("a", { class: "prev", href: "#" + prev.id }, prev.sign) : h("span", { class: "prev" }, TRIP.home),
-        next ? h("a", { class: "next", href: "#" + next.id }, next.sign) : h("span", { class: "next" }, TRIP.home))),
-    h("p", { class: "lead" }, d.lead),
-    ex && h("p", { class: "jump" }, h("a", { href: "#excursion" }, "富士・箱根三天的路線與票券總覽")),
-    h("ol", { class: "plan" }, d.plan.map(renderRow)),
-    renderCosts(d));
+/* 橫向卷軸：路線上的列車跟著目前的日期移動 */
+function initDays(today) {
+  const scroller = $(".scroller");
+  const panels = $$(".panel", scroller);
+  const stops = $$(".stop");
+  const track = $(".track"), train = $(".train"), picker = $(".picker");
+  const prevBtn = $(".pbtn.prev"), nextBtn = $(".pbtn.next"), status = $("#day-status");
+  let active = -1, step = 1, settleTimer = 0, raf = 0, interacted = false, lastSettled = -1, inView = false;
+  const ro = "ResizeObserver" in window ? new ResizeObserver(() => fit()) : null;
+
+  function measure() {
+    step = panels.length > 1 ? panels[1].offsetLeft - panels[0].offsetLeft : scroller.clientWidth || 1;
+  }
+  function nearest() {
+    return Math.max(0, Math.min(panels.length - 1, Math.round(scroller.scrollLeft / step)));
+  }
+  function fit() {
+    const p = panels[active];
+    if (!p) return;
+    const cs = getComputedStyle(scroller);
+    const extra = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom) + (scroller.offsetHeight - scroller.clientHeight);
+    scroller.style.height = Math.ceil(p.offsetHeight + extra) + "px";
+  }
+  function stamp(i) {
+    const p = panels[i];
+    if (p && inView && !p.classList.contains("stamped")) setTimeout(() => p.classList.add("stamped"), REDUCE ? 0 : 140);
+  }
+  function setActive(i) {
+    if (i === active) return;
+    active = i;
+    panels.forEach((p, k) => p.classList.toggle("is-active", k === i));
+    stops.forEach((b, k) => b.setAttribute("aria-current", k === i ? "true" : "false"));
+    train.style.left = ((i + 0.5) / panels.length * 100) + "%";
+    prevBtn.disabled = i === 0;
+    nextBtn.disabled = i === panels.length - 1;
+    stamp(i);
+    fit();
+    if (ro) { ro.disconnect(); ro.observe(panels[i]); }
+  }
+  function announce(i) {
+    const d = TRIP.days[i];
+    status.textContent = `D${i + 1} ${shortDate(d.date)} ${d.sign}`;
+  }
+  function pageToPanel() {
+    const top = scroller.getBoundingClientRect().top + window.scrollY - picker.offsetHeight;
+    window.scrollTo({ top, behavior: REDUCE ? "auto" : "smooth" });
+  }
+  function go(i, opts) {
+    opts = opts || {};
+    i = Math.max(0, Math.min(panels.length - 1, i));
+    measure();
+    interacted = true;
+    scroller.scrollTo({ left: i * step, behavior: REDUCE || opts.instant ? "auto" : "smooth" });
+    setActive(i);
+    announce(i);
+    if (opts.page) pageToPanel();
+  }
+  function settle() {
+    const i = nearest();
+    setActive(i);
+    if (i !== lastSettled) {
+      announce(i);
+      if (interacted) {
+        try { history.replaceState(null, "", "#" + TRIP.days[i].id); } catch (e) {}
+        if (scroller.getBoundingClientRect().top < picker.offsetHeight - 40) pageToPanel();
+      }
+      lastSettled = i;
+    }
+  }
+
+  scroller.addEventListener("scroll", () => {
+    if (!raf) raf = requestAnimationFrame(() => { raf = 0; setActive(nearest()); });
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(settle, 150);
+  }, { passive: true });
+  scroller.addEventListener("pointerdown", () => { interacted = true; }, { passive: true });
+  scroller.addEventListener("touchstart", () => { interacted = true; }, { passive: true });
+  scroller.addEventListener("wheel", () => { interacted = true; }, { passive: true });
+  scroller.addEventListener("keydown", e => {
+    if (e.target !== scroller) return;
+    if (e.key === "ArrowRight") { e.preventDefault(); go(active + 1); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); go(active - 1); }
+  });
+  scroller.addEventListener("click", e => {
+    const goBtn = e.target.closest("[data-go]");
+    if (goBtn) { go(Number(goBtn.dataset.go)); return; }
+    const p = e.target.closest(".panel");
+    if (p && !p.classList.contains("is-active")) { e.preventDefault(); e.stopPropagation(); go(Number(p.dataset.i)); }
+  }, true);
+  prevBtn.addEventListener("click", () => go(active - 1));
+  nextBtn.addEventListener("click", () => go(active + 1));
+  stops.forEach((b, k) => b.addEventListener("click", () => go(k)));
+
+  /* 頁面上所有 #d1–#d9 的連結都改成切換卡片 */
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a[href^='#d']");
+    if (!a) return;
+    const i = TRIP.days.findIndex(d => "#" + d.id === a.getAttribute("href"));
+    if (i < 0) return;
+    e.preventDefault();
+    go(i, { page: true });
+    try { history.replaceState(null, "", "#" + TRIP.days[i].id); } catch (err) {}
+  });
+
+  let resizeTimer = 0;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { measure(); scroller.scrollLeft = active * step; fit(); }, 120);
+  });
+
+  /* 初始位置：網址指定的那天，旅行期間是今天，其他時候是 D1 */
+  measure();
+  const fromHash = TRIP.days.findIndex(d => "#" + d.id === location.hash);
+  const ti = TRIP.days.findIndex(d => d.date === today);
+  const start = fromHash >= 0 ? fromHash : ti >= 0 ? ti : 0;
+  scroller.scrollLeft = start * step;
+  setActive(start);
+  announce(start);
+  lastSettled = start;
+  if (fromHash >= 0) setTimeout(pageToPanel, 60);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measure(); scroller.scrollLeft = active * step; fit(); });
+
+  /* 第一次看到路線時：畫線、站點出現、列車開到目前的日期 */
+  const draw = () => {
+    track.classList.add("drawn", "intro");
+    setTimeout(() => track.classList.remove("intro"), 1900);
+  };
+  if (REDUCE || !("IntersectionObserver" in window)) { draw(); inView = true; stamp(active); }
+  else {
+    const io1 = new IntersectionObserver(es => { if (es.some(x => x.isIntersecting)) { draw(); io1.disconnect(); } }, { threshold: 0.6 });
+    io1.observe(track);
+    const io2 = new IntersectionObserver(es => { if (es.some(x => x.isIntersecting)) { inView = true; stamp(active); io2.disconnect(); } }, { threshold: 0.2 });
+    io2.observe(scroller);
+  }
+
+  return { go, fit, get active() { return active; } };
 }
 
+/* ---------- 想吃的餐廳、住宿、出發前準備 ---------- */
+function renderFood() {
+  return h("section", { class: "block", id: "food", "aria-labelledby": "food-h" },
+    h("h2", { id: "food-h" }, "想吃的餐廳"),
+    h("p", { class: "lead" }, "填好店名和想吃的那一餐，再依位置排進最順路的一天。旅伴推薦的店放在下一段。"),
+    h("ul", { class: "list" },
+      TRIP.restaurants.map(r => r.blank
+        ? h("li", null, h("span", { class: "slot" }, "自己填：店名、地點、想吃的那一餐"))
+        : h("li", null,
+            h("p", { class: "a" }, r.name, r.map && h("a", { class: "maplink", href: mapUrl(r.map), target: "_blank", rel: "noopener" }, "地圖")),
+            h("p", null, `${r.where}；${r.hours}`),
+            h("p", null, r.plan),
+            r.note && h("p", { class: "m" }, r.note)))));
+}
+
+function renderHotels() {
+  return h("section", { class: "block", id: "hotels", "aria-labelledby": "hotels-h" },
+    h("h2", { id: "hotels-h" }, "住宿"),
+    h("ul", { class: "list" },
+      TRIP.hotels.map(x => h("li", null,
+        h("p", { class: "a" }, x.name, h("a", { class: "maplink", href: mapUrl(x.map), target: "_blank", rel: "noopener" }, "地圖")),
+        h("p", null, `${x.nights}；${x.addr}`),
+        h("p", { class: "m" }, x.tip)))));
+}
+
+function renderPrep() {
+  let stored = {};
+  try { stored = JSON.parse(store.get(CHECK_KEY, "{}")) || {}; } catch (e) { stored = {}; }
+  const save = () => store.set(CHECK_KEY, JSON.stringify(stored));
+  return h("section", { class: "block", id: "prep", "aria-labelledby": "prep-h" },
+    h("h2", { id: "prep-h" }, "出發前準備"),
+    h("h3", null, "訂票清單"),
+    h("ul", { class: "check" },
+      TRIP.checklist.map(c => h("li", null,
+        h("label", null,
+          h("input", { type: "checkbox", checked: stored[c] ? true : null, onchange: e => { stored[c] = e.target.checked; save(); } }),
+          h("span", null, c))))),
+    h("p", { class: "tz" }, "時間都是台灣時間（日本快一小時）。勾選只存在這台裝置的瀏覽器裡。"),
+    h("h3", null, "要知道的事"),
+    h("ul", { class: "notes" }, TRIP.notes.map(n => h("li", null, n))));
+}
+
+/* ---------- 花費與評估 ---------- */
 function renderExcursion() {
   const ex = TRIP.excursion;
   const ds = ex.days.map(id => TRIP.days.find(d => d.id === id));
-  const total = ds.reduce((s, d) => s + sumCost(d), 0);
   const first = ds[0], last = ds[ds.length - 1];
-  let stored = {};
-  try { stored = JSON.parse(localStorage.getItem("trip2026-checklist") || "{}"); } catch (e) { stored = {}; }
-  const save = () => { try { localStorage.setItem("trip2026-checklist", JSON.stringify(stored)); } catch (e) {} };
-
   const others = TRIP.days.filter(d => d.out && !ex.days.includes(d.id));
   return h("section", { class: "block", id: "excursion", "aria-labelledby": "excursion-h" },
-    h("h2", { id: "excursion-h" }, "離開東京市區的交通"),
-    h("p", { class: "lead" }, `重點是 ${shortDate(first.date)}到 ${shortDate(last.date)}的富士・箱根三天，交通費每人 ${yen(total)}，含淺草和新宿之間的兩段地鐵。` +
+    h("h2", { id: "excursion-h" }, "離開東京市區的交通與票券"),
+    h("p", { class: "lead" }, `重點是 ${shortDate(first.date)}到 ${shortDate(last.date)}的富士・箱根三天，交通費每人 ${yen(exTotal())}，含淺草和新宿之間的兩段地鐵。` +
       (others.length > 0 ? `${others.map(d => d.sign).join("和")}的交通放在這一段最後。` : "")),
     h("h3", null, "富士・箱根三天的路線"),
     h("ol", { class: "route" },
@@ -718,14 +1152,8 @@ function renderExcursion() {
         h("span", { class: "a" }, t.name),
         h("span", { class: "c" }, yen(t.yen)),
         h("span", { class: "b" }, `${t.when}；${t.where}`)))),
+    h("h3", null, "為什麼這樣買"),
     h("p", { class: "why" }, ex.why),
-    h("h3", null, "預訂清單"),
-    h("ul", { class: "check" },
-      ex.checklist.map(c => h("li", null,
-        h("label", null,
-          h("input", { type: "checkbox", checked: stored[c] ? true : null, onchange: e => { stored[c] = e.target.checked; save(); } }),
-          h("span", null, c))))),
-    h("p", { class: "tz" }, "時間都是台灣時間（日本快一小時）。勾選只存在這台裝置的瀏覽器裡。"),
     others.length > 0 && h("h3", null, others.map(d => d.sign).join("和")),
     others.length > 0 && h("ul", { class: "rows" },
       others.map(d => h("li", null,
@@ -752,64 +1180,385 @@ function renderBudget() {
     extras.length > 0 && h("p", { class: "extra" }, "需要才用的費用：" + extras.join("；") + "。"));
 }
 
-function renderRestaurants() {
-  return h("section", { class: "block", id: "food", "aria-labelledby": "food-h" },
-    h("h2", { id: "food-h" }, "想吃的餐廳"),
-    h("p", { class: "lead" }, "填好店名和想吃的那一餐，再依位置排進最順路的一天。"),
-    h("ul", { class: "list" },
-      TRIP.restaurants.map(r => r.blank
-        ? h("li", { class: "blank" }, h("span", { class: "slot" }, "自己填：店名、地點、想吃的那一餐"))
-        : h("li", null,
-            h("p", { class: "a" }, r.name, r.map && h("a", { class: "maplink", href: mapUrl(r.map), target: "_blank", rel: "noopener" }, "地圖")),
-            h("p", null, `${r.where}；${r.hours}`),
-            h("p", null, r.plan),
-            r.note && h("p", { class: "m" }, r.note)))));
-}
-
-function renderHotels() {
-  return h("section", { class: "block", id: "hotels", "aria-labelledby": "hotels-h" },
-    h("h2", { id: "hotels-h" }, "住宿"),
-    h("ul", { class: "list" },
-      TRIP.hotels.map(x => h("li", null,
-        h("p", { class: "a" }, x.name, h("a", { class: "maplink", href: mapUrl(x.map), target: "_blank", rel: "noopener" }, "地圖")),
-        h("p", null, `${x.nights}；${x.addr}`),
-        h("p", { class: "m" }, x.tip)))));
-}
-
-function renderNotes() {
-  return h("section", { class: "block", id: "notes", "aria-labelledby": "notes-h" },
-    h("h2", { id: "notes-h" }, "出發前要知道"),
-    h("ul", { class: "notes" }, TRIP.notes.map(n => h("li", null, n))),
-    h("h3", null, "資料來源（2026 年 10 月查詢）"),
+function renderSources() {
+  return h("section", { class: "block", id: "sources", "aria-labelledby": "sources-h" },
+    h("h2", { id: "sources-h" }, "資料來源"),
+    h("p", { class: "lead" }, "票價、時刻與營業時間是 2026 年 10 月查的，出發前請再確認。"),
     h("ol", { class: "src" }, TRIP.sources.map(([t, u]) => h("li", null, h("a", { href: u, target: "_blank", rel: "noopener" }, t)))));
 }
 
 function renderFooter() {
-  return h("footer", null,
+  return h("footer", { class: "wrap" },
     h("h2", null, "怎麼修改這一頁"),
-    h("p", null, "用文字編輯器或 GitHub 網頁版打開 ", h("code", null, "index.html"), "，所有行程都在檔案上方的 ", h("code", null, "TRIP"), " 資料裡。"),
-    h("p", null, "虛線的「自己填」格子：補上 ", h("code", null, "what"), "，再把 ", h("code", null, "tag"), " 改成「指定」。交通費改 ", h("code", null, "cost"), " 裡的 ", h("code", null, "yen"), "，每日小計和總額會自動重算。"));
+    h("p", null, "所有行程都在 ", h("code", null, "index.html"), " 上方的 ", h("code", null, "TRIP"), " 資料裡；虛線的「自己填」格子補上 ", h("code", null, "what"), "，再把 ", h("code", null, "tag"), " 改成「指定」。"),
+    h("p", null, "完整說明和旅伴新增功能的設定步驟在 ", h("a", { href: TRIP.repo + "#readme", target: "_blank", rel: "noopener" }, "README"), "。"));
 }
 
-(function render() {
-  const today = todayInJapan();
-  const app = document.getElementById("app");
-  app.replaceChildren(
-    renderHero(today),
-    renderLegend(),
-    renderQuick(),
-    renderExcursion(),
-    ...TRIP.days.map((d, i) => renderDay(d, i, today)),
-    renderBudget(),
-    renderRestaurants(),
-    renderHotels(),
-    renderNotes(),
-    renderFooter()
-  );
-  const cur = TRIP.days.findIndex(d => d.date === today);
-  if (cur >= 0) {
-    document.body.append(h("a", { class: "today-jump", href: "#" + TRIP.days[cur].id }, `今天：D${cur + 1} ${TRIP.days[cur].short}`));
+/* ---------- 大家加的行程與餐廳（Firebase） ---------- */
+const T = {
+  configured: false, backend: null, loadError: "", authReady: false, authError: "",
+  user: null, entries: [], listReady: false, listError: "", filter: "all", editing: null, pendingDay: null
+};
+
+async function firebaseBackend(cfg) {
+  const [appMod, A, F] = await Promise.all([
+    import(FIREBASE_SDK + "firebase-app.js"),
+    import(FIREBASE_SDK + "firebase-auth.js"),
+    import(FIREBASE_SDK + "firebase-firestore.js")
+  ]);
+  const app = appMod.initializeApp(cfg);
+  const auth = A.getAuth(app);
+  const db = F.getFirestore(app);
+  const col = F.collection(db, "entries");
+  return {
+    onUser(cb) {
+      return A.onAuthStateChanged(auth, u => cb(u ? { uid: u.uid, name: u.displayName || "", email: u.email || "" } : null));
+    },
+    signIn() {
+      const p = new A.GoogleAuthProvider();
+      p.setCustomParameters({ prompt: "select_account" });
+      return A.signInWithPopup(auth, p);
+    },
+    signOut() { return A.signOut(auth); },
+    watch(onData, onError) {
+      return F.onSnapshot(F.query(col, F.orderBy("createdAt")), { includeMetadataChanges: true },
+        snap => onData(snap.docs.map(d => Object.assign({ id: d.id }, d.data({ serverTimestamps: "estimate" }))), { fromCache: snap.metadata.fromCache }),
+        onError);
+    },
+    add(data) {
+      return F.addDoc(col, Object.assign({}, data, {
+        uid: auth.currentUser ? auth.currentUser.uid : "",
+        createdAt: F.serverTimestamp(), updatedAt: F.serverTimestamp()
+      }));
+    },
+    update(id, data) { return F.updateDoc(F.doc(db, "entries", id), Object.assign({}, data, { updatedAt: F.serverTimestamp() })); },
+    remove(id) { return F.deleteDoc(F.doc(db, "entries", id)); }
+  };
+}
+
+const ms = t => !t ? 0 : typeof t.toMillis === "function" ? t.toMillis() : typeof t.seconds === "number" ? t.seconds * 1000 : Number(t) || 0;
+const timeKey = t => { const m = /(\d{1,2}):(\d{2})/.exec(t || ""); return m ? Number(m[1]) * 60 + Number(m[2]) : 24 * 60 + 1; };
+const byTime = (a, b) => timeKey(a.time) - timeKey(b.time) || ms(a.createdAt) - ms(b.createdAt);
+const clip = (v, n) => String(v || "").trim().slice(0, n);
+const isMine = e => !!(T.user && e.uid === T.user.uid);
+const isAdmin = () => !!(T.user && (TRIP.admins || []).includes(T.user.uid));
+function norm(e) {
+  const s = v => (typeof v === "string" ? v : "");
+  return { id: e.id, kind: e.kind === "food" ? "food" : "plan", day: s(e.day), time: s(e.time), title: s(e.title), place: s(e.place),
+           note: s(e.note), name: s(e.name), uid: s(e.uid), createdAt: e.createdAt, updatedAt: e.updatedAt };
+}
+function errText(e) {
+  const c = String((e && e.code) || "");
+  if (c.includes("permission-denied")) return "沒有權限：只能修改或刪除自己新增的項目。";
+  if (c === "auth/popup-blocked") return "登入視窗被瀏覽器擋住了，請允許彈出視窗後再按一次。";
+  if (c === "auth/popup-closed-by-user" || c === "auth/cancelled-popup-request") return "登入視窗已關閉，還沒有登入。";
+  if (c === "auth/unauthorized-domain") return "這個網址還沒加進 Firebase 的授權網域，請照 README 設定。";
+  if (c === "auth/operation-not-allowed") return "Firebase 還沒開啟 Google 登入，請照 README 設定。";
+  if (c === "auth/network-request-failed" || c === "unavailable") return "連不上伺服器，請檢查網路後再試一次。";
+  if (c === "not-found") return "這一筆已經被刪除了。";
+  return "發生錯誤" + (c ? `（${c}）` : "") + "，請稍後再試。";
+}
+
+function renderTogether() {
+  const radio = (v, label, on) => h("label", null, h("input", { type: "radio", name: "t-kind", value: v, checked: on ? true : null }), h("span", null, label));
+  const field = (id, label, control) => h("div", { class: "field" }, h("label", { for: id }, label), control);
+  return h("section", { class: "block", id: "together", "aria-labelledby": "together-h" },
+    h("h2", { id: "together-h" }, "大家加的行程與餐廳"),
+    h("p", { class: "lead" }, "旅伴用 Google 帳號登入後，可以把想去的地方和想吃的店加進來。每一筆只有新增的人能修改或刪除，網站主人可以刪除不當內容。"),
+    h("div", { class: "auth", id: "t-auth" }),
+    h("form", { class: "form", id: "t-form", hidden: true, novalidate: true },
+      h("p", { class: "form-title", id: "t-form-title" }, "新增一筆"),
+      h("fieldset", { class: "field" }, h("legend", null, "類型"), h("div", { class: "seg" }, radio("plan", "行程", true), radio("food", "餐廳"))),
+      h("div", { class: "row2" },
+        field("t-day", "哪一天", h("select", { id: "t-day" },
+          h("option", { value: "" }, "還沒決定"),
+          TRIP.days.map(d => h("option", { value: d.id }, dayLabel(d.id))))),
+        field("t-time", "時間（可不填）", h("input", { type: "text", id: "t-time", maxlength: "20", placeholder: "例：14:00、下午", autocomplete: "off" }))),
+      field("t-title", "名稱", h("input", { type: "text", id: "t-title", maxlength: "60", required: true, placeholder: "例：築地場外市場", autocomplete: "off" })),
+      field("t-place", "地點（可不填，會產生地圖連結）", h("input", { type: "text", id: "t-place", maxlength: "80", placeholder: "例：東京都中央區築地 4 丁目", autocomplete: "off" })),
+      field("t-note", "備註（可不填）", h("textarea", { id: "t-note", maxlength: "300", rows: "3" })),
+      field("t-name", "顯示名稱", h("input", { type: "text", id: "t-name", maxlength: "40", required: true, autocomplete: "nickname" })),
+      h("p", { class: "form-err", id: "t-err", role: "alert" }),
+      h("div", { class: "form-acts" },
+        h("button", { type: "submit", class: "btn", id: "t-submit" }, "新增"),
+        h("button", { type: "button", class: "btn ghost", id: "t-cancel", hidden: true }, "取消修改"))),
+    h("div", { class: "filters", role: "group", "aria-label": "篩選類型" },
+      [["all", "全部"], ["plan", "行程"], ["food", "餐廳"]].map(([k, t]) =>
+        h("button", { type: "button", class: "fbtn", "data-f": k, "aria-pressed": k === "all" ? "true" : "false" }, t))),
+    h("div", { id: "t-list" }));
+}
+
+function renderAuth() {
+  const box = $("#t-auth");
+  box.replaceChildren();
+  if (!T.configured) {
+    box.append(h("p", { class: "grow muted" }, "這個功能還沒啟用。網站主人照 README 的「開啟旅伴新增功能」設定好 Firebase 後，這裡會出現登入按鈕。"));
+    return;
   }
+  if (T.loadError) { box.append(h("p", { class: "grow warn" }, T.loadError)); return; }
+  if (!T.authReady) { box.append(h("p", { class: "grow muted" }, "載入中…")); return; }
+  if (!T.user) {
+    box.append(
+      h("button", { type: "button", class: "btn", onclick: signIn }, "用 Google 登入"),
+      h("p", { class: "grow muted" }, "登入後可以新增；不登入也看得到大家加的內容。"));
+    if (IN_APP) {
+      box.append(h("p", { class: "warn", style: "flex-basis:100%" },
+        "LINE、Facebook 等 App 內建的瀏覽器不能用 Google 登入，請改用 Safari 或 Chrome 開啟這一頁。",
+        IN_LINE && h("a", { href: externalUrl(), style: "margin-left:8px" }, "用預設瀏覽器開啟")));
+    }
+  } else {
+    box.append(
+      h("p", { class: "grow" }, `已用 ${T.user.name || T.user.email || "Google 帳號"} 登入`),
+      h("button", { type: "button", class: "btn ghost small", onclick: () => T.backend.signOut().catch(err => toast(errText(err))) }, "登出"),
+      h("details", { class: "uid" },
+        h("summary", null, "我的使用者 ID"),
+        h("code", null, T.user.uid),
+        h("button", { type: "button", class: "btn ghost small", onclick: copyUid }, "複製"),
+        h("p", { class: "muted", style: "margin:6px 0 0" }, "網站主人把這串 ID 填進 index.html 的 admins 和 firestore.rules，就能刪除任何一筆。")));
+  }
+  if (T.authError) box.append(h("p", { class: "warn", style: "flex-basis:100%" }, T.authError));
+}
+
+function externalUrl() {
+  try { const u = new URL(location.href); u.searchParams.set("openExternalBrowser", "1"); return u.toString(); }
+  catch (e) { return location.href; }
+}
+function copyUid() {
+  const uid = T.user ? T.user.uid : "";
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(uid).then(() => toast("已複製使用者 ID"), () => toast("請手動選取後複製"));
+  else toast("請手動選取後複製");
+}
+function signIn() {
+  T.authError = "";
+  T.backend.signIn().catch(err => { T.authError = errText(err); renderAuth(); });
+}
+
+function syncForm() {
+  const form = $("#t-form");
+  form.hidden = !T.user;
+  if (!T.user) { cancelEdit(); return; }
+  const nameBox = $("#t-name");
+  if (!nameBox.value) nameBox.value = store.get(NICK_KEY + ":" + T.user.uid, "") || (T.user.name || "").trim().slice(0, 40) || "旅伴";
+  if (T.pendingDay != null) { $("#t-day").value = T.pendingDay; T.pendingDay = null; }
+}
+
+function setFormError(msg) { $("#t-err").textContent = msg || ""; }
+
+function fillForm(e) {
+  $$("input[name='t-kind']").forEach(r => { r.checked = r.value === e.kind; });
+  $("#t-day").value = e.day || "";
+  $("#t-time").value = e.time || "";
+  $("#t-title").value = e.title || "";
+  $("#t-place").value = e.place || "";
+  $("#t-note").value = e.note || "";
+  $("#t-name").value = e.name || $("#t-name").value;
+}
+
+function startEdit(e) {
+  T.editing = e.id;
+  fillForm(e);
+  $("#t-form").classList.add("editing");
+  $("#t-form-title").textContent = "修改這一筆";
+  $("#t-submit").textContent = "儲存修改";
+  $("#t-cancel").hidden = false;
+  setFormError("");
+  $("#t-form").scrollIntoView({ behavior: REDUCE ? "auto" : "smooth", block: "start" });
+  setTimeout(() => $("#t-title").focus({ preventScroll: true }), REDUCE ? 0 : 400);
+}
+
+function cancelEdit() {
+  T.editing = null;
+  const form = $("#t-form");
+  form.classList.remove("editing");
+  $("#t-form-title").textContent = "新增一筆";
+  $("#t-submit").textContent = "新增";
+  $("#t-cancel").hidden = true;
+  ["#t-time", "#t-title", "#t-place", "#t-note"].forEach(s => { $(s).value = ""; });
+  setFormError("");
+}
+
+async function onSubmit(ev) {
+  ev.preventDefault();
+  const kind = ($("input[name='t-kind']:checked") || {}).value === "food" ? "food" : "plan";
+  const data = {
+    kind, day: $("#t-day").value, time: clip($("#t-time").value, 20), title: clip($("#t-title").value, 60),
+    place: clip($("#t-place").value, 80), note: clip($("#t-note").value, 300), name: clip($("#t-name").value, 40)
+  };
+  if (!data.title) { setFormError("請填名稱。"); $("#t-title").focus(); return; }
+  if (!data.name) { setFormError("請填顯示名稱。"); $("#t-name").focus(); return; }
+  if (T.user) store.set(NICK_KEY + ":" + T.user.uid, data.name);
+  const btn = $("#t-submit");
+  btn.disabled = true;
+  try {
+    if (T.editing) {
+      await T.backend.update(T.editing, data);
+      toast("已儲存修改");
+      cancelEdit();
+    } else {
+      await T.backend.add(data);
+      toast("已新增");
+      ["#t-time", "#t-title", "#t-place", "#t-note"].forEach(s => { $(s).value = ""; });
+      setFormError("");
+    }
+  } catch (err) {
+    setFormError(errText(err));
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function armDelete(btn, e) {
+  if (btn.classList.contains("armed")) {
+    btn.disabled = true;
+    T.backend.remove(e.id).then(() => {
+      toast("已刪除");
+      if (T.editing === e.id) cancelEdit();
+    }, err => { toast(errText(err)); btn.disabled = false; });
+    return;
+  }
+  const label = btn.textContent;
+  btn.classList.add("armed");
+  btn.textContent = "確定刪除？";
+  setTimeout(() => { if (btn.isConnected && !btn.disabled) { btn.classList.remove("armed"); btn.textContent = label; } }, 4000);
+}
+
+function renderEntry(e) {
+  const mine = isMine(e), admin = isAdmin();
+  const edited = ms(e.updatedAt) - ms(e.createdAt) > 2000;
+  return h("li", { class: "entry" },
+    h("div", { class: "ehead" },
+      h("span", { class: "kind " + e.kind }, e.kind === "food" ? "餐廳" : "行程"),
+      e.time && h("span", { class: "etime" }, e.time),
+      h("strong", null, e.title),
+      h("a", { class: "maplink", href: mapUrl(e.place || e.title), target: "_blank", rel: "noopener" }, "地圖")),
+    e.place && h("p", { class: "eplace" }, e.place),
+    e.note && h("p", { class: "enote" }, e.note),
+    h("p", { class: "by" }, `${e.name || "旅伴"} 新增${edited ? "，已修改" : ""}${mine ? "（你）" : ""}`),
+    (mine || admin) && h("div", { class: "acts" },
+      mine && h("button", { type: "button", class: "btn ghost small", onclick: () => startEdit(e) }, "修改"),
+      h("button", { type: "button", class: "btn danger small", onclick: ev => armDelete(ev.currentTarget, e) }, mine ? "刪除" : "刪除（管理員）")));
+}
+
+function renderList() {
+  const box = $("#t-list");
+  box.replaceChildren();
+  $$(".fbtn").forEach(b => b.setAttribute("aria-pressed", b.dataset.f === T.filter ? "true" : "false"));
+  if (!T.configured) { box.append(h("p", { class: "muted" }, "啟用後，大家新增的行程和餐廳會依日期列在這裡，也會出現在每天的卡片裡。")); return; }
+  if (T.loadError) return;
+  if (T.listError) { box.append(h("p", { class: "warn" }, T.listError)); return; }
+  if (!T.listReady) { box.append(h("p", { class: "muted" }, "載入中…")); return; }
+  const items = T.entries.filter(e => T.filter === "all" || e.kind === T.filter);
+  if (!items.length) {
+    box.append(h("p", { class: "muted" }, T.filter === "all" ? "還沒有人新增。" : T.filter === "food" ? "還沒有人推薦餐廳。" : "還沒有人新增行程。"));
+    return;
+  }
+  for (const g of [...TRIP.days.map(d => d.id), ""]) {
+    const list = items.filter(e => (e.day || "") === g).sort(byTime);
+    if (!list.length) continue;
+    box.append(h("div", { class: "egroup" },
+      h("h3", null, g ? dayLabel(g) : "日期未定"),
+      h("ul", { class: "entries" }, list.map(renderEntry))));
+  }
+}
+
+function renderMine() {
+  $$(".mine").forEach(box => {
+    const day = box.dataset.day;
+    const list = T.entries.filter(e => e.day === day).sort(byTime);
+    box.replaceChildren(h("h4", null, "大家加的" + (list.length ? `（${list.length}）` : "")));
+    if (!T.configured) box.append(h("p", { class: "muted" }, "旅伴新增功能還沒啟用。"));
+    else if (T.loadError || T.listError) box.append(h("p", { class: "muted" }, "目前讀不到旅伴新增的內容。"));
+    else if (!T.listReady) box.append(h("p", { class: "muted" }, "載入中…"));
+    else if (!list.length) box.append(h("p", { class: "muted" }, "還沒有人加這一天的行程或餐廳。"));
+    else box.append(h("ul", { class: "mine-list" }, list.map(e => h("li", null,
+      h("span", { class: "kind " + e.kind }, e.kind === "food" ? "餐廳" : "行程"),
+      e.time && h("span", { class: "etime" }, e.time),
+      h("span", null, e.title),
+      h("span", { class: "by" }, e.name || "旅伴")))));
+    box.append(h("button", { type: "button", class: "linkbtn", "data-add": day }, "新增到這一天"));
+  });
+  if (window.__days) window.__days.fit();
+}
+
+function openFormFor(day) {
+  if (T.user) {
+    $("#t-day").value = day;
+    $("#t-form").scrollIntoView({ behavior: REDUCE ? "auto" : "smooth", block: "start" });
+    setTimeout(() => $("#t-title").focus({ preventScroll: true }), REDUCE ? 0 : 400);
+  } else {
+    T.pendingDay = day;
+    $("#together").scrollIntoView({ behavior: REDUCE ? "auto" : "smooth", block: "start" });
+  }
+}
+
+async function initTogether() {
+  const cfg = TRIP.firebase || {};
+  T.configured = !!(window.__TRIP_BACKEND__ || (cfg.apiKey && cfg.projectId));
+  $("#t-form").addEventListener("submit", onSubmit);
+  $("#t-cancel").addEventListener("click", cancelEdit);
+  $$(".fbtn").forEach(b => b.addEventListener("click", () => { T.filter = b.dataset.f; renderList(); }));
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-add]");
+    if (b) openFormFor(b.dataset.add);
+  });
+  renderAuth(); renderList(); renderMine();
+  if (!T.configured) return;
+  try {
+    T.backend = window.__TRIP_BACKEND__ ? await window.__TRIP_BACKEND__() : await firebaseBackend(cfg);
+  } catch (err) {
+    T.loadError = "旅伴新增功能載入失敗，請重新整理再試一次。";
+    renderAuth(); renderList(); renderMine();
+    return;
+  }
+  T.backend.onUser(u => {
+    const changed = (T.user ? T.user.uid : null) !== (u ? u.uid : null);
+    T.user = u; T.authReady = true; T.authError = "";
+    if (changed) { cancelEdit(); $("#t-name").value = ""; }
+    renderAuth(); syncForm(); renderList();
+  });
+  T.backend.watch((list, meta) => {
+    T.entries = list.map(norm);
+    T.listReady = !(meta && meta.fromCache && !list.length);
+    T.listError = "";
+    renderList(); renderMine();
+  }, err => {
+    T.listError = errText(err);
+    renderList(); renderMine();
+  });
+}
+
+/* ---------- 浮動按鈕 ---------- */
+function initFabs(today) {
+  const idx = h("a", { class: "fab hide", href: "#index" }, "索引");
+  const fabs = h("div", { class: "fabs" }, idx);
+  const ti = TRIP.days.findIndex(d => d.date === today);
+  if (ti >= 0) fabs.append(h("a", { class: "fab today", href: "#" + TRIP.days[ti].id }, `今天：D${ti + 1} ${TRIP.days[ti].short}`));
+  document.body.append(fabs);
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(es => es.forEach(x => idx.classList.toggle("hide", x.isIntersecting)), { threshold: 0 }).observe($("#index"));
+  } else idx.classList.remove("hide");
+}
+
+(function start() {
+  const today = todayInJapan();
+  $("#app").replaceChildren(
+    renderTop(today),
+    h("main", null,
+      renderDays(today),
+      h("div", { class: "wrap" },
+        renderFood(),
+        renderTogether(),
+        renderHotels(),
+        renderPrep(),
+        h("div", { class: "group-start" }, "花費與評估"),
+        renderExcursion(),
+        renderBudget(),
+        renderSources())),
+    renderFooter());
+  document.body.append(h("div", { class: "toast", role: "status", "aria-live": "polite" }));
+  window.__days = initDays(today);
+  initFabs(today);
+  initTogether();
 })();
 </script>
 </body>

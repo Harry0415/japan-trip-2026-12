@@ -1,0 +1,64 @@
+rules_version = '2';
+
+// 旅伴新增的行程與餐廳（集合名稱 entries）
+// - 任何人都能讀（網頁本身就是公開的）
+// - 登入 Google 才能新增，而且只能用自己的帳號新增
+// - 只有新增的人能修改或刪除自己的那一筆
+// - 管理員可以刪除任何一筆，但不能改別人的內容
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 管理員的使用者 ID：登入網站後，在「大家加的行程與餐廳」展開「我的使用者 ID」複製貼上
+    // 例：return ['AbCdEf123456'];
+    function adminUids() {
+      return [];
+    }
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && request.auth.uid in adminUids();
+    }
+
+    function validEntry(d) {
+      return d.keys().hasAll(['kind', 'day', 'time', 'title', 'place', 'note', 'name', 'uid', 'createdAt', 'updatedAt'])
+        && d.keys().hasOnly(['kind', 'day', 'time', 'title', 'place', 'note', 'name', 'uid', 'createdAt', 'updatedAt'])
+        && d.kind in ['plan', 'food']
+        && d.day in ['', 'd1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8', 'd9']
+        && d.time is string && d.time.size() <= 20
+        && d.title is string && d.title.size() > 0 && d.title.size() <= 60
+        && d.place is string && d.place.size() <= 80
+        && d.note is string && d.note.size() <= 300
+        && d.name is string && d.name.size() > 0 && d.name.size() <= 40
+        && d.uid is string
+        && d.createdAt is timestamp && d.updatedAt is timestamp;
+    }
+
+    match /entries/{entryId} {
+      allow read: if true;
+
+      allow create: if signedIn()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time
+        && validEntry(request.resource.data);
+
+      allow update: if signedIn()
+        && resource.data.uid == request.auth.uid
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.updatedAt == request.time
+        && validEntry(request.resource.data);
+
+      allow delete: if signedIn()
+        && (resource.data.uid == request.auth.uid || isAdmin());
+    }
+
+    // 其他集合一律不開放
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
