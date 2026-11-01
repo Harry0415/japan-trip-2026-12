@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>東京・富士・箱根 九日｜2026/12/21–12/29</title>
-<meta name="description" content="2026 年 12 月日本九日行程：成田、淺草、河口湖、御殿場、箱根、川越的每日時間表、交通花費，以及旅伴一起新增的行程與餐廳。">
+<meta name="description" content="2026 年 12 月日本九日行程：成田、淺草、河口湖、御殿場、箱根、鎌倉的每日時間表、交通花費，以及旅伴一起新增的行程與餐廳。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -379,8 +379,7 @@ const TRIP = {
     ic:   { label: "西瓜卡",        color: "var(--ic)" },
     buy:  { label: "單買／預約車票", color: "var(--buy)" },
     pass: { label: "箱根周遊券",    color: "var(--pass)" },
-    free: { label: "免費／已包含",   color: "var(--free)" },
-    taxi: { label: "計程車",        color: "var(--mist)" }
+    free: { label: "免費／已包含",   color: "var(--free)" }
   },
 
   days: [
@@ -416,40 +415,48 @@ const TRIP = {
     {
       id: "d2", date: "2026-12-22", short: "河口湖", out: true,
       sign: "河口湖", stay: "河口湖 富士吟景",
-      lead: "早上從新宿搭富士回遊，中午前到河口湖，下午逛湖畔，傍晚請飯店來接。",
+      lead: "富士回遊先在下吉田下車，上新倉山淺間公園看五重塔和富士山；中午到河口湖，下午搭纜車、逛大石公園，傍晚請飯店來接。",
       points: [
-        "富士回遊已買好。如果買的是綁西瓜卡的 e-ticket，進出站都刷同一張卡，餘額留 ¥3,000 以上。",
-        "大行李寄放在 Amanek，只帶一晚的過夜包。",
-        "飯店接送 15:00–20:00，只接不送，到河口湖站先打電話。"
+        "富士回遊 10:13 在下吉田下車，不坐到河口湖；下吉田到河口湖這段之後用西瓜卡另付。",
+        "新倉山淺間公園從下吉田站走 10–15 分，觀景台要爬 398 階（也有緩坡步道），免費、全天開放；早上看富士山最清楚。",
+        "大行李寄放在 Amanek，只帶一晚的過夜包，爬階梯比較輕鬆。",
+        "飯店接送 15:00–20:00，只接不送，回到河口湖站先打電話。"
       ],
       plan: [
         { t: "07:00", what: "早餐；大行李寄放在 Amanek，12/24 晚上回來再拿", tag: "建議", note: "出發前先寫信跟飯店確認。" },
         { ride: { dep: "07:40", from: "淺草", to: "新宿", name: "銀座線到神田，轉 JR 中央線快速，28 分；到新宿留 20 分鐘找月台", pay: "ic" } },
-        { ride: { key: true, dep: "08:30", arr: "10:26", from: "新宿", to: "河口湖", name: "富士回遊 7 號（全車指定）",
-                  price: 4200, stamp: "done", check: "車票已買好" } },
-        { t: "10:30–11:30", what: "河口湖站買周遊巴士 2 日券；午餐吃餺飥（ほうとう）", tag: "建議" },
-        { t: "11:30–15:30", what: "湖畔觀光：河口湖全景纜車、大石公園看富士山、久保田一竹美術館", tag: "建議",
-          note: "全景纜車往返 ¥1,200；12/7–12/18 檢修停駛，12/22 已恢復。", map: "富士山パノラマロープウェイ" },
+        { ride: { key: true, dep: "08:30", arr: "10:13", from: "新宿", to: "下吉田", name: "富士回遊 7 號（全車指定），提前在下吉田下車",
+                  price: 4200, stamp: "done", check: "車票已買好；買到河口湖，提前下車沒關係" } },
+        { t: "10:15–11:30", what: "新倉山淺間公園：忠靈塔（五重塔）和富士山同框", tag: "指定",
+          note: "走到新倉富士淺間神社，再爬 398 階或走緩坡約 15–20 分到觀景台；免費。", map: "新倉山浅間公園" },
+        { ride: { dep: "約 11:40", from: "下吉田", to: "河口湖", name: "富士急行線普通車，約 15 分", pay: "ic" } },
+        { t: "12:00–13:00", what: "河口湖站買周遊巴士 2 日券；午餐吃餺飥（ほうとう）", tag: "建議" },
+        { t: "13:00–14:15", what: "河口湖全景纜車：從山上看富士山和河口湖", tag: "建議",
+          note: "從河口湖站走約 15 分；往返 ¥1,200；12/7–12/18 檢修停駛，12/22 已恢復。", map: "富士山パノラマロープウェイ" },
+        { ride: { dep: "約 14:30", from: "纜車站附近", to: "大石公園", name: "周遊巴士紅線，約 20–25 分", pay: "buy" } },
+        { t: "15:00–16:00", what: "大石公園：隔著河口湖看富士山", tag: "建議", map: "大石公園 河口湖" },
         { t: "", tag: "待填", hint: "其他想去的地方" },
-        { t: "15:30–16:30", what: "回河口湖站，打電話請飯店來接", tag: "指定", note: "接送時間 15:00–20:00，只接不送。" },
-        { t: "17:00", what: "入住 湖樂御宿 富士吟景：溫泉、晚餐", tag: "指定", map: "湖楽おんやど 富士吟景" }
+        { ride: { dep: "約 16:10", from: "大石公園", to: "河口湖站", name: "周遊巴士紅線，約 25 分", pay: "buy" } },
+        { t: "16:40", what: "回到河口湖站，打電話請飯店來接", tag: "指定", note: "接送時間 15:00–20:00，只接不送。" },
+        { t: "17:15", what: "入住 湖樂御宿 富士吟景：溫泉、晚餐", tag: "指定", map: "湖楽おんやど 富士吟景" }
       ],
       cost: [
         { leg: "淺草 → 新宿", how: "銀座線＋JR 中央線快速（神田轉車），28 分", yen: 387, pay: "ic" },
-        { leg: "新宿 → 河口湖", how: "富士回遊 7 號 08:30–10:26", yen: 4200, pay: "buy" },
+        { leg: "新宿 → 下吉田", how: "富士回遊 7 號 08:30–10:13（車票買到河口湖）", yen: 4200, pay: "buy" },
+        { leg: "下吉田 → 河口湖", how: "富士急行線普通車", yen: 320, pay: "ic", approx: true },
         { leg: "河口湖周邊", how: "周遊巴士 2 日券（12/22–12/23 用）", yen: 2000, pay: "buy" },
         { leg: "河口湖站 → 飯店", how: "飯店接送", yen: 0, pay: "free" }
       ],
-      note: "富士回遊已買好；如果買的是 e-ticket（¥4,100），車資會在河口湖出站時從西瓜卡扣。"
+      note: "如果富士回遊買的是綁西瓜卡的 e-ticket（¥4,100），車資在下吉田出站時扣；卡內餘額留 ¥3,000 以上。"
     },
     {
       id: "d3", date: "2026-12-23", short: "御殿場・箱根", out: true,
       sign: "御殿場・箱根", stay: "箱根湯本 岡田酒店",
-      lead: "搭 9:10 的 G-Liner，Outlet 一開門就到，一路逛到 19:00 關門，再搭末班 M 線進箱根。",
+      lead: "搭 9:10 的 G-Liner，Outlet 一開門就到，逛到 17:00 再搭 M 線進箱根，趕得上飯店晚餐。",
       points: [
         "Outlet 12 月營業 10:00–19:00；過夜包先放投幣置物櫃（¥400–1,200）。",
-        "19:00 的 M 線是目前查到的末班，12 月班次出發前用箱根ナビ再確認；如果提早收班，改搭 18:00 那班或在 Outlet 叫計程車。",
-        "晚餐在 Outlet 美食街解決；大約 20:40 才到飯店，先寫信告訴岡田會晚到，並問晚餐最晚幾點。",
+        "17:00 從 Outlet 出發：M 線到強羅，轉登山電車到箱根湯本，再搭 18:45 的溫泉鄉共同巴士，大約 18:55 到飯店。",
+        "想睡晚一點就改搭 10:10 的 G-Liner（11:10 到），還有將近 6 小時可以逛；如果前一天大石公園沒去成，就改搭 12:10 那班，早上先去大石公園。",
         "箱根周遊券從今天開始用，EMot 的開始日要選 12/23。"
       ],
       plan: [
@@ -458,24 +465,24 @@ const TRIP = {
         { ride: { key: true, dep: "09:10", arr: "10:10", from: "河口湖站", to: "御殿場 Outlet", name: "G-Liner 特急巴士（6 號月台）",
                   price: 2200, stamp: "book", check: "SEKITORI 網路預約；9:10 班只在平日，12/23 是平日" } },
         { t: "10:10–10:20", what: "過夜包放進投幣置物櫃", tag: "建議", note: "¥400–1,200，依大小。" },
-        { t: "10:20–18:45", what: "御殿場 Premium Outlets 購物，午餐和晚餐都在園區美食街", tag: "指定",
+        { t: "10:20–16:45", what: "御殿場 Premium Outlets 購物，午餐在園區美食街", tag: "指定",
           note: "12 月營業 10:00–19:00。買太多可以到服務中心問付費宅配，直接寄回淺草飯店。", map: "御殿場プレミアム・アウトレット" },
         { t: "", tag: "待填", hint: "想逛的店" },
-        { ride: { key: true, dep: "19:00", arr: "19:35", from: "御殿場 Outlet", to: "強羅站", name: "M 線（觀光施設巡迴巴士），經宮城野",
-                  priceText: "已含", stamp: "pass", check: "目前查到的末班；12 月班次出發前用箱根ナビ確認，備案是 18:00 那班" } },
-        { ride: { dep: "約 19:45", from: "強羅", to: "箱根湯本", name: "箱根登山電車，約 40 分", pay: "pass" } },
-        { ride: { dep: "約 20:25", from: "箱根湯本", to: "岡田酒店", name: "計程車約 5 分（溫泉鄉共同巴士末班 18:45，這時已收班）", pay: "taxi" } },
-        { t: "20:40", what: "入住 箱根湯本溫泉 HOTEL OKADA：泡溫泉", tag: "指定", map: "ホテルおかだ 箱根湯本" }
+        { ride: { key: true, dep: "17:00", arr: "17:35", from: "御殿場 Outlet", to: "強羅站", name: "M 線（觀光施設巡迴巴士），經宮城野",
+                  priceText: "已含", stamp: "pass", check: "前一班 16:30；出發前用箱根ナビ確認 12 月班次" } },
+        { ride: { dep: "約 17:45", from: "強羅", to: "箱根湯本", name: "箱根登山電車，約 40 分", pay: "pass" } },
+        { ride: { dep: "18:45", from: "箱根湯本", to: "岡田酒店", name: "溫泉鄉共同巴士（末班），約 5 分；趕不上就搭計程車", pay: "buy" } },
+        { t: "18:55", what: "入住 箱根湯本溫泉 HOTEL OKADA：溫泉、晚餐", tag: "指定", map: "ホテルおかだ 箱根湯本" }
       ],
       cost: [
         { leg: "飯店 → 河口湖站", how: "路線巴士，含在周遊巴士 2 日券", yen: 0, pay: "free" },
         { leg: "河口湖站 → 御殿場 Outlet", how: "G-Liner 09:10–10:10（網路價）", yen: 2200, pay: "buy" },
         { leg: "箱根周遊券（新宿出發 2 日）", how: "12/23–12/24 箱根交通與回新宿的車資都含", yen: 7100, pay: "pass" },
-        { leg: "Outlet → 強羅", how: "M 線 19:00–19:35", yen: 0, pay: "pass" },
-        { leg: "強羅 → 箱根湯本", how: "箱根登山電車", yen: 0, pay: "pass" }
+        { leg: "Outlet → 強羅", how: "M 線 17:00–17:35", yen: 0, pay: "pass" },
+        { leg: "強羅 → 箱根湯本", how: "箱根登山電車", yen: 0, pay: "pass" },
+        { leg: "箱根湯本 → 岡田酒店", how: "溫泉鄉共同巴士 18:45", yen: 200, pay: "buy" }
       ],
       extra: [
-        { what: "箱根湯本 → 岡田酒店 計程車", yen: 1000, per: "車（約）" },
         { what: "Outlet 投幣置物櫃", yen: 400, per: "次（大櫃 ¥1,200）", opt: true }
       ]
     },
@@ -576,29 +583,34 @@ const TRIP = {
       ]
     },
     {
-      id: "d7", date: "2026-12-27", short: "川越", out: true,
-      sign: "川越", stay: "淺草",
-      lead: "週日的川越人多，08:30 出發、十點前到藏造老街最舒服。",
+      id: "d7", date: "2026-12-27", short: "鎌倉", out: true,
+      sign: "鎌倉", stay: "淺草",
+      lead: "週日的鎌倉人多，早點出門：上午鶴岡八幡宮和小町通，下午搭江之電到長谷看大佛，最後在江之島看夕陽。",
       points: [
-        "本丸御殿 16:30 停止入場；週一和年末休館，年末休館日出發前查官網。",
-        "KAWAGOE DISCOUNT PASS 要帶護照到池袋站的東武窗口買。"
+        "08:00 出門，十點前先到鶴岡八幡宮，人比較少。",
+        "長谷一帶的寺院冬天傍晚就關門，大佛和長谷寺排在下午早一點，出發前查開放時間。",
+        "日落約 16:30，在江之島看夕陽；天氣好還看得到富士山的剪影。",
+        "江之電可以直接刷西瓜卡。"
       ],
       plan: [
-        { ride: { dep: "08:30", from: "淺草", to: "川越", name: "銀座線到上野，JR 山手線到池袋，東武東上線急行，1 小時 8 分", pay: "ic" } },
-        { t: "09:40–10:00", what: "川越站搭巴士或走約 25 分到藏造老街", tag: "建議" },
-        { t: "10:00–12:00", what: "藏造老街（一番街）、時之鐘、菓子屋橫丁", tag: "指定", map: "川越 一番街商店街" },
-        { t: "12:00–13:00", what: "午餐：川越的鰻魚飯或番薯甜點", tag: "建議" },
-        { t: "13:00–15:00", what: "川越城本丸御殿、喜多院", tag: "建議",
-          note: "本丸御殿 9:00–17:00（16:30 停止入場），¥100；週一和年末休館，年末休館日以官網為準。", map: "川越城本丸御殿" },
+        { ride: { dep: "08:00", from: "淺草", to: "鎌倉", name: "都營淺草線到新橋，轉 JR 橫須賀線，約 1 小時 15 分", pay: "ic" } },
+        { t: "09:15–10:45", what: "鶴岡八幡宮、若宮大路的段葛", tag: "建議", map: "鶴岡八幡宮" },
+        { t: "10:45–12:00", what: "小町通：逛街、吃點心", tag: "建議", map: "小町通り 鎌倉" },
+        { t: "12:00–13:00", tag: "待填", hint: "午餐" },
+        { ride: { dep: "約 13:00", from: "鎌倉", to: "長谷", name: "江之電，約 5 分", pay: "ic" } },
+        { t: "13:15–15:00", what: "鎌倉大佛（高德院）、長谷寺", tag: "建議", map: "鎌倉大仏殿高徳院" },
+        { ride: { dep: "約 15:10", from: "長谷", to: "江之島", name: "江之電，約 20 分；可以在鎌倉高校前下車看海邊的平交道", pay: "ic" } },
+        { t: "15:30–17:00", what: "江之島：江島神社、看夕陽", tag: "建議", map: "江の島" },
         { t: "", tag: "待填", hint: "其他想去的地方" },
-        { ride: { dep: "約 15:30", from: "川越", to: "淺草", name: "東武東上線到池袋，JR 到上野，轉銀座線", pay: "ic" } },
-        { t: "17:00–", tag: "待填", hint: "晚餐（淺草）" }
+        { ride: { dep: "約 17:10", from: "江之島", to: "淺草", name: "江之電到藤澤，JR 東海道線到新橋，轉都營淺草線，約 1 小時 20 分", pay: "ic" } },
+        { t: "18:45–", tag: "待填", hint: "晚餐（淺草）" }
       ],
       cost: [
-        { leg: "淺草 → 川越", how: "銀座線＋JR 山手線＋東武東上線，1 小時 8 分", yen: 868, pay: "ic" },
-        { leg: "川越 → 淺草", how: "同一條路線回來", yen: 868, pay: "ic" }
+        { leg: "淺草 → 鎌倉", how: "都營淺草線＋JR 橫須賀線", yen: 1200, pay: "ic", approx: true },
+        { leg: "鎌倉 → 長谷 → 江之島 → 藤澤", how: "江之電 3 段", yen: 800, pay: "ic", approx: true },
+        { leg: "藤澤 → 淺草", how: "JR 東海道線＋都營淺草線", yen: 1200, pay: "ic", approx: true }
       ],
-      note: "東武有給外國旅客的 KAWAGOE DISCOUNT PASS（Premium ¥970，附川越店家優惠），要帶護照在池袋站東武窗口買。"
+      note: "這天的車資是估計值，以實際刷卡為準。"
     },
     {
       id: "d8", date: "2026-12-28", short: "淺草橋",
@@ -658,14 +670,15 @@ const TRIP = {
     route: [
       { head: "12/22（二）" },
       { time: "07:40", name: "淺草", via: "銀座線＋JR 中央線快速", pay: "ic" },
-      { time: "08:30", name: "新宿", via: "富士回遊 7 號", pay: "buy", payText: "預約指定席", key: true },
-      { time: "10:26", name: "河口湖", via: "湖畔觀光搭周遊巴士，傍晚飯店來接", pay: "buy", payText: "周遊巴士 2 日券" },
+      { time: "08:30", name: "新宿", via: "富士回遊 7 號", pay: "buy", payText: "已購買", key: true },
+      { time: "10:13", name: "下吉田（新倉山淺間公園）", via: "富士急行線普通車", pay: "ic" },
+      { time: "約 12:00", name: "河口湖", via: "纜車、周遊巴士到大石公園，傍晚飯店來接", pay: "buy", payText: "周遊巴士 2 日券" },
       { name: "富士吟景（住）", stay: true },
       { head: "12/23（三）" },
       { time: "09:10", name: "河口湖站", via: "G-Liner", pay: "buy", payText: "網路預約", key: true },
-      { time: "10:10–19:00", name: "御殿場 Outlet", via: "M 線（目前查到的末班 19:00）", pay: "pass", key: true },
-      { time: "19:35", name: "強羅", via: "箱根登山電車", pay: "pass" },
-      { time: "約 20:25", name: "箱根湯本", via: "計程車約 5 分", pay: "taxi" },
+      { time: "10:10–17:00", name: "御殿場 Outlet", via: "M 線", pay: "pass", key: true },
+      { time: "17:35", name: "強羅", via: "箱根登山電車", pay: "pass" },
+      { time: "約 18:25", name: "箱根湯本", via: "溫泉鄉共同巴士 18:45", pay: "buy", payText: "¥200" },
       { name: "岡田酒店（住）", stay: true },
       { head: "12/24（四）" },
       { time: "09:00", name: "奧湯本入口", via: "K 線", pay: "pass" },
@@ -677,7 +690,7 @@ const TRIP = {
       { time: "21:15", name: "淺草" }
     ],
     tickets: [
-      { name: "富士回遊 指定席", when: "12/22 新宿 → 河口湖", where: "已購買", yen: 4200 },
+      { name: "富士回遊 指定席", when: "12/22 新宿 → 河口湖（在下吉田提前下車）", where: "已購買", yen: 4200 },
       { name: "河口湖周遊巴士 2 日券", when: "12/22–12/23", where: "河口湖站現場買", yen: 2000 },
       { name: "G-Liner", when: "12/23 河口湖 → Outlet", where: "SEKITORI 網路預約", yen: 2200 },
       { name: "箱根周遊券（新宿出發 2 日）", when: "12/23–12/24", where: "EMot app 數位版", yen: 7100 },
@@ -694,7 +707,7 @@ const TRIP = {
     "在 KKday 買 12/25 東京聖誕市集（芝公園）預售票",
     "訂 12/25 聖誕節晚餐",
     "寫信給 HOTEL AMANEK：12/22–12/24 寄放大行李",
-    "寫信給 HOTEL OKADA：12/23 大約 20:40 才到、晚餐最晚幾點；12/24 箱根行李配送",
+    "寫信給 HOTEL OKADA：12/23 大約 19:00 到、晚餐時間；12/24 箱根行李配送",
     "如果富士回遊是綁西瓜卡的 e-ticket，餘額留 ¥3,000 以上"
   ],
 
@@ -710,7 +723,7 @@ const TRIP = {
     { name: "湖樂御宿 富士吟景", addr: "山梨縣富士河口湖町淺川 132", nights: "12/22，1 晚",
       tip: "河口湖站接送 15:00–20:00，只接不送。", map: "湖楽おんやど 富士吟景" },
     { name: "箱根湯本溫泉 HOTEL OKADA", addr: "神奈川縣箱根町湯本茶屋 191", nights: "12/23，1 晚",
-      tip: "12/23 大約 20:40 才到，先告訴飯店；從箱根湯本站搭計程車約 5 分（溫泉鄉共同巴士 ¥200，末班 18:45）。", map: "ホテルおかだ 箱根湯本" }
+      tip: "12/23 大約 18:55 到；從箱根湯本站搭溫泉鄉共同巴士（¥200，末班 18:45），趕不上就搭計程車約 5 分。", map: "ホテルおかだ 箱根湯本" }
   ],
 
   notes: [
@@ -741,9 +754,9 @@ const TRIP = {
     ["SAGAWA 成田機場行李服務（LIVE JAPAN）", "https://livejapan.com/ja/in-tokyo/in-pref-chiba/in-narita/article-a0006056/"],
     ["成田山新勝寺（GLTJP）", "https://www.gltjp.com/ja/directory/item/10070/"],
     ["新宿 → 淺草（駅探）", "https://ekitan.com/transit/fare/sf-2334/st-1491"],
-    ["淺草 → 川越（駅探）", "https://ekitan.com/transit/fare/sf-1491/st-1909"],
-    ["川越城本丸御殿、川越市立博物館（川越市 PDF）", "https://www.city.kawagoe.saitama.jp/_res/projects/default_project/_page_/001/013/698/hakubutsukanoyobihonmarugotenweb.pdf"],
-    ["KAWAGOE DISCOUNT PASS（東武鐵道）", "https://www.tobu.co.jp/foreign/tcn/pass/kawagoe_pre.html"],
+    ["富士回遊停車站與時刻（JR 集團）", "https://jr-group.jp/fujikaiyu-timetable/"],
+    ["新倉山淺間公園（山梨觀光推進機構）", "https://www.yamanashi-kankou.jp/kankou/spot/p1_4919.html"],
+    ["JR 東日本 2026/3 票價調整（たびまがじん）", "https://tabi-mag.jp/fareincrease-2026/"],
     ["AFURI 店舖一覽", "https://afuri.com/findus/"],
     ["2026/11 起免稅改為出境退稅（觀光廳）", "https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00021.html"],
     ["御殿場 Outlet 12 月營業時間（LIVE JAPAN）", "https://livejapan.com/ja/in-tokyo/in-pref-fuji_mountain/in-mount_fuji/spot-lj0104380/"],
